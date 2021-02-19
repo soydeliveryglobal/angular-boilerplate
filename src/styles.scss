@@ -5,3 +5,216 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+
+/* --------GLOBAL---------- */
+html, body { 
+    margin: 0;
+    height: 100%;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.barra-insert{
+    margin-right: 10px;
+    height: 60px;
+    width: 80%;
+    
+}
+
+.barra-filtros{
+    margin-right: 10px;
+    height: 60px;
+    background-color:white;   
+    width: 900px;
+    height: 40px;
+}
+
+.titulo-form{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: monospace;
+    color:#424768;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.label-form{
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    
+}
+
+.imagen-insert{
+    height: 50px;
+    padding: 5px;
+}
+
+.imagen-grid{
+    height: 40px;
+    padding: 5px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-weight: 300;
+}
+
+.campo-id{
+    width: 100px;
+}
+
+
+.campo-descripcion-corta{
+    width: 400px;
+}
+
+.campo-descripcion-larga{
+    width: 800px;
+    height: auto;
+    
+}
+
+
+
+.boton-form-izquierda{
+    float: left;
+}
+
+.boton-form-derecha{
+    float: right;
+}
+
+
+.boton-form-centro{
+    text-align: center;
+}
+
+
+
+.campos-form{
+    margin-left: 15px;
+}
+
+.boton-form{
+    margin-right: 5px;
+}
+.controles-form{
+
+    width: 100%;
+    text-align: end;
+}
+.form-top{
+    margin-top: 10px;
+}
+
+
+
+.form-detalle{
+    width: 400px;
+}
+.form-etiqueta{
+    margin-left: 15px;
+    margin-top: 10px;
+
+}
+
+.form-detalle-etiqueta{
+    background-color: ghostwhite;
+    padding: 5px;
+    border-radius: 5px;
+    font-stretch: semi-expanded;
+}
+
+
+.slide-hospedaje-usuario{
+    width: 300px;
+    background-color: black;
+    height: auto;
+    text-align: center;
+}
+
+
+.contenedor-de-imagenes{
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    text-align: -webkit-center;
+    background-color: aliceblue;
+}
+
+
+.td-total{
+    text-align: right;
+    font-weight: bold;
+}
+
+.td-valor{
+    text-align: right;
+    font-weight: bold;
+}
+
+
+.reserva-realizada-indicaciones{
+    background-color: gold;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-size: inherit;
+    font-weight: 400;
+}
+
+
+.auto-complete-fondo{
+    
+    padding: 5px;
+}
+.region-visualizar{
+    background-color: #3f51b5;
+}
+
+.text-area-desc{
+
+    height: 200px;
+}
+
+.categoria-en-grilla{
+    background-color: cornsilk;
+    padding: 2px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-indent: 5px;
+    font-family: 'Roboto';
+    font-weight: 200;
+    box-shadow: 1px 1px grey;
+}
+
+.ul-fitcontent-imagen-grilla{
+    width: fit-content;
+}
+
+.stars-manya{
+    color: goldenrod;
+    text-shadow: 1px black;
+    font-size: x-large;
+}
+
+.invalid-feedback{
+    color: red;
+    text-shadow: 1px black;
+    font-size: small;
+    display: block;
+}
+
+.imagen-insert-btn{ 
+   
+    padding: 10px 10px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    letter-spacing: 1px;
+    height: 80px;
+
+  }

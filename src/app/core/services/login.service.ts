@@ -39,7 +39,12 @@ export class LoginService{
   }
 
   public  estaLogueado():boolean{
-    let buffer: string =  localStorage.getItem(environment.LOCAL_STORAGE_ADMINISTRADOR);
+    let buffer: string =  `email: "admin@uruguaynatural.com.uy"
+    esSuperAdministrador: true
+    id: 1
+    nombre: "Administrador"
+    password: "1234"
+    token: "26f2fe6e-8022-4941-8466-1e537564ee3d"`//localStorage.getItem(environment.LOCAL_STORAGE_ADMINISTRADOR);
     let hayToken = false;
     try{
       let administrador = JSON.parse(buffer);
@@ -66,8 +71,8 @@ export class LoginService{
     esSuperAdministrador: true
     id: 1
     nombre: "Administrador"
-    password: "*********"
-    token: "28e07324-d638-4c7c-b9c1-248080a295a0"`//localStorage.getItem(environment.LOCAL_STORAGE_ADMINISTRADOR);
+    password: "1234"
+    token: "26f2fe6e-8022-4941-8466-1e537564ee3d"`//localStorage.getItem(environment.LOCAL_STORAGE_ADMINISTRADOR);
     try{
       let administrador = JSON.parse(buffer);
       return administrador.token;     

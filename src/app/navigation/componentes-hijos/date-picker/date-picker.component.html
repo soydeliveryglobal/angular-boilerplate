@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+    <mat-label>{{this.dtoDatePickerIn.etiqueta}}</mat-label>
+    <input   [(ngModel)]="fecha" matInput  [matDatepicker]="dp"   (dateChange)="seleccion('change', $event)" required >
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+</mat-form-field>
+

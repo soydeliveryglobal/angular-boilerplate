@@ -1,0 +1,88 @@
+
+<div class="card m-3">
+  <div class="card-body">
+    <div class="panel panel-primary">
+      <div class ="titulo-form">{{'TARIFA.TITLE_MAINTAINENCE' | translate}}</div>
+      <img  style="float: right;" class = "imagen-insert"  (click)="createAdministrador()" [src] = "environment.IMAGEN_CREAR"/>
+    </div>
+  </div>
+</div>
+
+<div class="card m-3">
+  <div class="card-body">
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              #Id
+            </th>
+            <th>
+             {{'TARIFA.COLUMN_EFFECTIVE_DATE' | translate}}
+            </th>
+            <th>
+              {{'TARIFA.COLUMN_ADULT_RATE' | translate}}
+            </th>
+            <th>
+              {{'TARIFA.COLUMN_CHILDREN_RATE' | translate}}
+            </th>
+            <th>
+              {{'TARIFA.COLUMN_BABY_RATE' | translate}}
+            </th>
+            <th>
+              {{'TARIFA.COLUMN_RETIRED_RATE' | translate}}
+            </th>
+            <th>
+              {{'TARIFA.COLUMN_RETIRED_PROMO_RATE' | translate}}
+            </th>
+            <th>
+              
+            </th>
+            <th>
+              
+            </th>
+            <th>
+              
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarifa of tarifas ">
+            <td>{{tarifa.tarifaId}}</td>
+            <td> {{Util.formatFecha(tarifa.fechaDeVigencia)}}
+            </td>
+            <td>
+              {{tarifa.tazaAdulto}}
+            </td>
+            <td>
+              {{tarifa.tazaNinio}}
+            </td>
+            <td>
+              {{tarifa.tazaBebe}}
+            </td>
+            <td>
+              {{tarifa.tazaJubilado}}
+            </td>
+            <td>
+              {{tarifa.tazaJubiladoConPromo}}
+            </td>
+            <td>
+              {{tarifa.cantidadJubiladosPromo}}
+            </td>
+            
+            <td>
+              <img  (click)="updateAdministrador(tarifa.tarifaId)" [src] = "environment.IMAGEN_EDITAR" class="imagen-grid"/>
+            </td>
+            <td>
+              <img  (click)="administradorDetails(tarifa.tarifaId)" [src] = "environment.IMAGEN_VISUALIZAR" class="imagen-grid"/>
+            </td>
+            <td>
+              <img  (click)="deleteAdministrador(tarifa.tarifaId)" [src] = environment.IMAGEN_ELIMINAR class="imagen-grid"/>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

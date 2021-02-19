@@ -5,6 +5,10 @@
       </a>
       <a class="logo" href="#" (click)="navigateHome()">ngx-<span>admin</span></a>
     </div>
+    <select #langSelect [value]="locale" (change)="changeLocale(langSelect.value)"> 
+      <option  value="es">Spanish</option>
+      <option  value="en">English</option>
+    </select>
   </div>
   
   <div class="header-container">

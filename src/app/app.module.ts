@@ -1,3 +1,4 @@
+import { DatePickerComponent } from './navigation/componentes-hijos/date-picker/date-picker.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -30,12 +31,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from './shared/shared.module';
+import { MaterialModule } from './material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,9 @@ import { SharedModule } from './shared/shared.module';
     NbEvaIconsModule,
     NgbModule,
     SharedModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -66,7 +71,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     HttpClientModule,
   ],
-  providers: [HttpClientModule],
-  bootstrap: [AppComponent]
+  providers: [HttpClientModule,MaterialModule],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

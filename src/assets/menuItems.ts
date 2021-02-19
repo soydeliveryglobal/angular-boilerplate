@@ -2,34 +2,31 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Layout',
+    title: 'MENU.LAYOUT',
     icon: 'layout-outline',
     children: [
       {
-        title: 'Stepper',
+        title: 'MENU.LAYOUT-STEPPER',
         link: '/pages/layout/stepper',
       },
       {
-        title: 'List',
+        title: 'MENU.LAYOUT-LIST',
         link: '/pages/layout/list',
       },
       {
-        title: 'Infinite List',
+        title: 'MENU.LAYOUT-INFINITE_LIST',
         link: '/pages/layout/infinite-list',
-      },
-      {
-        title: 'Accordion',
-        link: '/pages/layout/accordion',
-      },    {
-        title: 'Tabs',
-        pathMatch: 'prefix',
-        link: '/pages/layout/tabs',
-      },
+      }
     ],
   },
   {
-    title: 'Mi ABM',
+    title: 'MENU.MYABM',
     icon: 'car-outline',
     link: '/miabm',
+  },
+  {
+    title: 'MENU.RATES',
+    icon: 'car-outline',
+    link: '/tarifa',
   },
 ];

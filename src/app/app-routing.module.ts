@@ -22,6 +22,10 @@ const routes: Routes = [
         path: 'miabm',
         loadChildren: () => import('./mi-abm/mi-abm.module').then(m => m.MiABMModule)
       },
+      {
+        path: 'tarifa',
+        loadChildren: () => import('./tarifa/tarifa.module').then(m => m.TarifaModule)
+      },
     ]
   },
   {

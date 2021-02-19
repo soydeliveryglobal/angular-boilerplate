@@ -1,0 +1,21 @@
+{
+    "TARIFA":{
+        "TITLE_MAINTAINENCE":"Maintenance of Rates",
+        "COLUMN_EFFECTIVE_DATE": "Effective date",
+        "COLUMN_ADULT_RATE": "Adult Rate",
+        "COLUMN_CHILDREN_RATE": "Children Rate",
+        "COLUMN_BABY_RATE": "Baby Rate",
+        "COLUMN_RETIRED_RATE": "Retired Rate",
+        "COLUMN_RETIRED_PROMO_RATE": "Retired Promo Rate",
+        "COUNT_RETIRED_PROMO": "Number of Retirees for the Promotion",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Rate",
+        "UPDATE": "Update Rate",
+        "DELETE": "Delete Rate",
+        "DISPLAY": "Display Rate"
+    }
+}

@@ -46,7 +46,7 @@
                 {{administrador.email}}
               </td>      
               <td>
-                <!-- <mat-slide-toggle [disabled]="true" [(ngModel)]="administrador.esSuperAdministrador"></mat-slide-toggle> -->
+                <mat-slide-toggle [disabled]="true" [(ngModel)]="administrador.esSuperAdministrador"></mat-slide-toggle>
               </td>
               <td>
                 <img *ngIf="!administradorActual(administrador)" (click)="updateAdministrador(administrador.id)" [src] = "environment.IMAGEN_EDITAR" class="imagen-grid"/>

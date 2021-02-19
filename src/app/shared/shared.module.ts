@@ -1,3 +1,6 @@
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -22,7 +25,11 @@ import { NbHeaderComponent } from './nb-header/nb-header.component';
 
 import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+export function sharedHttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/shared/', '.json');
+}
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
@@ -61,8 +68,18 @@ const nebular = [
   imports: [
     ...nebular,
     CommonModule,
-    RouterModule
-  ]
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: sharedHttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  providers:[FormsModule]
 })
 export class SharedModule { }
 
