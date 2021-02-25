@@ -26,6 +26,10 @@ const routes: Routes = [
         path: 'tarifa',
         loadChildren: () => import('./tarifa/tarifa.module').then(m => m.TarifaModule)
       },
+      {
+        path: 'tables',
+        loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule)
+      },
     ]
   },
   {

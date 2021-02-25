@@ -33,6 +33,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CoreModule,
     HttpClientModule,
   ],
-  providers: [HttpClientModule,MaterialModule],
+  providers: [HttpClientModule,Ng2SmartTableModule],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
