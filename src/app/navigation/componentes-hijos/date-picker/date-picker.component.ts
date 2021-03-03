@@ -12,7 +12,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FOR
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.css'],  
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: environment.LOCALE_STRING},
+    {provide: MAT_DATE_LOCALE, useValue: environment.LOCALE_STRING_DATEPICKER},
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
@@ -40,7 +40,7 @@ export class DatePickerComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this._adapter.setLocale(environment.LOCALE_STRING);
+    this._adapter.setLocale(environment.LOCALE_STRING_DATEPICKER);
     this.throwErrorSiDoDatePickerInEsNulo();
     if (this.dtoDatePickerIn.fecha == null){
       this.fecha = new Date();

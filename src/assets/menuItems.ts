@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
@@ -28,5 +29,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'MENU.RATES',
     icon: 'car-outline',
     link: '/tarifa',
+  },
+  {
+    title: 'MENU.PROVIDER',
+    icon: 'car-outline',
+    link: environment.FORMULARIO_CRUD_DEL_PROVIDER,
   },
 ];

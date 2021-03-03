@@ -34,8 +34,7 @@ export class LoginService{
 
     
   public  desLoguear(){
-    localStorage.removeItem(environment.HOSPEDAJE_RESERVA_PUNTO_TURISTICO);
-    localStorage.removeItem(environment.LOCAL_STORAGE_ADMINISTRADOR);    
+    //localStorage.removeItem(environment.LOCAL_STORAGE_ADMINISTRADOR);    
   }
 
   public  estaLogueado():boolean{

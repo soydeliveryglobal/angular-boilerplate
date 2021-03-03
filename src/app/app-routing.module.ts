@@ -30,6 +30,10 @@ const routes: Routes = [
         path: 'tables',
         loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule)
       },
+      {
+        path: 'provider',
+        loadChildren: () => import('./provider/provider.module').then(m => m.ProviderModule)
+      },
     ]
   },
   {

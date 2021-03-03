@@ -2,6 +2,7 @@
     "MENU":{
         "MYABM": "Mi Abm",
         "RATES": "Tarifas",
+        "PROVIDER": "Provedoor",
         "LAYOUT": "Estructura",
         "LAYOUT-STEPPER": "Paso a paso",
         "LAYOUT-LIST": "Lista",

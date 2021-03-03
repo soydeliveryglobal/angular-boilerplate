@@ -1,20 +1,21 @@
+import { ResponseAll } from './../../../core/models/ResponseAll';
 import { I18nServiceService } from './../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Tarifa } from './../../../core/models/tarifa';
+import { Provider } from './../../../core/models/provider';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Util } from 'src/app/util';
 import { environment } from 'src/environments/environment';
-import { TarifaService } from 'src/app/core/services/abm/tarifa.service';
+import { ProviderService } from 'src/app/core/services/abm/provider.service';
 import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
-  selector: 'lista-tarifa',
-  templateUrl: './lista-tarifa.template.html',
-  styleUrls: ['./lista-tarifa.scss'],
+  selector: 'lista-provider',
+  templateUrl: './lista-provider.template.html',
+  styleUrls: ['./lista-provider.scss'],
 })
-export class ListaTarifaComponent implements OnInit {
-  tarifas: Tarifa[];
+export class ListaProviderComponent implements OnInit {
+  providers: Provider[];
   environment = environment;
   Util = Util;
 
@@ -28,13 +29,13 @@ export class ListaTarifaComponent implements OnInit {
   }
 
   private consultar() {
-    this.tarifaService.getAll().subscribe((tarifa: Tarifa[]) => {
-      this.tarifas = tarifa;
+    this.providerService.getAll().subscribe((res: ResponseAll) => {
+      this.providers = res.data;
     });
   }
 
   constructor(
-    private tarifaService: TarifaService,
+    private providerService: ProviderService,
     private router: Router,
     private login: LoginService,
     private translate: TranslateService,
@@ -46,37 +47,33 @@ export class ListaTarifaComponent implements OnInit {
     });
   }
 
-  nuevoAdministrador(p: Tarifa) {
-    this.tarifas.push(p);
-  }
-
-  deleteAdministrador(id: number) {
+  deleteProvider(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_TARIFA,
-      id,
+      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      guid,
       environment.MODO_DELETE,
     ]);
   }
 
-  updateAdministrador(id: number) {
+  updateProvider(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_TARIFA,
-      id,
+      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      guid,
       environment.MODO_UPDATE,
     ]);
   }
 
-  administradorDetails(id: number) {
+  providerDetail(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_TARIFA,
-      id,
+      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      guid,
       environment.MODO_DISPLAY,
     ]);
   }
 
-  createAdministrador() {
+  createProvider() {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_TARIFA,
+      environment.FORMULARIO_CRUD_DEL_PROVIDER,
       0,
       environment.MODO_CREATE,
     ]);
@@ -84,13 +81,12 @@ export class ListaTarifaComponent implements OnInit {
 
 
   setColumnheaders(): void {
-    let tarifaId = 'ID';
-    let tazaAdulto = 'TARIFA.COLUMN_ADULT_RATE';
-    let tazaNinio = 'TARIFA.COLUMN_CHILDREN_RATE';
-    let tazaBebe = 'TARIFA.COLUMN_BABY_RATE';
-    let tazaJubilado = 'TARIFA.COLUMN_RETIRED_RATE';
-    let fechaDeVigencia = 'TARIFA.COLUMN_EFFECTIVE_DATE';
-    this.tableColumnHeaders = [tarifaId,tazaAdulto,tazaNinio,tazaBebe,tazaJubilado,fechaDeVigencia]
+    let providerGUID = 'GUID';
+    let name = 'PROVIDER.COLUMN_NAME';
+    let description = 'PROVIDER.COLUMN_DESCRIPTION';
+    let createdOn = 'PROVIDER.COLUMN_CREATED_ON';
+    let updatedOn = 'PROVIDER.COLUMN_UPDATED_ON';
+    this.tableColumnHeaders = [providerGUID,name,description,createdOn,updatedOn]
   
     this.translateColumns()
 
@@ -130,28 +126,25 @@ export class ListaTarifaComponent implements OnInit {
     },
     pager: { display: true, perPage: 10 },
     columns: {
-      tarifaId: {
+      providerGUID: {
         title: this.tableColumnHeaders[0],
-        type: 'number',
+        type: 'string',
+        visible:false
       },
-      tazaAdulto: {
+      name: {
         title: this.tableColumnHeaders[1],
-        type: 'number',
+        type: 'string',
       },
-      tazaNinio: {
+      description: {
         title: this.tableColumnHeaders[2],
-        type: 'number',
+        type: 'string',
       },
-      tazaBebe: {
+      createdOn: {
         title: this.tableColumnHeaders[3],
-        type: 'number',
+        type: 'date',
       },
-      tazaJubilado: {
+      updatedOn: {
         title: this.tableColumnHeaders[4],
-        type: 'number',
-      },
-      fechaDeVigencia: {
-        title: this.tableColumnHeaders[5],
         type: 'date',
       },
     },
@@ -159,16 +152,16 @@ export class ListaTarifaComponent implements OnInit {
 }
   
   onCustom(event) {
-    console.log(`Custom event '${event.action}' fired on row №: ${event.data.tarifaId}`)
-    var asd:Tarifa = event.data
+    console.log(`Custom event '${event.action}' fired on row №: ${event.data.providerId}`)
+    var provider:Provider = event.data
     if (event.action === 'add') {
-      this.createAdministrador()  
+      this.createProvider()  
     }
     if (event.action === 'update') {
-      this.updateAdministrador(asd.tarifaId)  
+      this.updateProvider(provider.providerGUID)  
     }
     if (event.action === 'delete') {
-      this.deleteAdministrador(asd.tarifaId)  
+      this.deleteProvider(provider.providerGUID)  
     }
   }
 }

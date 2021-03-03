@@ -1,0 +1,18 @@
+{
+    "PROVIDER":{
+        "TITLE_MAINTAINENCE":"Maintenance of Providers",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Rate",
+        "UPDATE": "Update Rate",
+        "DELETE": "Delete Rate",
+        "DISPLAY": "Display Rate"
+    }
+}

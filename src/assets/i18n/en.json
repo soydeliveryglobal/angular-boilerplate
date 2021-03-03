@@ -2,6 +2,7 @@
     "MENU":{
         "MYABM": "My Abm",
         "RATES": "Rates",
+        "PROVIDER": "Provider",
         "LAYOUT": "Layout",
         "LAYOUT-STEPPER": "Stepper",
         "LAYOUT-LIST": "List",

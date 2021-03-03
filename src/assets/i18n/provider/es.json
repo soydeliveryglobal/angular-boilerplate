@@ -1,0 +1,18 @@
+{
+    "PROVIDER":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Provedores",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+            
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Tarifa",
+        "UPDATE": "Actualizar Tarifa",
+        "DELETE": "Eliminar Tarifa",
+        "DISPLAY": "Visualizar Tarifa"
+    }
+}
