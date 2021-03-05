@@ -1,5 +1,5 @@
+import { Provider } from './../../models/Provider';
 import { ResponseAll } from './../../models/ResponseAll';
-import { Provider } from '../../models/Provider';
 import { LoginService } from '../login.service';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -22,55 +22,31 @@ export class ProviderService{
   }
 
   getAll():Observable<ResponseAll>{
-   
-   /*  const httpOptions = {
-      headers : new HttpHeaders(
-        {auth: this.token}
-      )
-    }; */
     const response = this.http.get<ResponseAll>(this.url)
     return response
   }
 
   getOne(guid: string){
-    const httpOptions = {
-      headers : new HttpHeaders(
-        {auth: this.token}
-      )
-    };
-    const url = this.url + this.barraDelPath +  guid;
-    return this.http.get<Provider>(url, httpOptions);
+    const url = `${this.url}${this.barraDelPath}${guid}`
+    return this.http.get<Provider>(url);
   }
 
   post(provider: Provider){
-    const httpOptions = {
-      headers : new HttpHeaders(
-        {auth: this.token}
-      )
-    };
+    const headers = { 'content-type': 'application/json'}  
 
-    return this.http.post<Provider>(this.url, provider, httpOptions);
+    const providerToPost= {name:provider.name,description:provider.description}
+    return this.http.post<Provider>(this.url, providerToPost,{'headers':headers});
   }
 
   put(guid: string, provider: Provider){
-    const httpOptions = {
-      headers : new HttpHeaders(
-        {auth: this.token}
-      )
-    };
-    const url = this.url + this.barraDelPath +  guid;
+    const url = `${this.url}${this.barraDelPath}${guid}`
     
-    return this.http.put<Provider>(url, provider, httpOptions);
+    return this.http.put<Provider>(url, provider);
   }
 
   delete(guid: string){
-    const httpOptions = {
-      headers : new HttpHeaders(
-        {auth: this.token}
-      )
-    };
-    const url = this.url + this.barraDelPath +  guid;
-    return this.http.delete<Provider>(url, httpOptions);
+    const url = `${this.url}${this.barraDelPath}${guid}`
+    return this.http.delete<Provider>(url);
   }
 
   

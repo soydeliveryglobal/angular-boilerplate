@@ -1,27 +1,27 @@
-import { I18nServiceService } from './../../../core/services/i18n/i18n-service.service';
+import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { TarifaService } from 'src/app/core/services/abm/tarifa.service';
-import { Tarifa } from 'src/app/core/models/tarifa';
+import { ProviderService } from 'src/app/core/services/abm/provider.service';
+import { Provider } from 'src/app/core/models/provider';
 import { DtoDatePickerIn } from 'src/app/navigation/componentes-hijos/date-picker/DtoDatePickerIn';
 
 @Component({
-  selector: 'form-tarifa',
-  templateUrl: './form-tarifa.component.html'
+  selector: 'form-provider',
+  templateUrl: './form-provider.component.html'
 })
 
 
-export class FormTarifaComponent implements OnInit, OnDestroy {
+export class FormProviderComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
-  TarifaForm: FormGroup;
+  ProviderForm: FormGroup;
   tituloformulario: string;
-  id: number;
+  guid:string;
   mode: string;
-  tarifa: Tarifa;  
+  provider: Provider;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
@@ -30,7 +30,7 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
 
   
   constructor(private route: ActivatedRoute, private router: Router,
-              private TarifaService: TarifaService, private formBuilder: FormBuilder,
+              private ProviderService: ProviderService, private formBuilder: FormBuilder,
               private translate: TranslateService,
               private i18nService: I18nServiceService){
       
@@ -48,10 +48,6 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
       });
   }
 
-  seleccionaFecha(checkIn: Date){
-    this.tarifa.fechaDeVigencia = checkIn;
-  }
-
 
   ngOnDestroy(): void {
     if (this.mySubscription) {
@@ -64,63 +60,55 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
   }
   
   private inicializarObjetosPrincipales(){
-    this.tarifa = new Tarifa();
+    this.provider = new Provider();
   }
 
   private obtenerVariablesDelRouter(){
-    this.id = this.route.snapshot.params[environment.PARAMETRO_RUTEO_ID];
+    this.guid = this.route.snapshot.params[environment.PARAMETRO_RUTEO_GUID];
     this.mode = this.route.snapshot.params[environment.PARAMETRO_RUTEO_MODO]; 
   } 
 
   private  definirTituloFormulario(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_TARIFA}.${environment.TITLE_FORM_UPDATE}`;
+      this.tituloformulario = `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_TARIFA}.${environment.TITLE_FORM_CREATE}`;
+      this.tituloformulario = `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
-      this.tarifa.tarifaId = 0;
+      this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.tituloformulario = `${environment.DOMAIN_NAME_TARIFA}.${environment.TITLE_FORM_DISPLAY}`;
+      this.tituloformulario = `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.tituloformulario =  `${environment.DOMAIN_NAME_TARIFA}.${environment.TITLE_FORM_DELETE}`;
+      this.tituloformulario =  `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
   
   private inicializarFormulario(){
-    this.TarifaForm = this.formBuilder.group({
-      tarifaId: [0, [Validators.required]],
-      fechaDeVigencia: ['', [Validators.required]],
-      tazaAdulto: ['', [Validators.required]],
-      tazaNinio: ['', [Validators.required]],
-      tazaBebe: ['', [Validators.required]],
-      tazaJubilado:['', [Validators.required]],
-      tazaJubiladoConPromo: ['', [Validators.required]],
-      cantidadJubiladosPromo:  ['', [Validators.required]]
+    this.ProviderForm = this.formBuilder.group({
+      providerGUID: [''],
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      createdOn: ['', ],
+      updatedOn: ['']
     });
   }  
 
-  private cargarTarifa(){
-    this.dtoDatePickerInCheckIn = new DtoDatePickerIn();
-    if (this.id != 0){ 
-        this.TarifaService.getOne(this.id).subscribe(tarifa => {
-        this.tarifa = tarifa;            
-        this.dtoDatePickerInCheckIn.fecha = this.tarifa.fechaDeVigencia;
-        this.dtoDatePickerInCheckIn.etiqueta = "Fecha de vigencia";
-        this.dtoDatePickerInCheckIn.formato = environment.LOCALE_STRING_DATEPICKER;
-        this.dtoDatePickerInCheckIn.catoscargados = true;
+  private cargarProvider(){
+    if (this.guid != ""){ 
+        this.ProviderService.getOne(this.guid).subscribe(provider => {
+        this.provider = provider;            
       });
     }else{
-      this.dtoDatePickerInCheckIn.catoscargados = true;
+      
     }
     
   }
@@ -130,22 +118,22 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
     this.obtenerVariablesDelRouter(); 
     this.definirTituloFormulario();
     this.inicializarFormulario();  
-    this.cargarTarifa();
+    this.cargarProvider();
   }
 
  
   
   private actualizarSiCorrespondeModo(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
-      this.updateTarifa();
+      this.updateProvider();
       return true;
     }
     return false;
   }
   
   private crearSiCorrespondeModo(): boolean{
-    if (this.mode == environment.MODO_CREATE){     
-      this.createTarifa();
+    if (this.mode == environment.MODO_CREATE){ 
+      this.createProvider();
       return true;
     }
     return false;
@@ -153,7 +141,7 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
 
   private eliminarSiCorrespondeModo(): boolean{
     if (this.mode == environment.MODO_DELETE){      
-      this.deleteTarifa();
+      this.deleteProvider();
       
       return true;
     } 
@@ -170,7 +158,7 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
   }
 
   private formularioValido(): boolean{
-    return this.TarifaForm.errors==null;
+    return this.ProviderForm.errors==null;
   }
 
   public realizarOperacionesCrud(){
@@ -199,30 +187,30 @@ export class FormTarifaComponent implements OnInit, OnDestroy {
     this.realizarOperacionesCrud();
   }
 
-  deleteTarifa() {
-    this.TarifaService.delete(this.id).subscribe(data => {
+  deleteProvider() {
+    this.ProviderService.delete(this.guid).subscribe(data => {
       this.gotoList();
     }, error => alert(error));
   }
 
-  createTarifa() {
-    this.TarifaService.post(this.tarifa).subscribe(data => {
+  createProvider() {
+    this.ProviderService.post(this.provider).subscribe(data => {
       this.gotoList();
     }, error => alert(error));
   }
 
-  updateTarifa() {
-    this.TarifaService.put(this.id, this.tarifa).subscribe(data => {
+  updateProvider() {
+    this.ProviderService.put(this.guid, this.provider).subscribe(data => {
       this.gotoList();
     }, error => alert(error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORMULARIO_LISTA_TARIFAS]);
+    this.router.navigate([environment.FORMULARIO_LISTA_PROVIDER]);
   }
 
   get f() { 
-    return this.TarifaForm.controls; 
+    return this.ProviderForm.controls; 
   }
 
 

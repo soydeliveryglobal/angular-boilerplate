@@ -1,7 +1,7 @@
-import { ResponseAll } from './../../../core/models/ResponseAll';
-import { I18nServiceService } from './../../../core/services/i18n/i18n-service.service';
+import { ResponseAll } from '../../../core/models/ResponseAll';
+import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Provider } from './../../../core/models/provider';
+import { Provider } from '../../../core/models/provider';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Util } from 'src/app/util';
@@ -129,7 +129,7 @@ export class ListaProviderComponent implements OnInit {
       providerGUID: {
         title: this.tableColumnHeaders[0],
         type: 'string',
-        visible:false
+        hide: true
       },
       name: {
         title: this.tableColumnHeaders[1],

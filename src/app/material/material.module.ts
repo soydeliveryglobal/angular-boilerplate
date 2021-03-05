@@ -11,6 +11,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input'
+import {MatTableModule} from '@angular/material/table'
+import { MatSortModule } from '@angular/material/sort';
 const material = [
   MatTabsModule,
   MatSidenavModule,
@@ -19,7 +21,6 @@ const material = [
   MatButtonModule,
   MatListModule,
   MatMenuModule,
-
   MatFormFieldModule,
   MatDatepickerModule,
   MatInputModule

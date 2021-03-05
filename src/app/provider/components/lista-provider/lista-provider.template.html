@@ -1,0 +1,46 @@
+<nb-card>
+  <nb-card-header>
+    {{'PROVIDER.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="Providers" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROVIDER.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let provider"> {{provider.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROVIDER.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let provider"> {{provider.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROVIDER.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let provider"> {{provider.createdOn}} </td>
+    </ng-container> 
+  3
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROVIDER.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let provider"> {{provider.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createProvider()"></i></th>
+    <td mat-cell *matCellDef="let provider">
+      <i class="nb-search nb-icon" (click)="providerDetail(provider.providerGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateProvider(provider.providerGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteProvider(provider.providerGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>

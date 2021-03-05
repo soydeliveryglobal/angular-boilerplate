@@ -1,6 +1,3 @@
-import { MatSortModule } from '@angular/material/sort';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatTableModule } from '@angular/material/table';
 import { ProviderRoutingModule } from './provider-routing.module';
 import { ListaProviderComponent } from './components/lista-provider/lista-provider.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -31,11 +28,12 @@ export function demoHttpLoaderFactory(http: HttpClient) {
     ProviderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     NavigationModule,
     NbCardModule,
     NbIconModule,
-    MatTableModule,
-    MatTabsModule,
+    NbInputModule,
+    Ng2SmartTableModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
