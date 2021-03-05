@@ -1,11 +1,78 @@
 {
     "MENU":{
-        "MYABM": "My Abm",
-        "RATES": "Rates",
         "PROVIDER": "Provider",
+        "PROFILE": "Profile",
+        "BRANDS": "Brands",
+        "LINES": "Lines",
         "LAYOUT": "Layout",
         "LAYOUT-STEPPER": "Stepper",
         "LAYOUT-LIST": "List",
         "LAYOUT-INFINITE_LIST": "Infinite List"
+    },
+    "PROVIDER":{
+        "TITLE_MAINTAINENCE":"Maintenance of Providers",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Provider",
+        "UPDATE": "Update Provider",
+        "DELETE": "Delete Provider",
+        "DISPLAY": "Display Provider"
+    },
+    "PROFILE":{
+        "TITLE_MAINTAINENCE":"Maintenance of Profiles",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Profile",
+        "UPDATE": "Update Profile",
+        "DELETE": "Delete Profile",
+        "DISPLAY": "Display Profile"
+    },
+    "BRANDS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Brands",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Brand",
+        "UPDATE": "Update Brand",
+        "DELETE": "Delete Brand",
+        "DISPLAY": "Display Brand"
+    },
+    "LINES":{
+        "TITLE_MAINTAINENCE":"Maintenance of Lines",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Line",
+        "UPDATE": "Update Line",
+        "DELETE": "Delete Line",
+        "DISPLAY": "Display Line"
     }
+
+    
 }

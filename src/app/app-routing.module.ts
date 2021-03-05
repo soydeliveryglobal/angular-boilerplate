@@ -19,20 +19,24 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'miabm',
-        loadChildren: () => import('./mi-abm/mi-abm.module').then(m => m.MiABMModule)
-      },
-      {
-        path: 'tarifa',
-        loadChildren: () => import('./tarifa/tarifa.module').then(m => m.TarifaModule)
-      },
-      {
-        path: 'tables',
-        loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule)
-      },
-      {
         path: 'provider',
         loadChildren: () => import('./provider/provider.module').then(m => m.ProviderModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
+        path: 'brands',
+        loadChildren: () => import('./brand/brand.module').then(m => m.BrandModule)
+      },
+      {
+        path: 'lines',
+        loadChildren: () => import('./lines/lines.module').then(m => m.LinesModule)
       },
     ]
   },

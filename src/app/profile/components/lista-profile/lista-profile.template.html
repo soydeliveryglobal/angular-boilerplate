@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>
+    {{'PROFILE.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="Profiles" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROFILE.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let profile"> {{profile.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROFILE.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let profile"> {{profile.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROFILE.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let profile"> {{profile.createdOn}} </td>
+    </ng-container> 
+  
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PROFILE.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let profile"> {{profile.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createProfile()"></i></th>
+    <td mat-cell *matCellDef="let profile">
+      <i class="nb-search nb-icon" (click)="profileDetail(profile.profileGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateProfile(profile.profileGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteProfile(profile.profileGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

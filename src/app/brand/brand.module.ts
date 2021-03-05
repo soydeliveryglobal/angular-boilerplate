@@ -1,9 +1,10 @@
 import { MatSortModule } from '@angular/material/sort';
+import { BrandRoutingModule } from './brand-routing.module';
+import { FormBrandComponent } from './components/form-brand/form-brand.component';
+import { ListaBrandComponent } from './components/lista-brand/lista-brand.component';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
-import { ProviderRoutingModule } from './provider-routing.module';
-import { ListaProviderComponent } from './components/lista-provider/lista-provider.component';
 import { NbCardModule, NbIconModule, NbInputModule } from '@nebular/theme';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -12,7 +13,6 @@ import { NavigationModule } from './../navigation/navigation/navigation.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormProviderComponent } from './components/form-provider/form-provider.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  MatPaginatorModule } from '@angular/material/paginator';
 
@@ -25,10 +25,10 @@ export function demoHttpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-  declarations: [ListaProviderComponent,FormProviderComponent],
+  declarations: [ListaBrandComponent,FormBrandComponent],
   imports: [
     CommonModule,
-    ProviderRoutingModule,
+    BrandRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NavigationModule,
@@ -48,4 +48,4 @@ export function demoHttpLoaderFactory(http: HttpClient) {
     
   ]
 })
-export class ProviderModule { }
+export class BrandModule { }

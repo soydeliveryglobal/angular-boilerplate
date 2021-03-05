@@ -21,18 +21,23 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'MENU.MYABM',
-    icon: 'car-outline',
-    link: '/miabm',
-  },
-  {
-    title: 'MENU.RATES',
-    icon: 'car-outline',
-    link: '/tarifa',
-  },
-  {
     title: 'MENU.PROVIDER',
     icon: 'car-outline',
     link: environment.FORMULARIO_CRUD_DEL_PROVIDER,
+  },
+  {
+    title: 'MENU.PROFILE',
+    icon: 'car-outline',
+    link: environment.FORMULARIO_CRUD_DEL_PROFILE,
+  },
+  {
+    title: 'MENU.BRANDS',
+    icon: 'car-outline',
+    link: environment.FORMULARIO_CRUD_DEL_BRAND,
+  },
+  {
+    title: 'MENU.LINES',
+    icon: 'car-outline',
+    link: environment.FORMULARIO_CRUD_LINES,
   },
 ];

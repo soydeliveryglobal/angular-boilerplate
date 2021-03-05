@@ -1,25 +1,25 @@
+import { BrandService } from './../../../core/services/abm/brand.service';
+import { Brand } from './../../../core/models/Brand';
 import { PageEvent } from '@angular/material/paginator';
 import { Paginador } from './../../../navigation/paginador';
 import { ResponseAll } from './../../../core/models/ResponseAll';
 import { I18nServiceService } from './../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Provider } from './../../../core/models/provider';
 import { Component, OnInit,AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { ProviderService } from 'src/app/core/services/abm/provider.service';
 import { LoginService } from 'src/app/core/services/login.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'lista-provider',
-  templateUrl: './lista-provider.template.html',
-  styleUrls: ['./lista-provider.scss'],
+  selector: 'lista-brand',
+  templateUrl: './lista-brand.template.html',
+  styleUrls: ['./lista-brand.scss'],
 })
-export class ListaProviderComponent extends Paginador implements OnInit {
+export class ListaBrandComponent extends Paginador implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
-  Providers:MatTableDataSource<Provider>;
+  Brands:MatTableDataSource<Brand>;
   environment = environment;
 
 
@@ -30,14 +30,14 @@ export class ListaProviderComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.providerService.getAll().subscribe((res: ResponseAll) => {
-      this.Providers = new MatTableDataSource(res.data);
-      this.Providers.sort = this.sort;
+    this.brandService.getAll().subscribe((res: ResponseAll) => {
+      this.Brands = new MatTableDataSource(res.data);
+      this.Brands.sort = this.sort;
     });
   }
 
   constructor(
-    private providerService: ProviderService,
+    private brandService: BrandService,
     private router: Router,
     private login: LoginService,
     private translate: TranslateService,
@@ -51,33 +51,33 @@ export class ListaProviderComponent extends Paginador implements OnInit {
     this.consultar()
   }
 
-  deleteProvider(guid: string) {
+  deleteBrand(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORMULARIO_CRUD_DEL_BRAND,
       guid,
       environment.MODO_DELETE,
     ]);
   }
 
-  updateProvider(guid: string) {
+  updateBrand(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORMULARIO_CRUD_DEL_BRAND,
       guid,
       environment.MODO_UPDATE,
     ]);
   }
 
-  providerDetail(guid: string) {
+  brandDetail(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORMULARIO_CRUD_DEL_BRAND,
       guid,
       environment.MODO_DISPLAY,
     ]);
   }
 
-  createProvider() {
+  createBrand() {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORMULARIO_CRUD_DEL_BRAND,
       0,
       environment.MODO_CREATE,
     ]);

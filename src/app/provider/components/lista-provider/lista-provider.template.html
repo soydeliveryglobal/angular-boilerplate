@@ -44,3 +44,9 @@
 
   
 </nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

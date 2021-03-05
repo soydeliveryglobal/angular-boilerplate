@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>
+    {{'BRANDS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="Brands" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'BRANDS.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let brand"> {{brand.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'BRANDS.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let brand"> {{brand.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'BRANDS.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let brand"> {{brand.createdOn}} </td>
+    </ng-container> 
+  3
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'BRANDS.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let brand"> {{brand.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createBrand()"></i></th>
+    <td mat-cell *matCellDef="let brand">
+      <i class="nb-search nb-icon" (click)="brandDetail(brand.brandGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateBrand(brand.brandGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteBrand(brand.brandGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

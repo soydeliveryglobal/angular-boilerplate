@@ -1,6 +1,6 @@
 import { NameDescription } from './NameDescription';
-export class Provider extends NameDescription{
-    providerGUID: string;
+export class Category extends NameDescription{
+    categoryGUID: string;
     constructor(){
         super();
     }

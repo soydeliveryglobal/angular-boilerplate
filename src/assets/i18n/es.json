@@ -1,11 +1,76 @@
 {
     "MENU":{
-        "MYABM": "Mi Abm",
-        "RATES": "Tarifas",
         "PROVIDER": "Provedoor",
+        "PROFILE": "Perfil",
+        "BRANDS": "Marcas",
+        "LINES": "Lineas",
         "LAYOUT": "Estructura",
         "LAYOUT-STEPPER": "Paso a paso",
         "LAYOUT-LIST": "Lista",
         "LAYOUT-INFINITE_LIST": "Lista Infinita"
+    },
+    "PROVIDER":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Provedores",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+            
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Provider",
+        "UPDATE": "Actualizar Provider",
+        "DELETE": "Eliminar Provider",
+        "DISPLAY": "Visualizar Provider"
+    },
+    "PROFILE":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Perfiles",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+            
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Perfil",
+        "UPDATE": "Actualizar Perfil",
+        "DELETE": "Eliminar Perfil",
+        "DISPLAY": "Visualizar Perfil"
+    },
+    "BRANDS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Marcas",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+            
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Marca",
+        "UPDATE": "Actualizar Marca",
+        "DELETE": "Eliminar Marca",
+        "DISPLAY": "Visualizar Marca"
+    },
+    "LINES":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Lineas",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+            
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Linea",
+        "UPDATE": "Actualizar Linea",
+        "DELETE": "Eliminar Linea",
+        "DISPLAY": "Visualizar Linea"
     }
 }
