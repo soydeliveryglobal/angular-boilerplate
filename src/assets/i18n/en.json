@@ -34,6 +34,19 @@
 
         "FORM_ERROR_NAME": "Name is required.",
         "FORM_ERROR_DESCRIPTION": "Description is required.",
+        "FORM_ERROR_EAN_CODE": "Ean Code is required.",
+        "FORM_ERROR_EXTERNAL_CODE": "External Code is required.",
+        "FORM_ERROR_STORE_CODE": "Store Code is required.",
+
+        "FORM_PLACE_HOLDER_CATEGORY":"Choose a Category",
+        "FORM_PLACE_HOLDER_BRAND":"Choose a Brand",
+        "FORM_PLACE_HOLDER_FAMILY":"Choose a Family",
+        "FORM_PLACE_HOLDER_LINE":"Choose a Line",
+        "FORM_PLACE_HOLDER_VARIETY":"Choose a Variety",
+        "FORM_PLACE_HOLDER_TYPE":"Choose a Type",
+        "FORM_PLACE_HOLDER_STOCK":"Producto usa stock?",
+        "FORM_PLACE_HOLDER_PROVIDERS":"Choose Providers",
+
 
         "CANCEL": "Cancel",
         "RESET": "Reset",

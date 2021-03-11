@@ -34,6 +34,18 @@
         
         "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
         "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+        "FORM_ERROR_EAN_CODE": "Ingrese un código EAN porfavor.",
+        "FORM_ERROR_EXTERNAL_CODE": "Ingrese un código externo porfavor.",
+        "FORM_ERROR_STORE_CODE": "Ingrese un código de almacenamiento porfavor.",
+
+        "FORM_PLACE_HOLDER_CATEGORY":"Selecciona una Categoria",
+        "FORM_PLACE_HOLDER_BRAND":"Selecciona una Marca",
+        "FORM_PLACE_HOLDER_FAMILY":"Selecciona una Familia",
+        "FORM_PLACE_HOLDER_LINE":"Selecciona una Linea",
+        "FORM_PLACE_HOLDER_VARIETY":"Selecciona una variedad",
+        "FORM_PLACE_HOLDER_TYPE":"Selecciona el Tipo",
+        "FORM_PLACE_HOLDER_STOCK":"Producto usa stock?",
+        "FORM_PLACE_HOLDER_PROVIDERS":"Selecciona Proveedores",
 
         "CANCEL": "Cancelar",
         "RESET": "Limpiar",
