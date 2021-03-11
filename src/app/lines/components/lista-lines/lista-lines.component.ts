@@ -54,7 +54,7 @@ export class ListaLinesComponent extends Paginador implements OnInit {
 
   deleteLine(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_LINES,
+      environment.FORM_CRUD_LINE,
       guid,
       environment.MODO_DELETE,
     ]);
@@ -62,7 +62,7 @@ export class ListaLinesComponent extends Paginador implements OnInit {
 
   updateLine(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_LINES,
+      environment.FORM_CRUD_LINE,
       guid,
       environment.MODO_UPDATE,
     ]);
@@ -70,7 +70,7 @@ export class ListaLinesComponent extends Paginador implements OnInit {
 
   lineDetail(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_LINES,
+      environment.FORM_CRUD_LINE,
       guid,
       environment.MODO_DISPLAY,
     ]);
@@ -78,7 +78,7 @@ export class ListaLinesComponent extends Paginador implements OnInit {
 
   createLine() {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_LINES,
+      environment.FORM_CRUD_LINE,
       0,
       environment.MODO_CREATE,
     ]);

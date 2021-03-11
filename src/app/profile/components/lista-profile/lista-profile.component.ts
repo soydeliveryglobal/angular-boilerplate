@@ -53,7 +53,7 @@ export class ListaProfileComponent extends Paginador implements OnInit {
 
   deleteProfile(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROFILE,
+      environment.FORM_CRUD_PROFILE,
       guid,
       environment.MODO_DELETE,
     ]);
@@ -61,7 +61,7 @@ export class ListaProfileComponent extends Paginador implements OnInit {
 
   updateProfile(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROFILE,
+      environment.FORM_CRUD_PROFILE,
       guid,
       environment.MODO_UPDATE,
     ]);
@@ -69,7 +69,7 @@ export class ListaProfileComponent extends Paginador implements OnInit {
 
   profileDetail(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROFILE,
+      environment.FORM_CRUD_PROFILE,
       guid,
       environment.MODO_DISPLAY,
     ]);
@@ -77,7 +77,7 @@ export class ListaProfileComponent extends Paginador implements OnInit {
 
   createProfile() {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROFILE,
+      environment.FORM_CRUD_PROFILE,
       0,
       environment.MODO_CREATE,
     ]);

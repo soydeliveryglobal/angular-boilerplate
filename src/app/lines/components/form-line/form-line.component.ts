@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { LineService } from 'src/app/core/services/abm/lines.service';
 import { Line } from './../../../core/models/Line';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
@@ -18,7 +19,7 @@ export class FormLineComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
   LineForm: FormGroup;
-  tituloformulario: string;
+  formTitle: string;
   guid:string;
   mode: string;
   line: Line;  
@@ -55,43 +56,43 @@ export class FormLineComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.iniciar();
+    this.start();
   }
   
-  private inicializarObjetosPrincipales(){
+  private initializeMainObjects(){
     this.line = new Line();
   }
 
-  private obtenerVariablesDelRouter(){
+  private getVariablesFromRouter(){
     this.guid = this.route.snapshot.params[environment.PARAMETRO_RUTEO_GUID];
     this.mode = this.route.snapshot.params[environment.PARAMETRO_RUTEO_MODO]; 
   } 
 
-  private  definirTituloFormulario(){
+  private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.tituloformulario = `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.tituloformulario =  `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_LINES}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
   
-  private inicializarFormulario(){
+  private initializeForm(){
     this.LineForm = this.formBuilder.group({
       lineGUID: [''],
       name: ['', [Validators.required]],
@@ -101,7 +102,7 @@ export class FormLineComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private cargarLine(){
+  private loadLine(){
     if (this.guid != ""){ 
         this.LineService.getOne(this.guid).subscribe(line => {
         this.line = line;            
@@ -112,17 +113,17 @@ export class FormLineComponent implements OnInit, OnDestroy {
     
   }
   
-  private iniciar(){
-    this.inicializarObjetosPrincipales();
-    this.obtenerVariablesDelRouter(); 
-    this.definirTituloFormulario();
-    this.inicializarFormulario();  
-    this.cargarLine();
+  private start(){
+    this.initializeMainObjects();
+    this.getVariablesFromRouter(); 
+    this.setFormTitle();
+    this.initializeForm();  
+    this.loadLine();
   }
 
  
   
-  private actualizarSiCorrespondeModo(): boolean{
+  private updateIfIsMode(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
       this.updateLine();
       return true;
@@ -130,7 +131,7 @@ export class FormLineComponent implements OnInit, OnDestroy {
     return false;
   }
   
-  private crearSiCorrespondeModo(): boolean{
+  private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
       this.createLine();
       return true;
@@ -138,7 +139,7 @@ export class FormLineComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private eliminarSiCorrespondeModo(): boolean{
+  private deleteIfIsMode(): boolean{
     if (this.mode == environment.MODO_DELETE){      
       this.deleteLine();
       
@@ -147,7 +148,7 @@ export class FormLineComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private displaySiCorrespondeModo(): boolean{
+  private displayIfIsMode(): boolean{
     if (this.mode == environment.MODO_DISPLAY)
     {      
       this.gotoList();
@@ -156,21 +157,21 @@ export class FormLineComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private formularioValido(): boolean{
-    return this.LineForm.errors==null;
+  private isFormValid(): boolean{
+    return this.LineForm.valid;
   }
 
-  public realizarOperacionesCrud(){
-    if (this.actualizarSiCorrespondeModo()){
+  public doCrudOperation(){
+    if (this.updateIfIsMode()){
       return;
     }
-    if (this.crearSiCorrespondeModo()){
+    if (this.createIfIsMode()){
       return;
     }
-    if (this.eliminarSiCorrespondeModo()){
+    if (this.deleteIfIsMode()){
       return;
     }
-    if (this.displaySiCorrespondeModo()){
+    if (this.displayIfIsMode()){
       return;
     }
   }
@@ -178,34 +179,34 @@ export class FormLineComponent implements OnInit, OnDestroy {
   public onSubmit(){
     this.submitted = true;
 
-    if (!this.formularioValido()){
+    if (!this.isFormValid()){
       //alertify.alert(environment.VERIFIFICAR_FORM_INVALIDO);
-      console.log(environment.VERIFIFICAR_FORM_INVALIDO)
+      alert(environment.VERIFIFICAR_FORM_INVALIDO)
       return;
     }
-    this.realizarOperacionesCrud();
+    this.doCrudOperation();
   }
 
   deleteLine() {
     this.LineService.delete(this.guid).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
 
   createLine() {
     this.LineService.post(this.line).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
 
   updateLine() {
     this.LineService.put(this.guid, this.line).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORMULARIO_LISTA_LINES]);
+    this.router.navigate([environment.FORM_LIST_LINES]);
   }
 
   get f() { 

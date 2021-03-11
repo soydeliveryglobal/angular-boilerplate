@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { I18nServiceService } from './../../core/services/i18n/i18n-service.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
@@ -37,6 +38,7 @@ export class NbHeaderComponent implements OnInit, OnDestroy {
              // private layoutService: LayoutService,
               private translate: TranslateService,
               private i18nService: I18nServiceService,
+              private Router:Router,
               private breakpointService: NbMediaBreakpointsService) {
   }
 
@@ -69,11 +71,6 @@ export class NbHeaderComponent implements OnInit, OnDestroy {
     this.sidebarService.toggle(true, 'menu-sidebar');
     //this.layoutService.changeLayoutSize();
 
-    return false;
-  }
-
-  navigateHome() {
-    this.menuService.navigateHome();
     return false;
   }
 

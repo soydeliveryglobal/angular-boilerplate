@@ -18,14 +18,13 @@ export class FormBrandComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
   BrandForm: FormGroup;
-  tituloformulario: string;
+  formTitle: string;
   guid:string;
   mode: string;
   brand: Brand;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
-  dtoDatePickerInCheckIn: DtoDatePickerIn;
   
 
   
@@ -56,43 +55,43 @@ export class FormBrandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.iniciar();
+    this.start();
   }
   
-  private inicializarObjetosPrincipales(){
+  private initializeMainObjects(){
     this.brand = new Brand();
   }
 
-  private obtenerVariablesDelRouter(){
+  private getVariablesFromRouter(){
     this.guid = this.route.snapshot.params[environment.PARAMETRO_RUTEO_GUID];
     this.mode = this.route.snapshot.params[environment.PARAMETRO_RUTEO_MODO]; 
   } 
 
-  private  definirTituloFormulario(){
+  private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.tituloformulario = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.tituloformulario =  `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
   
-  private inicializarFormulario(){
+  private initializeForm(){
     this.BrandForm = this.formBuilder.group({
       brandGUID: [''],
       name: ['', [Validators.required]],
@@ -102,7 +101,7 @@ export class FormBrandComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private cargarBrand(){
+  private loadBrand(){
     if (this.guid != ""){ 
         this.BrandService.getOne(this.guid).subscribe(brand => {
         this.brand = brand;            
@@ -113,17 +112,17 @@ export class FormBrandComponent implements OnInit, OnDestroy {
     
   }
   
-  private iniciar(){
-    this.inicializarObjetosPrincipales();
-    this.obtenerVariablesDelRouter(); 
-    this.definirTituloFormulario();
-    this.inicializarFormulario();  
-    this.cargarBrand();
+  private start(){
+    this.initializeMainObjects();
+    this.getVariablesFromRouter(); 
+    this.setFormTitle();
+    this.initializeForm();  
+    this.loadBrand();
   }
 
  
   
-  private actualizarSiCorrespondeModo(): boolean{
+  private updateIfIsMode(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
       this.updateBrand();
       return true;
@@ -131,7 +130,7 @@ export class FormBrandComponent implements OnInit, OnDestroy {
     return false;
   }
   
-  private crearSiCorrespondeModo(): boolean{
+  private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
       this.createBrand();
       return true;
@@ -139,7 +138,7 @@ export class FormBrandComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private eliminarSiCorrespondeModo(): boolean{
+  private deleteIfIsMode(): boolean{
     if (this.mode == environment.MODO_DELETE){      
       this.deleteBrand();
       
@@ -148,7 +147,7 @@ export class FormBrandComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private displaySiCorrespondeModo(): boolean{
+  private displayIfIsMode(): boolean{
     if (this.mode == environment.MODO_DISPLAY)
     {      
       this.gotoList();
@@ -157,21 +156,21 @@ export class FormBrandComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private formularioValido(): boolean{
-    return this.BrandForm.errors==null;
+  private isFormValid(): boolean{
+    return this.BrandForm.valid;
   }
 
-  public realizarOperacionesCrud(){
-    if (this.actualizarSiCorrespondeModo()){
+  public doCrudOperation(){
+    if (this.updateIfIsMode()){
       return;
     }
-    if (this.crearSiCorrespondeModo()){
+    if (this.createIfIsMode()){
       return;
     }
-    if (this.eliminarSiCorrespondeModo()){
+    if (this.deleteIfIsMode()){
       return;
     }
-    if (this.displaySiCorrespondeModo()){
+    if (this.displayIfIsMode()){
       return;
     }
   }
@@ -179,34 +178,34 @@ export class FormBrandComponent implements OnInit, OnDestroy {
   public onSubmit(){
     this.submitted = true;
 
-    if (!this.formularioValido()){
+    if (!this.isFormValid()){
       //alertify.alert(environment.VERIFIFICAR_FORM_INVALIDO);
-      console.log(environment.VERIFIFICAR_FORM_INVALIDO)
+      alert(environment.VERIFIFICAR_FORM_INVALIDO)
       return;
     }
-    this.realizarOperacionesCrud();
+    this.doCrudOperation();
   }
 
   deleteBrand() {
     this.BrandService.delete(this.guid).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
 
   createBrand() {
     this.BrandService.post(this.brand).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
 
   updateBrand() {
     this.BrandService.put(this.guid, this.brand).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORMULARIO_LISTA_BRANDS]);
+    this.router.navigate([environment.FORM_LIST_BRANDS]);
   }
 
   get f() { 

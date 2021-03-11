@@ -11,10 +11,10 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    DatePickerComponent
+    DatePickerComponent,
   ],
   exports: [
-    DatePickerComponent
+    DatePickerComponent,
   ],
   imports: [
     CommonModule,

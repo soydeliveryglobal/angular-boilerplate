@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>
+    {{'CATEGORIES.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="Categories" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'CATEGORIES.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let category"> {{category.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'CATEGORIES.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let category"> {{category.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'CATEGORIES.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let category"> {{category.createdOn}} </td>
+    </ng-container> 
+  3
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'CATEGORIES.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let category"> {{category.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createCategory()"></i></th>
+    <td mat-cell *matCellDef="let category">
+      <i class="nb-search nb-icon" (click)="categoryDetail(category.categoryGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateCategory(category.categoryGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteCategory(category.categoryGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

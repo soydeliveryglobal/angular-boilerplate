@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>
+    {{'VARIETIES.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="Varieties" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'VARIETIES.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let variety"> {{variety.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'VARIETIES.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let variety"> {{variety.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'VARIETIES.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let variety"> {{variety.createdOn}} </td>
+    </ng-container> 
+  3
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'VARIETIES.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let variety"> {{variety.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createVariety()"></i></th>
+    <td mat-cell *matCellDef="let variety">
+      <i class="nb-search nb-icon" (click)="varietyDetail(variety.varietyGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateVariety(variety.varietyGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteVariety(variety.varietyGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

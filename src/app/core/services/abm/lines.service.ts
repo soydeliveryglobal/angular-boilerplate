@@ -31,17 +31,17 @@ export class  LineService{
     return this.http.get< Line>(url);
   }
 
-  post(profile:  Line){
+  post(line:  Line){
     const headers = { 'content-type': 'application/json'}  
 
-    const profileToPost= {name:profile.name,description:profile.description}
-    return this.http.post< Line>(this.url, profileToPost,{'headers':headers});
+    const lineToPost= {name:line.name,description:line.description}
+    return this.http.post< Line>(this.url, lineToPost,{'headers':headers});
   }
 
-  put(guid: string, profile:  Line){
+  put(guid: string, line:  Line){
     const url = `${this.url}${this.barraDelPath}${guid}`
     
-    return this.http.put< Line>(url, profile);
+    return this.http.put< Line>(url, line);
   }
 
   delete(guid: string){

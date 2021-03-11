@@ -1,0 +1,53 @@
+<div class="card m-3" style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate}}</div>
+    <form [formGroup]="VarietyForm" (submit)="onSubmit()">
+      <div class="controles-form">
+        <button *ngIf="this.insert" [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="reset" >{{'VARIETIES.RESET' | translate}}</button>
+        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'VARIETIES.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit" >{{'VARIETIES.CONFIRM' | translate}}</button>
+      </div>
+
+        
+          
+          <div class="form-group">
+            <label for="id">#GUID Variety</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="varietyGUID" id="varietyGUID" [(ngModel)]="variety.varietyGUID" />
+          </div>
+         
+          <div class="form-group">
+            <label> {{'VARIETIES.COLUMN_NAME' | translate }}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="variety.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">{{'VARIETIES.FORM_ERROR_NAME' | translate }}</div>
+                                
+            </div>
+          </div>
+          
+
+          <div class="form-group">
+            <label>{{'VARIETIES.COLUMN_DESCRIPTION' | translate}}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="variety.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">{{'VARIETIES.FORM_ERROR_DESCRIPTION' | translate }}</div>
+                
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label>{{'VARIETIES.COLUMN_CREATED_ON' | translate}}</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="createdOn" id="createdOn" [(ngModel)]="variety.createdOn" />
+          </div>
+
+          <div class="form-group">
+            <label>{{'VARIETIES.COLUMN_UPDATED_ON' | translate}}</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="updatedOn" id="updatedOn" [(ngModel)]="variety.updatedOn" />
+          </div>
+
+         
+        
+      </form>
+     
+    </div>
+</div>

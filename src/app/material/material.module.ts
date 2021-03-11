@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,8 @@ const material = [
   MatMenuModule,
   MatFormFieldModule,
   MatDatepickerModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule
 ]
 
 @NgModule({

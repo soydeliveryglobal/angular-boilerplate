@@ -21,23 +21,43 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'MENU.PRODUCTS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_PRODUCTS,
+  },
+  {
     title: 'MENU.PROVIDER',
     icon: 'car-outline',
-    link: environment.FORMULARIO_CRUD_DEL_PROVIDER,
+    link: environment.FORM_LIST_PROVIDERS,
   },
   {
     title: 'MENU.PROFILE',
     icon: 'car-outline',
-    link: environment.FORMULARIO_CRUD_DEL_PROFILE,
+    link: environment.FORM_LIST_PROFILES,
   },
   {
     title: 'MENU.BRANDS',
     icon: 'car-outline',
-    link: environment.FORMULARIO_CRUD_DEL_BRAND,
+    link: environment.FORM_LIST_BRANDS,
   },
   {
     title: 'MENU.LINES',
     icon: 'car-outline',
-    link: environment.FORMULARIO_CRUD_LINES,
+    link: environment.FORM_LIST_LINES,
+  },
+  {
+    title: 'MENU.VARIETIES',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_VARIETIES,
+  },
+  {
+    title: 'MENU.CATEGORIES',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_CATEGORIES,
+  },
+  {
+    title: 'MENU.FAMILIES',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_FAMILIES,
   },
 ];

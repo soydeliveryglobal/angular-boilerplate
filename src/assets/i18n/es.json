@@ -1,13 +1,49 @@
 {
     "MENU":{
-        "PROVIDER": "Provedoor",
+        "PRODUCTS": "Productos",
+        "PROVIDER": "Proveedor",
         "PROFILE": "Perfil",
         "BRANDS": "Marcas",
         "LINES": "Lineas",
+        "VARIETIES": "Variedades",
+        "CATEGORIES": "Categorias",
+        "FAMILIES": "Familias",
         "LAYOUT": "Estructura",
         "LAYOUT-STEPPER": "Paso a paso",
         "LAYOUT-LIST": "Lista",
         "LAYOUT-INFINITE_LIST": "Lista Infinita"
+    },
+    "PRODUCTS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de productos",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+        "COLUMN_CATEGORY_NAME": "Categoria",
+        "COLUMN_FAMILY_NAME": "Familia",
+        "COLUMN_LINE_NAME": "Linea",
+        "COLUMN_BRAND_NAME": "Marca",
+        "COLUMN_STORE_CODE": "Código de almacenamiento",
+        "COLUMN_PROVIDER_NAME": "Código de proveedor",
+        "COLUMN_EAN_CODE": "Codigo EAN",
+        "COLUMN_EXTERNAL_CODE": "Código Externo",
+        "COLUMN_VARIETY_NAME": "Variedad",
+        "COLUMN_USE_STOCK": "Usa Stock",
+        "COLUMN_PRODUCT_OR_SERVICE": "Tipo",
+        
+        
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Producto",
+        "UPDATE": "Actualizar Producto",
+        "DELETE": "Eliminar Producto",
+        "DISPLAY": "Visualizar Producto"
+
     },
     "PROVIDER":{
         "TITLE_MAINTAINENCE":"Mantenimiento de Provedores",
@@ -15,7 +51,10 @@
         "COLUMN_DESCRIPTION": "Descripción",
         "COLUMN_CREATED_ON": "Creado",
         "COLUMN_UPDATED_ON": "Modificado",
-            
+                
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
         "CANCEL": "Cancelar",
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
@@ -31,7 +70,10 @@
         "COLUMN_DESCRIPTION": "Descripción",
         "COLUMN_CREATED_ON": "Creado",
         "COLUMN_UPDATED_ON": "Modificado",
-            
+                    
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
         "CANCEL": "Cancelar",
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
@@ -47,7 +89,10 @@
         "COLUMN_DESCRIPTION": "Descripción",
         "COLUMN_CREATED_ON": "Creado",
         "COLUMN_UPDATED_ON": "Modificado",
-            
+                    
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
         "CANCEL": "Cancelar",
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
@@ -63,7 +108,10 @@
         "COLUMN_DESCRIPTION": "Descripción",
         "COLUMN_CREATED_ON": "Creado",
         "COLUMN_UPDATED_ON": "Modificado",
-            
+        
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
         "CANCEL": "Cancelar",
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
@@ -72,5 +120,62 @@
         "UPDATE": "Actualizar Linea",
         "DELETE": "Eliminar Linea",
         "DISPLAY": "Visualizar Linea"
+    },
+    "VARIETIES":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de variedades",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+        
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear variedad",
+        "UPDATE": "Actualizar variedad",
+        "DELETE": "Eliminar variedad",
+        "DISPLAY": "Visualizar variedad"
+    },
+    "CATEGORIES":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de categorias",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+        
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear categoria",
+        "UPDATE": "Actualizar categoria",
+        "DELETE": "Eliminar categoria",
+        "DISPLAY": "Visualizar categoria"
+    },
+    "FAMILIES":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de familias",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+        
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear familia",
+        "UPDATE": "Actualizar familia",
+        "DELETE": "Eliminar familia",
+        "DISPLAY": "Visualizar familia"
     }
 }

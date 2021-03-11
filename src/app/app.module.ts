@@ -34,6 +34,7 @@ import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     CoreModule,
     HttpClientModule,
   ],
-  providers: [HttpClientModule,Ng2SmartTableModule],
+  providers: [HttpClientModule,Ng2SmartTableModule, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

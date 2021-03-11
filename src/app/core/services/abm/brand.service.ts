@@ -31,17 +31,17 @@ export class BrandService{
     return this.http.get<Brand>(url);
   }
 
-  post(profile: Brand){
+  post(brand: Brand){
     const headers = { 'content-type': 'application/json'}  
 
-    const profileToPost= {name:profile.name,description:profile.description}
-    return this.http.post<Brand>(this.url, profileToPost,{'headers':headers});
+    const brandToPost= {name:brand.name,description:brand.description}
+    return this.http.post<Brand>(this.url, brandToPost,{'headers':headers});
   }
 
-  put(guid: string, profile: Brand){
+  put(guid: string, brand: Brand){
     const url = `${this.url}${this.barraDelPath}${guid}`
     
-    return this.http.put<Brand>(url, profile);
+    return this.http.put<Brand>(url, brand);
   }
 
   delete(guid: string){

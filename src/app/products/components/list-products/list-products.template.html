@@ -1,0 +1,90 @@
+<nb-card>
+  <nb-card-header>
+    {{'PRODUCTS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="Products" matSort class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+      </ng-container>
+  
+  
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_DESCRIPTION' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.description}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="category" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_CATEGORY_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.category.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="family" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_FAMILY_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.family.name}} </td>
+      </ng-container>
+  
+  
+      <ng-container matColumnDef="line" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_LINE_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.line.name}} </td>
+      </ng-container> 
+  
+      <ng-container matColumnDef="brand" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_BRAND_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.brand.name}} </td>
+      </ng-container> 
+  
+      <ng-container matColumnDef="variety" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_VARIETY_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.variety.name}} </td>
+      </ng-container> 
+      
+  
+      <ng-container matColumnDef="eanCode" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_EAN_CODE' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.eanCode}} </td>
+      </ng-container> 
+  
+      <ng-container matColumnDef="externalCode" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_EXTERNAL_CODE' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.externalCode}} </td>
+      </ng-container> 
+  
+      <ng-container matColumnDef="storeCode" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_STORE_CODE' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.storeCode}} </td>
+      </ng-container> 
+  
+      <ng-container matColumnDef="useStock" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_USE_STOCK' | translate}} </th>
+        <td mat-cell *matCellDef="let product"> {{product.useStock}} </td>
+      </ng-container> 
+  
+      <ng-container matColumnDef="actions" >
+        <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createProduct()"></i></th>
+        <td mat-cell *matCellDef="let product">
+          <i class="nb-search nb-icon" (click)="productDetail(product.productGUID)"></i>
+          <i class="nb-edit nb-icon" (click)="updateProduct(product.productGUID)"></i>
+          <i class="nb-trash nb-icon" (click)="deleteProduct(product.productGUID)"></i>
+        </td>
+      </ng-container> 
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

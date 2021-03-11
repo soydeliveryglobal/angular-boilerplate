@@ -18,7 +18,7 @@ export class FormProfileComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
   ProfileForm: FormGroup;
-  tituloformulario: string;
+  formTitle: string;
   guid:string;
   mode: string;
   provider: Profile;  
@@ -54,43 +54,43 @@ export class FormProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.iniciar();
+    this.start();
   }
   
-  private inicializarObjetosPrincipales(){
+  private initializeMainObjects(){
     this.provider = new Profile();
   }
 
-  private obtenerVariablesDelRouter(){
+  private getVariablesFromRouter(){
     this.guid = this.route.snapshot.params[environment.PARAMETRO_RUTEO_GUID];
     this.mode = this.route.snapshot.params[environment.PARAMETRO_RUTEO_MODO]; 
   } 
 
-  private  definirTituloFormulario(){
+  private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.tituloformulario = `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.tituloformulario = `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.tituloformulario =  `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_PROFILE}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
   
-  private inicializarFormulario(){
+  private initializeForm(){
     this.ProfileForm = this.formBuilder.group({
       providerGUID: [''],
       name: ['', [Validators.required]],
@@ -100,7 +100,7 @@ export class FormProfileComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private cargarProfile(){
+  private loadProfile(){
     if (this.guid != ""){ 
         this.ProfileService.getOne(this.guid).subscribe(provider => {
         this.provider = provider;            
@@ -111,17 +111,17 @@ export class FormProfileComponent implements OnInit, OnDestroy {
     
   }
   
-  private iniciar(){
-    this.inicializarObjetosPrincipales();
-    this.obtenerVariablesDelRouter(); 
-    this.definirTituloFormulario();
-    this.inicializarFormulario();  
-    this.cargarProfile();
+  private start(){
+    this.initializeMainObjects();
+    this.getVariablesFromRouter(); 
+    this.setFormTitle();
+    this.initializeForm();  
+    this.loadProfile();
   }
 
  
   
-  private actualizarSiCorrespondeModo(): boolean{
+  private updateIfIsMode(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
       this.updateProfile();
       return true;
@@ -129,7 +129,7 @@ export class FormProfileComponent implements OnInit, OnDestroy {
     return false;
   }
   
-  private crearSiCorrespondeModo(): boolean{
+  private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
       this.createProfile();
       return true;
@@ -137,7 +137,7 @@ export class FormProfileComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private eliminarSiCorrespondeModo(): boolean{
+  private deleteIfIsMode(): boolean{
     if (this.mode == environment.MODO_DELETE){      
       this.deleteProfile();
       
@@ -146,7 +146,7 @@ export class FormProfileComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private displaySiCorrespondeModo(): boolean{
+  private displayIfIsMode(): boolean{
     if (this.mode == environment.MODO_DISPLAY)
     {      
       this.gotoList();
@@ -155,21 +155,21 @@ export class FormProfileComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private formularioValido(): boolean{
-    return this.ProfileForm.errors==null;
+  private isFormValid(): boolean{
+    return this.ProfileForm.valid;
   }
 
-  public realizarOperacionesCrud(){
-    if (this.actualizarSiCorrespondeModo()){
+  public doCrudOperation(){
+    if (this.updateIfIsMode()){
       return;
     }
-    if (this.crearSiCorrespondeModo()){
+    if (this.createIfIsMode()){
       return;
     }
-    if (this.eliminarSiCorrespondeModo()){
+    if (this.deleteIfIsMode()){
       return;
     }
-    if (this.displaySiCorrespondeModo()){
+    if (this.displayIfIsMode()){
       return;
     }
   }
@@ -177,34 +177,34 @@ export class FormProfileComponent implements OnInit, OnDestroy {
   public onSubmit(){
     this.submitted = true;
 
-    if (!this.formularioValido()){
+    if (!this.isFormValid()){
       //alertify.alert(environment.VERIFIFICAR_FORM_INVALIDO);
-      console.log(environment.VERIFIFICAR_FORM_INVALIDO)
+      alert(environment.VERIFIFICAR_FORM_INVALIDO)
       return;
     }
-    this.realizarOperacionesCrud();
+    this.doCrudOperation();
   }
 
   deleteProfile() {
     this.ProfileService.delete(this.guid).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
 
   createProfile() {
     this.ProfileService.post(this.provider).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
 
   updateProfile() {
     this.ProfileService.put(this.guid, this.provider).subscribe(data => {
       this.gotoList();
-    }, error => alert(error));
+    }, error => alert(error.error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORMULARIO_LISTA_PROFILE]);
+    this.router.navigate([environment.FORM_LIST_PROFILES]);
   }
 
   get f() { 

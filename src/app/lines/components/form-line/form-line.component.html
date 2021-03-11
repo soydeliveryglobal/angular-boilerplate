@@ -1,11 +1,11 @@
 <div class="card m-3" style="overflow: hidden;">
   <div class="card-body">
-    <div class="titulo-form">{{tituloformulario | translate}}</div>
+    <div class="titulo-form">{{formTitle | translate}}</div>
     <form [formGroup]="LineForm" (submit)="onSubmit()">
       <div class="controles-form">
         <button *ngIf="this.insert" [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="reset" >{{'LINES.RESET' | translate}}</button>
-        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form">{{'LINES.CANCEL' | translate}}</button>
-        <button class="btn btn-primary boton-form" type = "submit">{{'LINES.CONFIRM' | translate}}</button>
+        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="button"  (click)="gotoList()">{{'LINES.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit" >{{'LINES.CONFIRM' | translate}}</button>
       </div>
 
         
@@ -19,7 +19,8 @@
             <label> {{'LINES.COLUMN_NAME' | translate }}</label>
             <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="line.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                <div *ngIf="f.name.errors.required">Falta el nombre</div>                
+                <div *ngIf="f.name.errors.required">{{'PROFILE.FORM_ERROR_NAME' | translate }}</div>
+                                
             </div>
           </div>
           
@@ -28,7 +29,7 @@
             <label>{{'LINES.COLUMN_DESCRIPTION' | translate}}</label>
             <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="line.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
             <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-                <div *ngIf="f.description.errors.required">Falta la descripcion</div>
+                <div *ngIf="f.description.errors.required">{{'PROFILE.FORM_ERROR_DESCRIPTION' | translate }}</div>
                 
             </div>
           </div>

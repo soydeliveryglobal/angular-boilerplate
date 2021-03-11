@@ -53,7 +53,7 @@ export class ListaProviderComponent extends Paginador implements OnInit {
 
   deleteProvider(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORM_CRUD_PROVIDER,
       guid,
       environment.MODO_DELETE,
     ]);
@@ -61,7 +61,7 @@ export class ListaProviderComponent extends Paginador implements OnInit {
 
   updateProvider(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORM_CRUD_PROVIDER,
       guid,
       environment.MODO_UPDATE,
     ]);
@@ -69,7 +69,7 @@ export class ListaProviderComponent extends Paginador implements OnInit {
 
   providerDetail(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORM_CRUD_PROVIDER,
       guid,
       environment.MODO_DISPLAY,
     ]);
@@ -77,7 +77,7 @@ export class ListaProviderComponent extends Paginador implements OnInit {
 
   createProvider() {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_PROVIDER,
+      environment.FORM_CRUD_PROVIDER,
       0,
       environment.MODO_CREATE,
     ]);

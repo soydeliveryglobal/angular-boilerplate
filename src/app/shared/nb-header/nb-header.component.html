@@ -3,7 +3,7 @@
       <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
         <nb-icon icon="menu-2-outline"></nb-icon>
       </a>
-      <a class="logo" href="#" (click)="navigateHome()">SD <span>ERP</span></a>
+      <a class="logo" routerLink="home" >SD <span>ERP</span></a>
     </div>
     <select #langSelect [value]="locale" (change)="changeLocale(langSelect.value)"> 
       <option  value="es">Spanish</option>

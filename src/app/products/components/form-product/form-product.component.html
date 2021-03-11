@@ -1,0 +1,129 @@
+<div class="card m-3" style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate}}</div>
+    <form [formGroup]="ProductForm" (submit)="onSubmit()">
+      <div class="controles-form">
+        <button *ngIf="this.insert" [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="reset" >{{'PRODUCTS.RESET' | translate}}</button>
+        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'PRODUCTS.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit" >{{'PRODUCTS.CONFIRM' | translate}}</button>
+      </div>
+
+        
+        <div class="form-container">
+          <div class="left-side">
+            
+          
+            <div class="form-group">
+              <label for="id">#GUID Product</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="productGUID" id="productGUID" [(ngModel)]="product.productGUID" />
+            </div>
+          
+            <div class="form-group">
+              <label> {{'PRODUCTS.COLUMN_NAME' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="product.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">{{'PRODUCTS.FORM_ERROR_NAME' | translate }}</div>
+                                  
+              </div>
+            </div>
+          
+          <div class="form-group">
+            <label>{{'PRODUCTS.COLUMN_DESCRIPTION' | translate}}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="product.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">{{'PRODUCTS.FORM_ERROR_DESCRIPTION' | translate }}</div>
+                
+            </div>
+          </div>
+
+            <div class="form-group">
+              <label>{{'PRODUCTS.COLUMN_EAN_CODE' | translate}}</label>
+              <input  [readonly]="camposReadOnly==true" class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="eanCode" id="eanCode" [(ngModel)]="product.eanCode" />
+            </div>
+  
+            <div class="form-group">
+              <label>{{'PRODUCTS.COLUMN_EXTERNAL_CODE' | translate}}</label>
+              <input  [readonly]="camposReadOnly==true" class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="externalCode" id="externalCode" [(ngModel)]="product.externalCode" />
+            </div>
+  
+  
+            <div class="form-group">
+              <label for="id">{{'PRODUCTS.COLUMN_STORE_CODE' | translate}}</label>
+              <input  [readonly]="camposReadOnly==true" class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="storeCode" id="storeCode" [(ngModel)]="product.storeCode" />
+            </div>
+  
+            
+          </div>
+
+          <div class="right-side">
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Selecciona una categoria" [disabled]="camposReadOnly==true" formControlName="category" [(ngModel)]="product.category" [compareWith]="compareFn"  >
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+         
+            <mat-form-field  appearance="fill">
+              <mat-select placeholder="Selecciona una marca" [disabled]="camposReadOnly==true"formControlName="brand" [(ngModel)]="product.brand" [compareWith]="compareFn" >
+                <mat-option *ngFor="let brand of brands" [value]="brand">
+                  {{brand.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Selecciona una familia" [disabled]="camposReadOnly==true" formControlName="family" [(ngModel)]="product.family" [compareWith]="compareFn" >
+                <mat-option *ngFor="let family of families" [value]="family">
+                  {{family.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+        
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Selecciona una linea" [disabled]="camposReadOnly==true" formControlName="line" [(ngModel)]="product.line" [compareWith]="compareFn" >
+                <mat-option *ngFor="let line of lines" [value]="line">
+                  {{line.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Selecciona una variedad" [disabled]="camposReadOnly==true" formControlName="variety" [(ngModel)]="product.variety" [compareWith]="compareFn" >
+                <mat-option *ngFor="let variety of varieties" [value]="variety">
+                  {{variety.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Selecciona un tipo" [disabled]="camposReadOnly==true" formControlName="productOrService" [(ngModel)]="product.productOrService" [compareWith]="compareFnBool" >
+                <mat-option [value]="0">Product</mat-option>
+                <mat-option [value]="1">Service</mat-option>
+              </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="producto usa stock" [disabled]="camposReadOnly==true" formControlName="useStock" [(ngModel)]="product.useStock" [compareWith]="compareFnBool" >
+                <mat-option [value]="true">Si</mat-option>
+                <mat-option [value]="false">No</mat-option>
+              </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill">
+              <mat-select placeholder="Selecciona un proveedor" [disabled]="camposReadOnly==true" formControlName="provider" [(ngModel)]="product.provider" multiple  [compareWith]="compareFn" >
+                <mat-option *ngFor="let provider of providers" [value]="provider">
+                  {{provider.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+                     
+          </div>  
+         
+        </div>
+          
+        
+      </form>
+     
+    </div>
+</div>

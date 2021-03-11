@@ -1,10 +1,10 @@
 <div class="card m-3" style="overflow: hidden;">
   <div class="card-body">
-    <div class="titulo-form">{{tituloformulario | translate}}</div>
+    <div class="titulo-form">{{formTitle | translate}}</div>
     <form [formGroup]="ProviderForm" (submit)="onSubmit()">
       <div class="controles-form">
         <button *ngIf="this.insert" [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="reset" >{{'PROVIDER.RESET' | translate}}</button>
-        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form">{{'PROVIDER.CANCEL' | translate}}</button>
+        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form"  type="button" (click)="gotoList()">{{'PROVIDER.CANCEL' | translate}}</button>
         <button class="btn btn-primary boton-form" type = "submit">{{'PROVIDER.CONFIRM' | translate}}</button>
       </div>
 
@@ -19,7 +19,7 @@
             <label> {{'PROVIDER.COLUMN_NAME' | translate }}</label>
             <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="provider.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                <div *ngIf="f.name.errors.required">Falta el nombre</div>                
+                <div *ngIf="f.name.errors.required">{{'PROVIDER.FORM_ERROR_NAME' | translate }}</div>                
             </div>
           </div>
           
@@ -28,7 +28,7 @@
             <label>{{'PROVIDER.COLUMN_DESCRIPTION' | translate}}</label>
             <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="provider.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
             <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-                <div *ngIf="f.description.errors.required">Falta la descripcion</div>
+                <div *ngIf="f.description.errors.required">{{'PROVIDER.FORM_ERROR_DESCRIPTION' | translate }}</div>
                 
             </div>
           </div>

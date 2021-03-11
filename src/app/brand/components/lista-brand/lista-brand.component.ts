@@ -53,7 +53,7 @@ export class ListaBrandComponent extends Paginador implements OnInit {
 
   deleteBrand(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_BRAND,
+      environment.FORM_CRUD_BRAND,
       guid,
       environment.MODO_DELETE,
     ]);
@@ -61,7 +61,7 @@ export class ListaBrandComponent extends Paginador implements OnInit {
 
   updateBrand(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_BRAND,
+      environment.FORM_CRUD_BRAND,
       guid,
       environment.MODO_UPDATE,
     ]);
@@ -69,7 +69,7 @@ export class ListaBrandComponent extends Paginador implements OnInit {
 
   brandDetail(guid: string) {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_BRAND,
+      environment.FORM_CRUD_BRAND,
       guid,
       environment.MODO_DISPLAY,
     ]);
@@ -77,7 +77,7 @@ export class ListaBrandComponent extends Paginador implements OnInit {
 
   createBrand() {
     this.router.navigate([
-      environment.FORMULARIO_CRUD_DEL_BRAND,
+      environment.FORM_CRUD_BRAND,
       0,
       environment.MODO_CREATE,
     ]);

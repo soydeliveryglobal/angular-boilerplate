@@ -1,13 +1,48 @@
 {
     "MENU":{
+        "PRODUCTS": "Products",
         "PROVIDER": "Provider",
         "PROFILE": "Profile",
         "BRANDS": "Brands",
         "LINES": "Lines",
+        "VARIETIES": "Varieties",
+        "CATEGORIES": "Categories",
+        "FAMILIES": "Families",
         "LAYOUT": "Layout",
         "LAYOUT-STEPPER": "Stepper",
         "LAYOUT-LIST": "List",
         "LAYOUT-INFINITE_LIST": "Infinite List"
+    },
+    "PRODUCTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Products",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+        "COLUMN_CATEGORY_NAME": "Category",
+        "COLUMN_FAMILY_NAME": "Family",
+        "COLUMN_LINE_NAME": "Line",
+        "COLUMN_BRAND_NAME": "Brand",
+        "COLUMN_STORE_CODE": "Store Code",
+        "COLUMN_PROVIDER_NAME": "Provider Code",
+        "COLUMN_EAN_CODE": "EAN Code",
+        "COLUMN_EXTERNAL_CODE": "External Code",
+        "COLUMN_VARIETY_NAME": "Variety",
+        "COLUMN_USE_STOCK": "Use Stock",
+        "COLUMN_PRODUCT_OR_SERVICE": "Type",
+        
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Product",
+        "UPDATE": "Update Product",
+        "DELETE": "Delete Product",
+        "DISPLAY": "Display Product"
     },
     "PROVIDER":{
         "TITLE_MAINTAINENCE":"Maintenance of Providers",
@@ -15,6 +50,9 @@
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_CREATED_ON": "Created On",
         "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
 
         "CANCEL": "Cancel",
         "RESET": "Reset",
@@ -32,6 +70,9 @@
         "COLUMN_CREATED_ON": "Created On",
         "COLUMN_UPDATED_ON": "Updated On",
 
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
         "CANCEL": "Cancel",
         "RESET": "Reset",
         "CONFIRM": "Save",
@@ -47,6 +88,9 @@
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_CREATED_ON": "Created On",
         "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
 
         "CANCEL": "Cancel",
         "RESET": "Reset",
@@ -64,6 +108,9 @@
         "COLUMN_CREATED_ON": "Created On",
         "COLUMN_UPDATED_ON": "Updated On",
 
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
         "CANCEL": "Cancel",
         "RESET": "Reset",
         "CONFIRM": "Save",
@@ -72,6 +119,63 @@
         "UPDATE": "Update Line",
         "DELETE": "Delete Line",
         "DISPLAY": "Display Line"
+    },
+    "VARIETIES":{
+        "TITLE_MAINTAINENCE":"Maintenance of Varieties",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Variety",
+        "UPDATE": "Update Variety",
+        "DELETE": "Delete Variety",
+        "DISPLAY": "Display Variety"
+    },
+    "CATEGORIES":{
+        "TITLE_MAINTAINENCE":"Maintenance of Categories",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Category",
+        "UPDATE": "Update Category",
+        "DELETE": "Delete Category",
+        "DISPLAY": "Display Category"
+    },
+    "FAMILIES":{
+        "TITLE_MAINTAINENCE":"Maintenance of Families",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Family",
+        "UPDATE": "Update Family",
+        "DELETE": "Delete Family",
+        "DISPLAY": "Display Family"
     }
 
     
