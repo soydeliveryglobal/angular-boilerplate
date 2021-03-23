@@ -3,8 +3,8 @@
     <div class="titulo-form">{{formTitle | translate}}</div>
     <form [formGroup]="LineForm" (submit)="onSubmit()">
       <div class="controles-form">
-        <button *ngIf="this.insert" [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="reset" >{{'LINES.RESET' | translate}}</button>
-        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="button"  (click)="gotoList()">{{'LINES.CANCEL' | translate}}</button>
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'LINES.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form" type="button"  (click)="gotoList()">{{'LINES.CANCEL' | translate}}</button>
         <button class="btn btn-primary boton-form" type = "submit" >{{'LINES.CONFIRM' | translate}}</button>
       </div>
 

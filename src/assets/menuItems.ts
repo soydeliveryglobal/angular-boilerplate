@@ -60,4 +60,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'car-outline',
     link: environment.FORM_LIST_FAMILIES,
   },
+  {
+    title: 'MENU.USERS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_USERS,
+  },
+  {
+    title: 'MENU.MOVEMENTTYPES',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_MOVEMENTTYPES,
+  },
+  {
+    title: 'MENU.UNITS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_UNITS,
+  },
+  {
+    title: 'MENU.DEPOSITS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_DEPOSITS,
+  },
 ];

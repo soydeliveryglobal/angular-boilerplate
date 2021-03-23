@@ -3,8 +3,8 @@
     <div class="titulo-form">{{formTitle | translate}}</div>
     <form [formGroup]="CategoryForm" (submit)="onSubmit()">
       <div class="controles-form">
-        <button *ngIf="this.insert" [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="reset" >{{'CATEGORIES.RESET' | translate}}</button>
-        <button [hidden]="camposReadOnly==true" class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'CATEGORIES.CANCEL' | translate}}</button>
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'CATEGORIES.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'CATEGORIES.CANCEL' | translate}}</button>
         <button class="btn btn-primary boton-form" type = "submit" >{{'CATEGORIES.CONFIRM' | translate}}</button>
       </div>
 

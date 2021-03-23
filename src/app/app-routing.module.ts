@@ -54,6 +54,22 @@ const routes: Routes = [
         path: 'families',
         loadChildren: () => import('./families/families.module').then(m => m.FamiliesModule)
       },
+      {
+        path: 'users',
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'movementtypes',
+        loadChildren: () => import('./movementType/movementType.module').then(m => m.MovementTypeModule)
+      },
+      {
+        path: 'units',
+        loadChildren: () => import('./units/units.module').then(m => m.UnitsModule)
+      },
+      {
+        path: 'deposits',
+        loadChildren: () => import('./deposits/deposits.module').then(m => m.DepositsModule)
+      },
     ]
   },
   {

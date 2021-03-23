@@ -11,7 +11,12 @@
         "LAYOUT": "Layout",
         "LAYOUT-STEPPER": "Stepper",
         "LAYOUT-LIST": "List",
-        "LAYOUT-INFINITE_LIST": "Infinite List"
+        "LAYOUT-INFINITE_LIST": "Infinite List",
+        "USERS": "Users",
+        "MOVEMENTTYPES":"Types of Movement",
+        "UNITS":"Units",
+        "DEPOSITS":"Deposits"
+        
     },
     "PRODUCTS":{
         "TITLE_MAINTAINENCE":"Maintenance of Products",
@@ -189,6 +194,91 @@
         "UPDATE": "Update Family",
         "DELETE": "Delete Family",
         "DISPLAY": "Display Family"
+    },
+    "USERS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Users",
+        "COLUMN_NAME": "Name",
+        "COLUMN_LASTNAME": "Lastname",
+        "COLUMN_PHONE": "Phone",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_LASTNAME": "Lastname is required.",
+        "FORM_ERROR_PHONE": "Phone is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New User",
+        "UPDATE": "Update User",
+        "DELETE": "Delete User",
+        "DISPLAY": "Display User"
+    },
+    "MOVEMENTTYPE":{
+        "TITLE_MAINTAINENCE":"Maintenance of Types of Movement",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Type of Movement",
+        "UPDATE": "Update Type of Movement",
+        "DELETE": "Delete Type of Movement",
+        "DISPLAY": "Display Type of Movement"
+    },
+    "UNITS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Unit",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Unit",
+        "UPDATE": "Update Unit",
+        "DELETE": "Delete Unit",
+        "DISPLAY": "Display Unit"
+    },
+    "DEPOSITS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Deposit",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_INTELLICODE": "Code",
+        "COLUMN_ENABLEIN": "In",
+        "COLUMN_ENABLEOUT": "Out",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+        "FORM_ERROR_INTELLICODE":"",
+
+        "FORM_PLACE_HOLDER_STOCK_IN": "Accepts in movements?",
+        "FORM_PLACE_HOLDER_STOCK_OUT": "Accepts out movements?",
+
+        "COMBO_BOOL_YES":"Yes",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Deposit",
+        "UPDATE": "Update Deposit",
+        "DELETE": "Delete Deposit",
+        "DISPLAY": "Display Deposit"
     }
 
     

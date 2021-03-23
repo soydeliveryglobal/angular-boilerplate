@@ -11,7 +11,11 @@
         "LAYOUT": "Estructura",
         "LAYOUT-STEPPER": "Paso a paso",
         "LAYOUT-LIST": "Lista",
-        "LAYOUT-INFINITE_LIST": "Lista Infinita"
+        "LAYOUT-INFINITE_LIST": "Lista Infinita",
+        "USERS": "Usuarios",
+        "MOVEMENTTYPES":"Tipos de movimiento",
+        "UNITS":"Unidades",
+        "DEPOSITS":"Depositos"
     },
     "PRODUCTS":{
         "TITLE_MAINTAINENCE":"Mantenimiento de productos",
@@ -147,10 +151,10 @@
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
 
-        "CREATE": "Crear variedad",
-        "UPDATE": "Actualizar variedad",
-        "DELETE": "Eliminar variedad",
-        "DISPLAY": "Visualizar variedad"
+        "CREATE": "Crear Variedad",
+        "UPDATE": "Actualizar Variedad",
+        "DELETE": "Eliminar Variedad",
+        "DISPLAY": "Visualizar Variedad"
     },
     "CATEGORIES":{
         "TITLE_MAINTAINENCE":"Mantenimiento de categorias",
@@ -166,10 +170,10 @@
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
 
-        "CREATE": "Crear categoria",
-        "UPDATE": "Actualizar categoria",
-        "DELETE": "Eliminar categoria",
-        "DISPLAY": "Visualizar categoria"
+        "CREATE": "Crear Categoria",
+        "UPDATE": "Actualizar Categoria",
+        "DELETE": "Eliminar Categoria",
+        "DISPLAY": "Visualizar Categoria"
     },
     "FAMILIES":{
         "TITLE_MAINTAINENCE":"Mantenimiento de familias",
@@ -185,9 +189,96 @@
         "RESET": "Limpiar",
         "CONFIRM": "Confirmar",
 
-        "CREATE": "Crear familia",
-        "UPDATE": "Actualizar familia",
-        "DELETE": "Eliminar familia",
-        "DISPLAY": "Visualizar familia"
+        "CREATE": "Crear Familia",
+        "UPDATE": "Actualizar Familia",
+        "DELETE": "Eliminar Familia",
+        "DISPLAY": "Visualizar Familia"
+    },
+    "USERS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de usuarios",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_LASTNAME": "Apellido",
+        "COLUMN_PHONE": "Telefono",
+        
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_LASTNAME": "Ingrese un apellido porfavor.",
+        "FORM_ERROR_PHONE": "Ingrese un telefono porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Usuario",
+        "UPDATE": "Actualizar Usuario",
+        "DELETE": "Eliminar Usuario",
+        "DISPLAY": "Visualizar Usuario"
+
+    },
+    "MOVEMENTTYPE":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Tipos de movimiento",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Tipo de Movimiento",
+        "UPDATE": "Actualizar Tipo de Movimiento",
+        "DELETE": "Eliminar Tipo de Movimiento",
+        "DISPLAY": "Visualizar Tipo de Movimiento"
+    },
+    "UNITS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Unidad",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CO NFIRM": "Confirmar",
+
+        "CREATE": "Crear Tipo de Unidad",
+        "UPDATE": "Actualizar Tipo de Unidad",
+        "DELETE": "Eliminar Tipo de Unidad",
+        "DISPLAY": "Visualizar Tipo de Unidad"
+    },
+    "DEPOSITS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Depositos",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_INTELLICODE": "Codigo",
+        "COLUMN_ENABLEIN": "Entrada",
+        "COLUMN_ENABLEOUT": "Salida",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+        "FORM_ERROR_INTELLICODE": "Ingrese un porfavor.",
+
+
+        "FORM_PLACE_HOLDER_STOCK_IN": "Entran movimientos?",
+        "FORM_PLACE_HOLDER_STOCK_OUT": "Salen movimientos?",
+
+        "COMBO_BOOL_YES":"SI",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Deposito",
+        "UPDATE": "Actualizar Deposito",
+        "DELETE": "Eliminar Deposito",
+        "DISPLAY": "Visualizar Deposito"
     }
 }

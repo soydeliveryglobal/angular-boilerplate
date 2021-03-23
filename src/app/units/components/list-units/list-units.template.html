@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>
+    {{'UNITS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="Units" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'UNITS.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let unit"> {{unit.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'UNITS.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let unit"> {{unit.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'UNITS.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let unit"> {{unit.createdOn}} </td>
+    </ng-container> 
+  3
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'UNITS.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let unit"> {{unit.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createUnit()"></i></th>
+    <td mat-cell *matCellDef="let unit">
+      <i class="nb-search nb-icon" (click)="unitDetail(unit.unitGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateUnit(unit.unitGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteUnit(unit.unitGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

@@ -1,0 +1,62 @@
+
+<!-- USERS users Users user User -->
+<div class="card m-3" style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate}}</div>
+    <form [formGroup]="UserForm" (submit)="onSubmit()">
+      <div class="controles-form">
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'USERS.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'USERS.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit" >{{'USERS.CONFIRM' | translate}}</button>
+      </div>
+
+        
+        <div class="form-container">
+          <div class="left-side">
+            
+          
+            <div class="form-group">
+              <label for="id">#GUID User</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="userGuid" id="userGuid" [(ngModel)]="user.userGuid" />
+            </div>
+          
+            <div class="form-group">
+              <label> {{'USERS.COLUMN_NAME' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="user.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">{{'USERS.FORM_ERROR_NAME' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'USERS.COLUMN_LASTNAME' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="lastName" class="form-control campo-descripcion-corta" [(ngModel)]="user.lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">{{'USERS.FORM_ERROR_LASTNAME' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'USERS.COLUMN_PHONE' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="phone" class="form-control campo-descripcion-corta" [(ngModel)]="user.phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <div *ngIf="f.phone.errors.required">{{'USERS.FORM_ERROR_PHONE' | translate }}</div>
+                                  
+              </div>
+            </div>
+          
+      
+            
+          </div>
+
+          
+         
+        </div>
+          
+        
+      </form>
+     
+    </div>
+</div>

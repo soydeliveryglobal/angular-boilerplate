@@ -1,0 +1,13 @@
+ng2-smart-filters{
+    display: none;
+}
+
+:host{
+    .nb-icon{
+        font-size: 2.5em;
+        margin-right: 5px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
