@@ -30,7 +30,7 @@ export class ListaProviderComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.providerService.getAll().subscribe((res: ResponseAll) => {
+    this.providerService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.Providers = new MatTableDataSource(res.data);
       this.Providers.sort = this.sort;
     });

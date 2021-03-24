@@ -21,8 +21,10 @@ export class ProductsService{
     //this.token =  LoginService.getToken();
   }
 
-  getAll():Observable<ResponseAll>{
-    const response = this.http.get<ResponseAll>(this.url)
+  getAll(query:string):Observable<ResponseAll>{
+    const urlWithQuery = `${this.url}?${query}`
+    console.log('his is url: ',urlWithQuery)
+    const response = this.http.get<ResponseAll>(urlWithQuery)
     return response
   }
 

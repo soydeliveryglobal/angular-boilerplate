@@ -21,8 +21,9 @@ export class BrandService{
     //this.token =  LoginService.getToken();
   }
 
-  getAll():Observable<ResponseAll>{
-    const response = this.http.get<ResponseAll>(this.url)
+  getAll(query:string):Observable<ResponseAll>{
+    const urlWithQuery = `${this.url}?${query}`
+    const response = this.http.get<ResponseAll>(urlWithQuery)
     return response
   }
 

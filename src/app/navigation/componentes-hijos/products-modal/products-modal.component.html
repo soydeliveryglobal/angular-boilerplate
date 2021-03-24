@@ -1,0 +1,171 @@
+<h1 mat-dialog-title> Products Modal</h1>
+<div mat-dialog-content>
+
+    <!------------------ COMBO BOXES ------------------>
+    <div class="combo-boxes-container">
+        <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_CATEGORY' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.category" [compareWith]="compareFn"  (selectionChange)="this.newGetProducts()" >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+       
+          <mat-form-field  appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_BRAND' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.brand" [compareWith]="compareFn" (selectionChange)="this.newGetProducts()"  >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option *ngFor="let brand of brands" [value]="brand">
+                {{brand.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+    
+          <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_FAMILY' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.family" [compareWith]="compareFn" (selectionChange)="this.newGetProducts()"  >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option *ngFor="let family of families" [value]="family">
+                {{family.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+      
+          <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_LINE' | translate" [disabled]="data.dtoProductModal.readonly==true" [(ngModel)]="data.dtoProductModal.line" [compareWith]="compareFn" (selectionChange)="this.newGetProducts()"  >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option *ngFor="let line of lines" [value]="line">
+                {{line.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+    
+          <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_VARIETY' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.variety" [compareWith]="compareFn" (selectionChange)="this.newGetProducts()"  >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option *ngFor="let variety of varieties" [value]="variety">
+                {{variety.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+    
+          <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_TYPE' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.productOrService" [compareWith]="compareFnBool" (selectionChange)="this.newGetProducts()"  >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option [value]="0">Product</mat-option>
+              <mat-option [value]="1">Service</mat-option>
+            </mat-select>
+          </mat-form-field> 
+    
+          <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_STOCK' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.useStock" [compareWith]="compareFnBool" (selectionChange)="this.newGetProducts()"  >
+              <mat-option [value]="null">Todas</mat-option>
+              <mat-option [value]="true">Si</mat-option>
+              <mat-option [value]="false">No</mat-option>
+            </mat-select>
+          </mat-form-field> 
+    
+          <mat-form-field appearance="fill">
+            <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_PROVIDERS' | translate" [disabled]="data.dtoProductModal.readonly==true"  [(ngModel)]="data.dtoProductModal.provider" multiple  [compareWith]="compareFn"  >
+              <mat-option [value]="null">Todas</mat-option> 
+              <mat-option *ngFor="let provider of providers" [value]="provider">
+                {{provider.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+    </div>
+
+     <!------------------ INPUTS ------------------>
+    <div class="inputs-container">
+        <div class="form-group">
+            <label> {{'PRODUCTS.COLUMN_NAME' | translate }}</label>
+            <input [readonly]="data.dtoProductModal.readonly==true" type="text"  class="form-control campo-descripcion-corta" [(ngModel)]="data.dtoProductModal.name" (change)="newGetProducts()" />
+        </div>
+        
+        <div class="form-group" style="margin-left: 15px;">
+          <label>{{'PRODUCTS.COLUMN_DESCRIPTION' | translate}}</label>
+          <input [readonly]="data.dtoProductModal.readonly==true" type="text"  class="form-control campo-descripcion-corta" [(ngModel)]="data.dtoProductModal.description" (change)="newGetProducts()" />
+        </div>
+    </div>
+
+     <!------------------ TABLA ------------------>
+    <div class="table-container">
+        <table mat-table [dataSource]="Products" matSort class="mat-elevation-z8">
+    
+          <ng-container matColumnDef="check">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let product"> <input #inputEL type="checkbox" [checked]="isProductSelected(product)" (change)="addOrRemoveProductSelected(inputEL.checked,inputEL.hidden,product)"> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_NAME' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_DESCRIPTION' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.description}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="category" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_CATEGORY_NAME' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.category.name}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="family" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_FAMILY_NAME' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.family.name}} </td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="line" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_LINE_NAME' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.line.name}} </td>
+          </ng-container> 
+      
+          <ng-container matColumnDef="brand" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_BRAND_NAME' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.brand.name}} </td>
+          </ng-container> 
+      
+          <ng-container matColumnDef="variety" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_VARIETY_NAME' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.variety.name}} </td>
+          </ng-container> 
+          
+      
+          <ng-container matColumnDef="eanCode" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_EAN_CODE' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.eanCode}} </td>
+          </ng-container> 
+      
+          <ng-container matColumnDef="externalCode" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_EXTERNAL_CODE' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.externalCode}} </td>
+          </ng-container> 
+      
+          <ng-container matColumnDef="storeCode" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_STORE_CODE' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.storeCode}} </td>
+          </ng-container> 
+      
+          <ng-container matColumnDef="useStock" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'PRODUCTS.COLUMN_USE_STOCK' | translate}} </th>
+            <td mat-cell *matCellDef="let product"> {{product.useStock}} </td>
+          </ng-container> 
+      
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator #paginator [length]="this.cantidadDeRegistros"
+      [pageSize]="this.pageSize"
+      [pageSizeOptions]="this.pageSizeOptions"
+      (page)="pageEvent($event)">
+    </mat-paginator>           
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancelar</button>
+  <button mat-button (click)="this.onOk()" >Ok</button>
+</div>

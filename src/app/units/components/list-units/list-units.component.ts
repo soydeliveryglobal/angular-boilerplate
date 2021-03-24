@@ -30,7 +30,7 @@ export class ListUnitsComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.unitsService.getAll().subscribe((res: ResponseAll) => {
+    this.unitsService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.Units = new MatTableDataSource(res.data);
       this.Units.sort = this.sort;
     });

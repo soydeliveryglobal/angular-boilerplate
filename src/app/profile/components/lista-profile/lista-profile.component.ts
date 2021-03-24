@@ -29,10 +29,12 @@ export class ListaProfileComponent extends Paginador implements OnInit {
    // this.consultar();
   }
 
-  private consultar() {
-    this.profileService.getAll().subscribe((res: ResponseAll) => {
+  private consultar(query:string) {
+    this.profileService.getAll(query).subscribe((res: ResponseAll) => {
       this.Profiles = new MatTableDataSource(res.data);
       this.Profiles.sort = this.sort;
+      this.pagina= res.page;
+      this.cantidadDeRegistros = res.count;
     });
   }
 
@@ -48,7 +50,8 @@ export class ListaProfileComponent extends Paginador implements OnInit {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    const query = this.createPaging()
+    this.consultar(query);
   }
 
   deleteProfile(guid: string) {
@@ -91,7 +94,9 @@ export class ListaProfileComponent extends Paginador implements OnInit {
         this.pagina = Number(page.pageIndex);
         this.pageSize = page.pageSize 
     }
-    this.consultar();
+    
+    const query = this.createPaging()
+    this.consultar(query);
   } 
 
 }

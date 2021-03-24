@@ -1,3 +1,4 @@
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +15,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input'
 import {MatTableModule} from '@angular/material/table'
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 const material = [
   MatTabsModule,
   MatSidenavModule,
@@ -25,7 +27,12 @@ const material = [
   MatFormFieldModule,
   MatDatepickerModule,
   MatInputModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule,
+  MatTableModule,
+  MatTabsModule,
+  MatSortModule,
+  MatPaginatorModule
 ]
 
 @NgModule({

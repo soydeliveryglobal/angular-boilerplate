@@ -1,0 +1,25 @@
+:host{
+    .combo-boxes-container,.inputs-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .combo-boxes-container{
+        justify-content: space-between;
+        align-items: center;
+    }
+    table,.table-container{
+        width: 100%;
+        overflow-x: auto;
+    }
+    .mat-form-field-infix{
+        
+    }
+
+   /*  .combo-boxes-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: space-between;
+        align-items: center;
+        grid-gap: 20px;
+    } */
+}

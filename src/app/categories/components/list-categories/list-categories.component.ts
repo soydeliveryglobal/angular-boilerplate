@@ -11,6 +11,9 @@ import { LoginService } from 'src/app/core/services/login.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CategoriesService } from 'src/app/core/services/abm/categories.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DtoProductModal } from 'src/app/navigation/componentes-hijos/products-modal/products-modal-dto';
+import { ProductsModalComponent } from 'src/app/navigation/componentes-hijos/products-modal/products-modal.component';
 
 @Component({
   selector: 'list-categories',
@@ -21,7 +24,7 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   Categories:MatTableDataSource<Category>;
   environment = environment;
-
+  dtoProduct = new DtoProductModal();
 
   displayedColumns: string[] = ['name','description','createdOn','updatedOn','actions'];
 
@@ -29,10 +32,12 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
    // this.consultar();
   }
 
-  private consultar() {
-    this.categoriesService.getAll().subscribe((res: ResponseAll) => {
+  private consultar(query:string) {
+    this.categoriesService.getAll(query).subscribe((res: ResponseAll) => {
       this.Categories = new MatTableDataSource(res.data);
       this.Categories.sort = this.sort;
+      this.pagina= res.page;
+      this.cantidadDeRegistros = res.count;
     });
   }
 
@@ -41,14 +46,16 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
     private router: Router,
     private login: LoginService,
     private translate: TranslateService,
-    private i18nService: I18nServiceService
+    private i18nService: I18nServiceService,
+    private dialog:MatDialog
   ) {
     super();
     this.i18nService.localeEvent$.subscribe((locale) => {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    const query = this.createPaging()
+    this.consultar(query);
   }
 
   deleteCategory(guid: string) {
@@ -81,6 +88,7 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
       0,
       environment.MODO_CREATE,
     ]);
+    //this.openDialog()
   }
 
 
@@ -91,7 +99,21 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
         this.pagina = Number(page.pageIndex);
         this.pageSize = page.pageSize 
     }
-    this.consultar();
+    const query = this.createPaging()
+    this.consultar(query);
   } 
   
+
+  openDialog(): void {
+    this.dtoProduct.readonly = false
+    const dialogRef = this.dialog.open(ProductsModalComponent,{data:{dtoProductModal: this.dtoProduct}});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+    dialogRef.componentInstance.productsOut.subscribe(productsSelected => {
+      console.log('tengo los productos',productsSelected);
+    });
+  }
 }

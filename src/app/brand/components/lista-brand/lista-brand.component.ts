@@ -29,10 +29,12 @@ export class ListaBrandComponent extends Paginador implements OnInit {
    // this.consultar();
   }
 
-  private consultar() {
-    this.brandService.getAll().subscribe((res: ResponseAll) => {
+  private consultar(query:string) {
+    this.brandService.getAll(query).subscribe((res: ResponseAll) => {
       this.Brands = new MatTableDataSource(res.data);
       this.Brands.sort = this.sort;
+      this.pagina= res.page;
+      this.cantidadDeRegistros = res.count;
     });
   }
 
@@ -48,8 +50,10 @@ export class ListaBrandComponent extends Paginador implements OnInit {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    const query = this.createPaging()
+    this.consultar(query);
   }
+
 
   deleteBrand(guid: string) {
     this.router.navigate([
@@ -91,7 +95,8 @@ export class ListaBrandComponent extends Paginador implements OnInit {
         this.pagina = Number(page.pageIndex);
         this.pageSize = page.pageSize 
     }
-    this.consultar();
+    const query = this.createPaging()
+    this.consultar(query);
   } 
 
 
