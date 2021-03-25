@@ -1,0 +1,34 @@
+:host{
+    .form-container{
+        display: flex;
+        
+        .right-side,.left-side{
+            display: flex;
+            flex-direction: column;
+        }
+        .right-side{
+            margin-left: 25px;
+            width: 600px;
+        }
+        .mat-form-field{
+            width: 50%; 
+        }
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    :host{
+        .form-container{
+            flex-direction: column;
+            .right-side{
+                margin-left: 0;
+                width: 100%;
+            }
+            .mat-form-field{
+                width: 100%; 
+            }
+        }
+    }
+}
+

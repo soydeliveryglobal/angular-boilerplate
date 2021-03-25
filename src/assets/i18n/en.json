@@ -15,7 +15,8 @@
         "USERS": "Users",
         "MOVEMENTTYPES":"Types of Movement",
         "UNITS":"Units",
-        "DEPOSITS":"Deposits"
+        "DEPOSITS":"Deposits",
+        "MOVEMENTS":"Movements"
         
     },
     "PRODUCTS":{
@@ -234,7 +235,7 @@
         "DISPLAY": "Display Type of Movement"
     },
     "UNITS":{
-        "TITLE_MAINTAINENCE":"Maintenance of Unit",
+        "TITLE_MAINTAINENCE":"Maintenance of Units",
         "COLUMN_NAME": "Name",
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_CREATED_ON": "Created On",
@@ -253,7 +254,7 @@
         "DISPLAY": "Display Unit"
     },
     "DEPOSITS":{
-        "TITLE_MAINTAINENCE":"Maintenance of Deposit",
+        "TITLE_MAINTAINENCE":"Maintenance of Deposits",
         "COLUMN_NAME": "Name",
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_INTELLICODE": "Code",
@@ -264,7 +265,7 @@
 
         "FORM_ERROR_NAME": "Name is required.",
         "FORM_ERROR_DESCRIPTION": "Description is required.",
-        "FORM_ERROR_INTELLICODE":"",
+        "FORM_ERROR_INTELLICODE":"Code is required.",
 
         "FORM_PLACE_HOLDER_STOCK_IN": "Accepts in movements?",
         "FORM_PLACE_HOLDER_STOCK_OUT": "Accepts out movements?",
@@ -279,6 +280,27 @@
         "UPDATE": "Update Deposit",
         "DELETE": "Delete Deposit",
         "DISPLAY": "Display Deposit"
+    },
+    "MOVEMENTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Movements",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_QUANTITY": "Quantity",
+        "COLUMN_TIME": "Date of Movement",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Movement",
+        "UPDATE": "Update Movement",
+        "DELETE": "Delete Movement",
+        "DISPLAY": "Display Movement"
     }
 
     

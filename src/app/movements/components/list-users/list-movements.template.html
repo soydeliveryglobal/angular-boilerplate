@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-header>
+    {{'MOVEMENTS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="Movements" matSort class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let movement"> {{movement.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_DESCRIPTION' | translate}} </th>
+        <td mat-cell *matCellDef="let movement"> {{movement.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_QUANTITY' | translate}} </th>
+        <td mat-cell *matCellDef="let movement"> {{movement.quantity}} </td>
+      </ng-container>
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_TIME' | translate}} </th>
+        <td mat-cell *matCellDef="let movement"> {{movement.time}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions" >
+        <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createMovement()"></i></th>
+        <td mat-cell *matCellDef="let movement">
+          <i class="nb-search nb-icon" (click)="movementDetail(movement.movementGuid)"></i>
+          <i class="nb-edit nb-icon" (click)="updateMovement(movement.movementGuid)"></i>
+          <i class="nb-trash nb-icon" (click)="deleteMovement(movement.movementGuid)"></i>
+        </td>
+      </ng-container> 
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

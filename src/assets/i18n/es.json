@@ -15,7 +15,8 @@
         "USERS": "Usuarios",
         "MOVEMENTTYPES":"Tipos de movimiento",
         "UNITS":"Unidades",
-        "DEPOSITS":"Depositos"
+        "DEPOSITS":"Depositos",
+        "MOVEMENTS":"Movimientos"
     },
     "PRODUCTS":{
         "TITLE_MAINTAINENCE":"Mantenimiento de productos",
@@ -264,7 +265,7 @@
 
         "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
         "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
-        "FORM_ERROR_INTELLICODE": "Ingrese un porfavor.",
+        "FORM_ERROR_INTELLICODE": "Ingrese un codigo porfavor.",
 
 
         "FORM_PLACE_HOLDER_STOCK_IN": "Entran movimientos?",
@@ -280,5 +281,29 @@
         "UPDATE": "Actualizar Deposito",
         "DELETE": "Eliminar Deposito",
         "DISPLAY": "Visualizar Deposito"
+    },
+    "MOVEMENTS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento de Movimientos",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_DESCRIPTION": "Descripción",
+        "COLUMN_QUANTITY": "Cantidad",
+        "COLUMN_TIME": "Fecha de movimiento",
+        "COLUMN_CREATED_ON": "Creado",
+        "COLUMN_UPDATED_ON": "Modificado",
+
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_DESCRIPTION": "Ingrese una descripción porfavor.",
+
+        "FORM_PLACE_HOLDER_STOCK_IN": "Entran movimientos?",
+        "FORM_PLACE_HOLDER_STOCK_OUT": "Salen movimientos?",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Movimiento",
+        "UPDATE": "Actualizar Movimiento",
+        "DELETE": "Eliminar Movimiento",
+        "DISPLAY": "Visualizar Movimiento"
     }
 }
