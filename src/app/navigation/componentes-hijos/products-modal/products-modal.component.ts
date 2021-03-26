@@ -21,7 +21,7 @@ import { Provider } from './../../../core/models/Provider';
 import { Line } from './../../../core/models/Line';
 import { DtoProductModal } from './products-modal-dto';
 import { Product, ProductOrServiceType } from './../../../core/models/Product';
-import { Component, OnInit, Input, Output, EventEmitter, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
@@ -154,15 +154,13 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
   }
 
   addOrRemoveProductSelected(inputChecked:boolean,inputHidden:boolean,product:Product){
-    console.log('input ',inputHidden)
     if(inputChecked){
       this.addToProductSelected(product)
     }else if(!inputChecked && !inputHidden){
-      console.log('input2 ',inputHidden)
       this.removeFromProductSelected(product)
     }
   }
-  
+
   addToProductSelected(product:Product){
     this.productsSelected.push(product)
   }
