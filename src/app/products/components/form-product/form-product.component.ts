@@ -159,33 +159,33 @@ export class FormProductComponent implements OnInit, OnDestroy {
   }
 
   private loadCategories(){
-    this.categoriesService.getAll().subscribe((res: ResponseAll) => {
+    this.categoriesService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.categories = res.data
     });
   }
   private loadBrands(){
-    this.brandService.getAll().subscribe((res: ResponseAll) => {
+    this.brandService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.brands = res.data
     });
   }
   private loadFamilies(){
-    this.familiesService.getAll().subscribe((res: ResponseAll) => {
+    this.familiesService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.families = res.data
     });
   }
   private loadLines(){
-    this.lineService.getAll().subscribe((res: ResponseAll) => {
+    this.lineService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.lines = res.data
     });
   }
   private loadVarieties(){
-    this.varietiesService.getAll().subscribe((res: ResponseAll) => {
+    this.varietiesService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.varieties = res.data
     });
   }
 
   loadProviders(){
-    this.providerService.getAll().subscribe((res: ResponseAll) => {
+    this.providerService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.providers = res.data
     });
   }

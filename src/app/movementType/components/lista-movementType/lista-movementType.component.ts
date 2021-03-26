@@ -30,7 +30,7 @@ export class ListaMovementTypeComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.movementtypeService.getAll().subscribe((res: ResponseAll) => {
+    this.movementtypeService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.MovementTypes = new MatTableDataSource(res.data);
       this.MovementTypes.sort = this.sort;
     });

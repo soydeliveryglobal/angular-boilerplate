@@ -29,10 +29,12 @@ export class ListaVarietiesComponent extends Paginador implements OnInit {
    // this.consultar();
   }
 
-  private consultar() {
-    this.varietiesService.getAll().subscribe((res: ResponseAll) => {
+  private consultar(query:string) {
+    this.varietiesService.getAll(query).subscribe((res: ResponseAll) => {
       this.Varieties = new MatTableDataSource(res.data);
       this.Varieties.sort = this.sort;
+      this.pagina= res.page;
+      this.cantidadDeRegistros = res.count;
     });
   }
 
@@ -48,7 +50,8 @@ export class ListaVarietiesComponent extends Paginador implements OnInit {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    const query = this.createPaging()
+    this.consultar(query);
   }
 
   deleteVariety(guid: string) {
@@ -91,7 +94,8 @@ export class ListaVarietiesComponent extends Paginador implements OnInit {
         this.pagina = Number(page.pageIndex);
         this.pageSize = page.pageSize 
     }
-    this.consultar();
+    const query = this.createPaging()
+    this.consultar(query);
   } 
   
 }

@@ -31,7 +31,7 @@ export class ListUsersComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.usersService.getAll().subscribe((res: ResponseAll) => {
+    this.usersService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
       this.Users = new MatTableDataSource(res.data);
       this.Users.sort = this.sort;
     });

@@ -24,27 +24,18 @@ export class ListProductsComponent extends Paginador implements OnInit {
 
 
   displayedColumns: string[] = ['name','description','category','family','line','brand','variety', 'eanCode','externalCode','storeCode','useStock','actions'];
-/*  productGUID: string;
-    category:Category;
-    family:Family;
-    line:Line;
-    brand:Brand;
-    storeCode: string;
-    providerCode: string;
-    eanCode: string;
-    externalCode: string;
-    variety:Variety;
-    useStock: boolean;
-    productOrService: ProductOrServiceType */
+
 
   ngOnInit() {
    // this.consultar();
   }
 
-  private consultar() {
-    this.productsService.getAll().subscribe((res: ResponseAll) => {
+  private consultar(query:string) {
+    this.productsService.getAll(query).subscribe((res: ResponseAll) => {
       this.Products = new MatTableDataSource(res.data);
       this.Products.sort = this.sort;
+      this.pagina= res.page;
+      this.cantidadDeRegistros = res.count;
     });
   }
 
@@ -60,7 +51,8 @@ export class ListProductsComponent extends Paginador implements OnInit {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    const query = this.createPaging()
+    this.consultar(query);
   }
 
   deleteProduct(guid: string) {
@@ -103,7 +95,9 @@ export class ListProductsComponent extends Paginador implements OnInit {
         this.pagina = Number(page.pageIndex);
         this.pageSize = page.pageSize 
     }
-    this.consultar();
+    
+    const query = this.createPaging()
+    this.consultar(query);
   } 
   
 }

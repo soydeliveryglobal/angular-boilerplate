@@ -29,10 +29,12 @@ export class ListFamiliesComponent extends Paginador implements OnInit {
    // this.consultar();
   }
 
-  private consultar() {
-    this.familiesService.getAll().subscribe((res: ResponseAll) => {
+  private consultar(query:string) {
+    this.familiesService.getAll(query).subscribe((res: ResponseAll) => {
       this.Families = new MatTableDataSource(res.data);
       this.Families.sort = this.sort;
+      this.pagina= res.page;
+      this.cantidadDeRegistros = res.count;
     });
   }
 
@@ -48,7 +50,8 @@ export class ListFamiliesComponent extends Paginador implements OnInit {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    const query = this.createPaging()
+    this.consultar(query);
   }
 
   deleteFamily(guid: string) {
@@ -91,7 +94,8 @@ export class ListFamiliesComponent extends Paginador implements OnInit {
         this.pagina = Number(page.pageIndex);
         this.pageSize = page.pageSize 
     }
-    this.consultar();
+    const query = this.createPaging()
+    this.consultar(query);
   } 
   
 }
