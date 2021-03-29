@@ -76,9 +76,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: environment.FORM_LIST_UNITS,
   },
   {
-    title: 'MENU.DEPOSITS',
+    title: 'MENU.DEPOTS',
     icon: 'car-outline',
-    link: environment.FORM_LIST_DEPOSITS,
+    link: environment.FORM_LIST_DEPOTS,
   },
   {
     title: 'MENU.MOVEMENTS',

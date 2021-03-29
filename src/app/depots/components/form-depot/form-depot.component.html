@@ -1,0 +1,72 @@
+
+<!-- DEPOTS depots Depots depot Depot -->
+<div class="card m-3" style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate}}</div>
+    <form [formGroup]="DepotForm" (submit)="onSubmit()">
+      <div class="controles-form">
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'DEPOTS.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'DEPOTS.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit" >{{'DEPOTS.CONFIRM' | translate}}</button>
+      </div>
+
+        
+        <div class="form-container">
+          <div class="left-side">
+            
+          
+            <div class="form-group">
+              <label for="id">#GUID Depot</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="depotGUID" id="depotGUID" [(ngModel)]="depot.depotGUID" />
+            </div>
+          
+            <div class="form-group">
+              <label> {{'DEPOTS.COLUMN_NAME' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="depot.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">{{'DEPOTS.FORM_ERROR_NAME' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'DEPOTS.COLUMN_DESCRIPTION' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="depot.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                  <div *ngIf="f.description.errors.required">{{'DEPOTS.FORM_ERROR_DESCRIPTION' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'DEPOTS.COLUMN_INTELLICODE' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="intelliCode" class="form-control campo-descripcion-corta" [(ngModel)]="depot.intelliCode" [ngClass]="{ 'is-invalid': submitted && f.intelliCode.errors }" />
+              <div *ngIf="submitted && f.intelliCode.errors" class="invalid-feedback">
+                  <div *ngIf="f.intelliCode.errors.required">{{'DEPOTS.FORM_ERROR_INTELLICODE' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <mat-form-field appearance="fill">
+              <mat-select [placeholder]="'DEPOTS.FORM_PLACE_HOLDER_STOCK_IN' | translate" [disabled]="camposReadOnly==true" formControlName="enableIn" [(ngModel)]="depot.enableIn" [compareWith]="compareFnBool" >
+                <mat-option [value]="true">{{"DEPOTS.COMBO_BOOL_YES" | translate}}</mat-option>
+                <mat-option [value]="false">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-select [placeholder]="'DEPOTS.FORM_PLACE_HOLDER_STOCK_OUT' | translate" [disabled]="camposReadOnly==true" formControlName="enableOut" [(ngModel)]="depot.enableOut" [compareWith]="compareFnBool" >
+                <mat-option [value]="true">{{"DEPOTS.COMBO_BOOL_YES" | translate}}</mat-option>
+                <mat-option [value]="false">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+          </div>
+         
+        </div>
+          
+        
+      </form>
+     
+    </div>
+</div>

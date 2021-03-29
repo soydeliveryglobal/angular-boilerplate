@@ -1,0 +1,53 @@
+<nb-card>
+  <nb-card-header>
+    {{'DEPOTS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="Depots" matSort class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'DEPOTS.COLUMN_NAME' | translate}} </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'DEPOTS.COLUMN_DESCRIPTION' | translate}} </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="intelliCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'DEPOTS.COLUMN_INTELLICODE' | translate}} </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.intelliCode}} </td>
+      </ng-container>
+      <ng-container matColumnDef="enableIn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'DEPOTS.COLUMN_ENABLEIN' | translate}} </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.enableIn}} </td>
+      </ng-container>
+      <ng-container matColumnDef="enableOut">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'DEPOTS.COLUMN_ENABLEOUT' | translate}} </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.enableOut}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createDepot()"></i></th>
+        <td mat-cell *matCellDef="let depot">
+          <i class="nb-search nb-icon" (click)="depotDetail(depot.depotGUID)"></i>
+          <i class="nb-edit nb-icon" (click)="updateDepot(depot.depotGUID)"></i>
+          <i class="nb-trash nb-icon" (click)="deleteDepot(depot.depotGUID)"></i>
+        </td>
+      </ng-container> 
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

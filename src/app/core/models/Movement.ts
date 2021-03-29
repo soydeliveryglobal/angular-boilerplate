@@ -1,4 +1,4 @@
-import { Deposit } from './Deposit';
+import { Depot } from './Depot';
 import { MovementType } from './MovementType';
 import { NameDescription } from './NameDescription';
 import { Product } from './Product';
@@ -8,8 +8,8 @@ export class Movement extends NameDescription{
     product:Product;
     movementType:MovementType;
     time:Date;
-    depotIn:Deposit;
-    depotOut:Deposit;
+    depotIn:Depot;
+    depotOut:Depot;
     unit:Unit;
     quantity:number;
     

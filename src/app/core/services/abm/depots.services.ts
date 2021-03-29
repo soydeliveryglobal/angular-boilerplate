@@ -1,4 +1,4 @@
-import { Deposit } from './../../models/Deposit';
+import { Depot } from './../../models/Depot';
 import { ResponseAll } from './../../models/ResponseAll';
 import { LoginService } from '../login.service';
 import { Injectable } from '@angular/core';
@@ -8,16 +8,16 @@ import { environment } from 'src/environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
-export class DepositsService{
+export class DepotsService{
 
   url: string;
-  Deposits = [];
+  Depots = [];
   token: string;
   barraDelPath = '/';
   auth = 'auth';
 
   constructor(private http: HttpClient) {
-    this.url = environment.BASE_API_URL + environment.END_POINT_DEPOSITS
+    this.url = environment.BASE_API_URL + environment.END_POINT_DEPOTS
     //this.token =  LoginService.getToken();
   }
 
@@ -28,27 +28,27 @@ export class DepositsService{
 
   getOne(guid: string){
     const url = `${this.url}${this.barraDelPath}${guid}`
-    return this.http.get<Deposit>(url);
+    return this.http.get<Depot>(url);
   }
 
-  post(deposit: Deposit){
+  post(depot: Depot){
     const headers = { 'content-type': 'application/json'}  
 
-    const depositToPost= {...deposit}
-    console.log("ASd, ", depositToPost)
-    return this.http.post<Deposit>(this.url, depositToPost,{'headers':headers});
+    const depotToPost= {...depot}
+    console.log("ASd, ", depotToPost)
+    return this.http.post<Depot>(this.url, depotToPost,{'headers':headers});
   }
 
-  put(guid: string, deposit: Deposit){
+  put(guid: string, depot: Depot){
     const url = `${this.url}${this.barraDelPath}${guid}`
     
-    console.log('este',deposit)
-    return this.http.put<Deposit>(url, deposit);
+    console.log('este',depot)
+    return this.http.put<Depot>(url, depot);
   }
 
   delete(guid: string){
     const url = `${this.url}${this.barraDelPath}${guid}`
-    return this.http.delete<Deposit>(url);
+    return this.http.delete<Depot>(url);
   }
 
   

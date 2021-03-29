@@ -15,7 +15,7 @@
         "USERS": "Usuarios",
         "MOVEMENTTYPES":"Tipos de movimiento",
         "UNITS":"Unidades",
-        "DEPOSITS":"Depositos",
+        "DEPOTS":"Depositos",
         "MOVEMENTS":"Movimientos"
     },
     "PRODUCTS":{
@@ -246,14 +246,14 @@
 
         "CANCEL": "Cancelar",
         "RESET": "Limpiar",
-        "CO NFIRM": "Confirmar",
+        "CONFIRM": "Confirmar",
 
         "CREATE": "Crear Tipo de Unidad",
         "UPDATE": "Actualizar Tipo de Unidad",
         "DELETE": "Eliminar Tipo de Unidad",
         "DISPLAY": "Visualizar Tipo de Unidad"
     },
-    "DEPOSITS":{
+    "DEPOTS":{
         "TITLE_MAINTAINENCE":"Mantenimiento de Depositos",
         "COLUMN_NAME": "Nombre",
         "COLUMN_DESCRIPTION": "Descripción",

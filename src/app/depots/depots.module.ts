@@ -8,29 +8,29 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { NavigationModule } from './../navigation/navigation/navigation.module';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { DepositsRoutingModule } from './deposits-routing.module';
-import { ListDepositsComponent } from './components/list-deposits/list-deposits.component';
-import { FormDepositComponent } from './components/form-deposit/form-deposit.component';
+import { ListDepotsComponent } from './components/list-depots/list-depots.component';
+import { FormDepotComponent } from './components/form-depot/form-depot.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DepotsRoutingModule } from './depots-routing.module';
 
 
 
-export function depositsHttpLoaderFactory(http: HttpClient) {
+export function depotsHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 
 
 @NgModule({
-  declarations: [ListDepositsComponent,FormDepositComponent],
+  declarations: [ListDepotsComponent, FormDepotComponent],
   imports: [
     CommonModule,
-    DepositsRoutingModule,
+    DepotsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NavigationModule,
@@ -46,11 +46,11 @@ export function depositsHttpLoaderFactory(http: HttpClient) {
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
-        useFactory: depositsHttpLoaderFactory,
+        useFactory: depotsHttpLoaderFactory,
         deps: [HttpClient],
       },
     }),
     
   ]
 })
-export class DepositsModule { }
+export class DepotsModule { }

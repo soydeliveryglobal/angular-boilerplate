@@ -15,7 +15,7 @@
         "USERS": "Users",
         "MOVEMENTTYPES":"Types of Movement",
         "UNITS":"Units",
-        "DEPOSITS":"Deposits",
+        "DEPOTS":"Depots",
         "MOVEMENTS":"Movements"
         
     },
@@ -253,8 +253,8 @@
         "DELETE": "Delete Unit",
         "DISPLAY": "Display Unit"
     },
-    "DEPOSITS":{
-        "TITLE_MAINTAINENCE":"Maintenance of Deposits",
+    "DEPOTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Depots",
         "COLUMN_NAME": "Name",
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_INTELLICODE": "Code",
@@ -276,10 +276,10 @@
         "RESET": "Reset",
         "CONFIRM": "Save",
 
-        "CREATE": "New Deposit",
-        "UPDATE": "Update Deposit",
-        "DELETE": "Delete Deposit",
-        "DISPLAY": "Display Deposit"
+        "CREATE": "New Depot",
+        "UPDATE": "Update Depot",
+        "DELETE": "Delete Depot",
+        "DISPLAY": "Display Depot"
     },
     "MOVEMENTS":{
         "TITLE_MAINTAINENCE":"Maintenance of Movements",
