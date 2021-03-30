@@ -4,6 +4,9 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
 
+
+
+
 const routes: Routes = [
   {
     path: '',
