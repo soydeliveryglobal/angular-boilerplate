@@ -15,7 +15,8 @@
         "USERS": "Users",
         "MOVEMENTTYPES":"Types of Movement",
         "UNITS":"Units",
-        "DEPOSITS":"Deposits"
+        "DEPOTS":"Depots",
+        "MOVEMENTS":"Movements"
         
     },
     "PRODUCTS":{
@@ -234,7 +235,7 @@
         "DISPLAY": "Display Type of Movement"
     },
     "UNITS":{
-        "TITLE_MAINTAINENCE":"Maintenance of Unit",
+        "TITLE_MAINTAINENCE":"Maintenance of Units",
         "COLUMN_NAME": "Name",
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_CREATED_ON": "Created On",
@@ -252,8 +253,8 @@
         "DELETE": "Delete Unit",
         "DISPLAY": "Display Unit"
     },
-    "DEPOSITS":{
-        "TITLE_MAINTAINENCE":"Maintenance of Deposit",
+    "DEPOTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Depots",
         "COLUMN_NAME": "Name",
         "COLUMN_DESCRIPTION": "Description",
         "COLUMN_INTELLICODE": "Code",
@@ -264,7 +265,7 @@
 
         "FORM_ERROR_NAME": "Name is required.",
         "FORM_ERROR_DESCRIPTION": "Description is required.",
-        "FORM_ERROR_INTELLICODE":"",
+        "FORM_ERROR_INTELLICODE":"Code is required.",
 
         "FORM_PLACE_HOLDER_STOCK_IN": "Accepts in movements?",
         "FORM_PLACE_HOLDER_STOCK_OUT": "Accepts out movements?",
@@ -275,10 +276,31 @@
         "RESET": "Reset",
         "CONFIRM": "Save",
 
-        "CREATE": "New Deposit",
-        "UPDATE": "Update Deposit",
-        "DELETE": "Delete Deposit",
-        "DISPLAY": "Display Deposit"
+        "CREATE": "New Depot",
+        "UPDATE": "Update Depot",
+        "DELETE": "Delete Depot",
+        "DISPLAY": "Display Depot"
+    },
+    "MOVEMENTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Movements",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_QUANTITY": "Quantity",
+        "COLUMN_TIME": "Date of Movement",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Movement",
+        "UPDATE": "Update Movement",
+        "DELETE": "Delete Movement",
+        "DISPLAY": "Display Movement"
     }
 
     

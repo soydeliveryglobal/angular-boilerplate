@@ -1,6 +1,6 @@
 import { NameDescription } from './NameDescription';
-export class Deposit extends NameDescription{
-    depositGUID: string;
+export class Depot extends NameDescription{
+    depotGUID: string;
     intelliCode: string;
     enableIn: boolean;
     enableOut: boolean;

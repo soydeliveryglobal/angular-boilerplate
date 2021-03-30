@@ -1,4 +1,4 @@
-import { Deposit } from '../../../core/models/Deposit';
+import { Depot } from '../../../core/models/Depot';
 import { PageEvent } from '@angular/material/paginator';
 import { Paginador } from '../../../navigation/paginador';
 import { ResponseAll } from '../../../core/models/ResponseAll';
@@ -10,16 +10,16 @@ import { environment } from 'src/environments/environment';
 import { LoginService } from 'src/app/core/services/login.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DepositsService } from 'src/app/core/services/abm/deposits.services';
+import { DepotsService } from 'src/app/core/services/abm/depots.services';
 
 @Component({
-  selector: 'list-deposits',
-  templateUrl: './list-deposits.template.html',
-  styleUrls: ['./list-deposits.scss'],
+  selector: 'list-depots',
+  templateUrl: './list-depots.template.html',
+  styleUrls: ['./list-depots.scss'],
 })
-export class ListDepositsComponent extends Paginador implements OnInit {
+export class ListDepotsComponent extends Paginador implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
-  Deposits:MatTableDataSource<Deposit>;
+  Depots:MatTableDataSource<Depot>;
   environment = environment;
 
 
@@ -31,14 +31,14 @@ export class ListDepositsComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.depositsService.getAll().subscribe((res: ResponseAll) => {
-      this.Deposits = new MatTableDataSource(res.data);
-      this.Deposits.sort = this.sort;
+    this.depotsService.getAll().subscribe((res: ResponseAll) => {
+      this.Depots = new MatTableDataSource(res.data);
+      this.Depots.sort = this.sort;
     });
   }
 
   constructor(
-    private depositsService: DepositsService,
+    private depotsService: DepotsService,
     private router: Router,
     private login: LoginService,
     private translate: TranslateService,
@@ -52,33 +52,33 @@ export class ListDepositsComponent extends Paginador implements OnInit {
     this.consultar()
   }
 
-  deleteDeposit(GUID: string) {
+  deleteDepot(GUID: string) {
     this.router.navigate([
-      environment.FORM_CRUD_DEPOSIT,
+      environment.FORM_CRUD_DEPOT,
       GUID,
       environment.MODO_DELETE,
     ]);
   }
 
-  updateDeposit(GUID: string) {
+  updateDepot(GUID: string) {
     this.router.navigate([
-      environment.FORM_CRUD_DEPOSIT,
+      environment.FORM_CRUD_DEPOT,
       GUID,
       environment.MODO_UPDATE,
     ]);
   }
 
-  depositDetail(GUID: string) {
+  depotDetail(GUID: string) {
     this.router.navigate([
-      environment.FORM_CRUD_DEPOSIT,
+      environment.FORM_CRUD_DEPOT,
       GUID,
       environment.MODO_DISPLAY,
     ]);
   }
 
-  createDeposit() {
+  createDepot() {
     this.router.navigate([
-      environment.FORM_CRUD_DEPOSIT,
+      environment.FORM_CRUD_DEPOT,
       0,
       environment.MODO_CREATE,
     ]);

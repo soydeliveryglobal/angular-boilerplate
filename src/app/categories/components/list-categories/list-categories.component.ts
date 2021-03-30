@@ -83,12 +83,12 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
   }
 
   createCategory() {
-    this.router.navigate([
+   /*  this.router.navigate([
       environment.FORM_CRUD_CATEGORY,
       0,
       environment.MODO_CREATE,
-    ]);
-    //this.openDialog()
+    ]); */
+    this.openDialog()
   }
 
 
@@ -106,7 +106,7 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
 
   openDialog(): void {
     this.dtoProduct.readonly = false
-    const dialogRef = this.dialog.open(ProductsModalComponent,{data:{dtoProductModal: this.dtoProduct}});
+    const dialogRef = this.dialog.open(ProductsModalComponent,{data:{dtoProductModal: this.dtoProduct},width: '90vw',maxWidth: '90vw',});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

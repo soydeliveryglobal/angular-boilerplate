@@ -1,29 +1,29 @@
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { Deposit } from './../../../core/models/Deposit';
+import { Depot } from './../../../core/models/Depot';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { DepositsService } from 'src/app/core/services/abm/deposits.services';
+import { DepotsService } from 'src/app/core/services/abm/depots.services';
 
 @Component({
-  selector: 'form-deposit',
-  templateUrl: './form-deposit.component.html',
-  styleUrls:['./form-deposit.scss']
+  selector: 'form-depot',
+  templateUrl: './form-depot.component.html',
+  styleUrls:['./form-depot.scss']
 })
 
 
-export class FormDepositComponent implements OnInit, OnDestroy {
+export class FormDepotComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
-  DepositForm: FormGroup;
+  DepotForm: FormGroup;
   formTitle: string;
   guid:string;
   mode: string;
-  deposit: Deposit;  
+  depot: Depot;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
@@ -41,7 +41,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
   
   constructor(private route: ActivatedRoute, 
               private router: Router,
-              private depositsService: DepositsService,
+              private depotsService: DepotsService,
               private formBuilder: FormBuilder,
               private translate: TranslateService,
               private i18nService: I18nServiceService){
@@ -72,7 +72,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
   }
   
   private initializeMainObjects(){
-    this.deposit = new Deposit();
+    this.depot = new Depot();
   }
 
   private getVariablesFromRouter(){
@@ -83,42 +83,42 @@ export class FormDepositComponent implements OnInit, OnDestroy {
   private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_DEPOSITS}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_DEPOTS}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_DEPOSITS}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_DEPOTS}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.formTitle = `${environment.DOMAIN_NAME_DEPOSITS}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_DEPOTS}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.formTitle =  `${environment.DOMAIN_NAME_DEPOSITS}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_DEPOTS}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
   
   private initializeForm(){
-    this.DepositForm = this.formBuilder.group({
-      depositGUID: [''],
+    this.DepotForm = this.formBuilder.group({
+      depotGUID: [''],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       intelliCode: ['', [Validators.required]],
-      enableIn: ['', [Validators.required]],
-      enableOut: ['', [Validators.required]],
+      enableIn: ['',],
+      enableOut: ['']
     });
   }  
 
-  private loadDeposit(){
+  private loadDepot(){
     if (this.guid != ""){ 
-        this.depositsService.getOne(this.guid).subscribe(deposit => {
-        this.deposit = deposit;
+        this.depotsService.getOne(this.guid).subscribe(depot => {
+        this.depot = depot;
       });
     }else{
       
@@ -132,7 +132,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
     this.getVariablesFromRouter(); 
     this.setFormTitle();
     this.initializeForm();
-    this.loadDeposit();
+    this.loadDepot();
 
   }
 
@@ -140,7 +140,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
   
   private updateIfIsMode(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
-      this.updateDeposit();
+      this.updateDepot();
       return true;
     }
     return false;
@@ -148,7 +148,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
   
   private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
-      this.createDeposit();
+      this.createDepot();
       return true;
     }
     return false;
@@ -156,7 +156,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
 
   private deleteIfIsMode(): boolean{
     if (this.mode == environment.MODO_DELETE){      
-      this.deleteDeposit();
+      this.deleteDepot();
       
       return true;
     } 
@@ -173,7 +173,7 @@ export class FormDepositComponent implements OnInit, OnDestroy {
   }
 
   private isFormValid(): boolean{
-    return this.DepositForm.valid;
+    return this.DepotForm.valid;
   }
 
   public doCrudOperation(){
@@ -202,30 +202,30 @@ export class FormDepositComponent implements OnInit, OnDestroy {
     this.doCrudOperation();
   }
 
-  deleteDeposit() {
-    this.depositsService.delete(this.guid).subscribe(data => {
+  deleteDepot() {
+    this.depotsService.delete(this.guid).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
 
-  createDeposit() {
-    this.depositsService.post(this.deposit).subscribe(data => {
+  createDepot() {
+    this.depotsService.post(this.depot).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
 
-  updateDeposit() {
-    this.depositsService.put(this.guid, this.deposit).subscribe(data => {
+  updateDepot() {
+    this.depotsService.put(this.guid, this.depot).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORM_LIST_DEPOSITS]);
+    this.router.navigate([environment.FORM_LIST_DEPOTS]);
   }
 
   get f() { 
-    return this.DepositForm.controls; 
+    return this.DepotForm.controls; 
   }
 
 
