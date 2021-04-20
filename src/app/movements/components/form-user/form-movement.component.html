@@ -1,6 +1,6 @@
 
 <!-- MOVEMENTS movements Movements movement Movement -->
-<div class="card m-3" style="overflow: hidden;">
+<div class="card m-3 " style="overflow: hidden;">
   <div class="card-body">
     <div class="titulo-form">{{formTitle | translate}}</div>
     <form [formGroup]="MovementForm" (submit)="onSubmit()">
@@ -19,45 +19,85 @@
               <label for="id">#GUID Movement</label>
               <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="movementGuid" id="movementGuid" [(ngModel)]="movement.movementGUID" />
             </div>
-          
-            <div class="form-group">
-              <label> {{'MOVEMENTS.COLUMN_NAME' | translate }}</label>
-              <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="movement.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                  <div *ngIf="f.name.errors.required">{{'MOVEMENTS.FORM_ERROR_NAME' | translate }}</div>
-                                  
-              </div>
-            </div>
 
             <div class="form-group">
-              <label> {{'MOVEMENTS.COLUMN_DESCRIPTION' | translate }}</label>
-              <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="movement.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
-              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-                  <div *ngIf="f.description.errors.required">{{'MOVEMENTS.FORM_ERROR_DESCRIPTION' | translate }}</div>
+              <label> {{'MOVEMENTS.COLUMN_DETAILS' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="details" class="form-control campo-descripcion-corta" [(ngModel)]="movement.details" [ngClass]="{ 'is-invalid': submitted && f.details.errors }" />
+              <div *ngIf="submitted && f.details.errors" class="invalid-feedback">
+                  <div *ngIf="f.details.errors.required">{{'MOVEMENTS.FORM_ERROR_DETEAILS' | translate }}</div>
                                   
               </div>
             </div>
 
             <div class="form-group">
               <label> {{'MOVEMENTS.COLUMN_QUANTITY' | translate }}</label>
-              <input [readonly]="camposReadOnly==true" type="text" formControlName="quantity" class="form-control campo-descripcion-corta" [(ngModel)]="movement.quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+              <input [readonly]="camposReadOnly==true" type="number" formControlName="quantity" class="form-control campo-descripcion-corta" [(ngModel)]="movement.quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
               <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
                   <div *ngIf="f.quantity.errors.required">{{'MOVEMENTS.FORM_ERROR_QUANTITY' | translate }}</div>
                                   
               </div>
             </div>
-
+            
             <div class="form-group">
-              <label> {{'MOVEMENTS.COLUMN_TIME' | translate }}</label>
-              <input [readonly]="camposReadOnly==true" type="text" formControlName="time" class="form-control campo-descripcion-corta" [(ngModel)]="movement.time" [ngClass]="{ 'is-invalid': submitted && f.time.errors }" />
-              <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
-                  <div *ngIf="f.time.errors.required">{{'MOVEMENTS.FORM_ERROR_TIME' | translate }}</div>
-                                  
-              </div>
+              <label> {{'MOVEMENTS.COLUMN_UNITY' | translate }}</label>
+              <mat-form-field appearance="fill">
+                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_UNIT' | translate" [disabled]="camposReadOnly==true" formControlName="unit" [(ngModel)]="movement.unit" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let unit of unities " [value]="unit">
+
+                    {{unit.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
             </div>
 
+            <div class="right-side">
+              <label> {{'MOVEMENTS.COLUMN_PRODUCT' | translate }}</label>
+              <i class="nb-plus nb-icon form-group" (click)="filterProd()" ></i>
+              <mat-form-field appearance="fill">  
+                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_PRODUCT' | translate" [disabled]="camposReadOnly==true" formControlName="product" [(ngModel)]="movement.product" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let product of products" [value]="product">
+                    {{product.name}} 
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>              
+            </div>
+            
+              
+            
 
-          
+            <div class="right-side">
+              <label> {{'MOVEMENTS.COLUMN_MOVEMENTTYPE' | translate }}</label>
+              <mat-form-field appearance="fill">
+                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_MOVEMENTTYPE' | translate" [disabled]="camposReadOnly==true" formControlName="movementType" [(ngModel)]="movement.movementType" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let movementType of movementTypes" [value]="movementType">
+                    {{movementType.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
+            </div>
+      
+      
+            <div class="right-side">
+              <label> {{'MOVEMENTS.COLUMN_ENABLEIN' | translate }}</label>
+              <mat-form-field appearance="fill">
+                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_STOCK_IN' | translate" [disabled]="camposReadOnly==true" formControlName="enableIn" [(ngModel)]="movement.depotIn" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let depot of depots" [value]="depot">
+                    {{depot.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
+            </div> 
+
+            <div class="right-side">
+              <label> {{'MOVEMENTS.COLUMN_ENABLEOUT' | translate }}</label>
+              <mat-form-field appearance="fill">
+                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_STOCK_OUT' | translate" [disabled]="camposReadOnly==true" formControlName="enableOut" [(ngModel)]="movement.depotOut" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let depot of depots" [value]="depot">
+                    {{depot.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
+            </div>
       
             
           </div>

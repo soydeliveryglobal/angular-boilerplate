@@ -3,33 +3,53 @@
     {{'MOVEMENTS.TITLE_MAINTAINENCE' | translate}}
   </nb-card-header>
 
-  <div class="table-container">
-    <table mat-table [dataSource]="Movements" matSort class="mat-elevation-z8">
+  <div class="table-container" >
+    <table mat-table [dataSource]="Movements" class="mat-elevation-z8" matSort>
 
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_NAME' | translate}} </th>
-        <td mat-cell *matCellDef="let movement"> {{movement.name}} </td>
+      
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_DETAILS' | translate}} </th>
+        <td mat-cell *matCellDef= "let movement"> {{movement.details}} </td>
       </ng-container>
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_DESCRIPTION' | translate}} </th>
-        <td mat-cell *matCellDef="let movement"> {{movement.description}} </td>
+      <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_PRODUCT' | translate}} </th>
+        <td mat-cell *matCellDef= "let movement"> {{movement.product.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="movementType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_MOVEMENTTYPE' | translate}} </th>
+        <td mat-cell *matCellDef= "let movement"> {{movement.movementType.name}} </td>
       </ng-container>
       <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_QUANTITY' | translate}} </th>
-        <td mat-cell *matCellDef="let movement"> {{movement.quantity}} </td>
+        <td mat-cell *matCellDef= "let movement"> {{movement.quantity}} </td>
+      </ng-container>
+      <ng-container matColumnDef="unity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_UNITY' | translate}} </th>
+        <td mat-cell *matCellDef= "let movement"> {{movement.unit.name}} </td>
       </ng-container>
       <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_TIME' | translate}} </th>
-        <td mat-cell *matCellDef="let movement"> {{movement.time}} </td>
+        <td mat-cell *matCellDef= "let movement"> {{movement.time | date: 'dd/MM/yyyy, h:mm a'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="enableIn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_ENABLEIN' | translate}} </th>
+        <td mat-cell *matCellDef= "let movement"> {{movement.depotIn.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="enableOut">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'MOVEMENTS.COLUMN_ENABLEOUT' | translate}} </th>
+        <td mat-cell *matCellDef= "let movement"> {{movement.depotOut.name}} </td>
       </ng-container>
   
       <ng-container matColumnDef="actions" >
-        <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createMovement()"></i></th>
-        <td mat-cell *matCellDef="let movement">
-          <i class="nb-search nb-icon" (click)="movementDetail(movement.movementGuid)"></i>
-          <i class="nb-edit nb-icon" (click)="updateMovement(movement.movementGuid)"></i>
-          <i class="nb-trash nb-icon" (click)="deleteMovement(movement.movementGuid)"></i>
+        <th mat-header-cell *matHeaderCellDef>
+          <i class="nb-plus nb-icon" (click)="createMovement()"></i>
+        </th>
+       
+        <td mat-cell *matCellDef= "let movement">
+          <i class="nb-search nb-icon" (click)="movementDetail(movement.movementGUID)"></i>
+          <i class="nb-edit nb-icon" (click)="updateMovement(movement.movementGUID)"></i>
+          <i class="nb-trash nb-icon" (click)="deleteMovement(movement.movementGUID)"></i>
         </td>
       </ng-container> 
   

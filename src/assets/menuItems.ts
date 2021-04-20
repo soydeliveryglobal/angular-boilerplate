@@ -85,4 +85,31 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'car-outline',
     link: environment.FORM_LIST_MOVEMENTS,
   },
-];
+  {
+    title: 'MENU.STATEOFDOCUMENTS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_STATEOFDOCUMENTS,
+  },
+  {
+    title: 'MENU.STATEOFACTORS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_STATEOFACTORS,
+  },
+  {
+    title: 'MENU.OFFICES',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_OFFICES,
+  },
+  {
+    title: 'MENU.TYPEOFACTORS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_TYPEOFACTORS,
+  },
+  {
+    title: 'MENU.TYPEOFDOCUMENTS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_TYPEOFDOCUMENTS,
+  }
+]
+
+;

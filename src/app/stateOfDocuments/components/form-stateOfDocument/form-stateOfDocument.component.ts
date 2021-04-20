@@ -1,27 +1,27 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Family } from './../../../core/models/Family';
+import { StateOfDocument } from './../../../core/models/StateOfDocument';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { FamiliesService } from 'src/app/core/services/abm/families.service';
+import { StateOfDocumentsService } from 'src/app/core/services/abm/stateOfDocuments.service';
 
 @Component({
-  selector: 'form-family',
-  templateUrl: './form-family.component.html'
+  selector: 'form-stateOfDocument',
+  templateUrl: './form-stateOfDocument.component.html'
 })
 
 
-export class FormFamilyComponent implements OnInit, OnDestroy {
+export class FormStateOfDocumentComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
-  FamilyForm: FormGroup;
+  StateOfDocumentForm: FormGroup;
   formTitle: string;
   guid:string;
   mode: string;
-  family: Family;  
+  stateOfDocument: StateOfDocument;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
@@ -29,7 +29,7 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
 
   
   constructor(private route: ActivatedRoute, private router: Router,
-              private FamiliesService: FamiliesService, private formBuilder: FormBuilder,
+              private StateOfDocumentsService: StateOfDocumentsService, private formBuilder: FormBuilder,
               private translate: TranslateService,
               private i18nService: I18nServiceService){
       
@@ -59,7 +59,7 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
   }
   
   private initializeMainObjects(){
-    this.family = new Family();
+    this.stateOfDocument = new StateOfDocument();
   }
 
   private getVariablesFromRouter(){
@@ -70,30 +70,30 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
   private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_STATEOFDOCUMENTS}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_STATEOFDOCUMENTS}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.formTitle = `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_STATEOFDOCUMENTS}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.formTitle =  `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_STATEOFDOCUMENTS}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
   
   private initializeForm(){
-    this.FamilyForm = this.formBuilder.group({
-      familyGUID: [''],
+    this.StateOfDocumentForm = this.formBuilder.group({
+      stateOfDocumentGUID: [''],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       createdOn: ['', ],
@@ -101,10 +101,10 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private loadFamily(){
+  private loadStateOfDocument(){
     if (this.guid != ""){ 
-        this.FamiliesService.getOne(this.guid).subscribe(family => {
-        this.family = family;            
+        this.StateOfDocumentsService.getOne(this.guid).subscribe(stateOfDocument => {
+        this.stateOfDocument = stateOfDocument;            
       });
     }else{
       
@@ -117,14 +117,14 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
     this.getVariablesFromRouter(); 
     this.setFormTitle();
     this.initializeForm();  
-    this.loadFamily();
+    this.loadStateOfDocument();
   }
 
  
   
   private updateIfIsMode(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
-      this.updateFamily();
+      this.updateStateOfDocument();
       return true;
     }
     return false;
@@ -132,7 +132,7 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
   
   private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
-      this.createFamily();
+      this.createStateOfDocument();
       return true;
     }
     return false;
@@ -140,7 +140,7 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
 
   private deleteIfIsMode(): boolean{
     if (this.mode == environment.MODO_DELETE){      
-      this.deleteFamily();
+      this.deleteStateOfDocument();
       
       return true;
     } 
@@ -157,7 +157,7 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
   }
 
   private isFormValid(): boolean{
-    return this.FamilyForm.valid;
+    return this.StateOfDocumentForm.valid;
   }
 
   public doCrudOperation(){
@@ -186,30 +186,30 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
     this.doCrudOperation();
   }
 
-  deleteFamily() {
-    this.FamiliesService.delete(this.guid).subscribe(data => {
+  deleteStateOfDocument() {
+    this.StateOfDocumentsService.delete(this.guid).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
 
-  createFamily() {
-    this.FamiliesService.post(this.family).subscribe(data => {
+  createStateOfDocument() {
+    this.StateOfDocumentsService.post(this.stateOfDocument).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
 
-  updateFamily() {
-    this.FamiliesService.put(this.guid, this.family).subscribe(data => {
+  updateStateOfDocument() {
+    this.StateOfDocumentsService.put(this.guid, this.stateOfDocument).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORM_LIST_FAMILIES]);
+    this.router.navigate([environment.FORM_LIST_STATEOFDOCUMENTS]);
   }
 
   get f() { 
-    return this.FamilyForm.controls; 
+    return this.StateOfDocumentForm.controls; 
   }
 
 

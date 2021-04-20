@@ -16,7 +16,12 @@
         "MOVEMENTTYPES":"Types of Movement",
         "UNITS":"Units",
         "DEPOTS":"Depots",
-        "MOVEMENTS":"Movements"
+        "MOVEMENTS":"Movements",
+        "STATEOFDOCUMENTS":"States of documents",
+        "STATEOFACTORS":"States of actors",
+        "OFFICES":"Offices",
+        "TYPEOFACTORS":"Type of actors",        
+        "TYPEOFDOCUMENTS":"Type of documents"
         
     },
     "PRODUCTS":{
@@ -283,10 +288,44 @@
     },
     "MOVEMENTS":{
         "TITLE_MAINTAINENCE":"Maintenance of Movements",
+        "COLUMN_DETAILS": "Details",
+        "COLUMN_QUANTITY": "Quantity",
+        "COLUMN_UNITY": "Unity",
+        "COLUMN_TIME": "Date of Movement",        
+        "COLUMN_PRODUCT": "Product",
+        "COLUMN_ENABLEIN": "Entrance",
+        "COLUMN_ENABLEOUT": "Exit",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+        "COLUMN_MOVEMENTTYPE":"Movement Type",
+
+        "COMBO_BOOL_YES":"Yes",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+        "FORM_ERROR_QUANTITY":"Quantity is required",
+        "FORM_ERROR_UNITY":"Units is required",
+                
+        
+        "FORM_PLACE_HOLDER_STOCK_IN": "move in?",
+        "FORM_PLACE_HOLDER_STOCK_OUT": "move out?",
+        "FORM_PLACE_HOLDER_PRODUCT": "Select product",
+        "FORM_PLACE_HOLDER_UNIT": "Select unit",
+        "FORM_PLACE_HOLDER_MOVEMENTTYPE": "Select a Movement Type",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Movement",
+        "UPDATE": "Update Movement",
+        "DELETE": "Delete Movement",
+        "DISPLAY": "Display Movement"
+    },
+    "STATEOFDOCUMENTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of States of document",
         "COLUMN_NAME": "Name",
         "COLUMN_DESCRIPTION": "Description",
-        "COLUMN_QUANTITY": "Quantity",
-        "COLUMN_TIME": "Date of Movement",
         "COLUMN_CREATED_ON": "Created On",
         "COLUMN_UPDATED_ON": "Updated On",
 
@@ -297,10 +336,88 @@
         "RESET": "Reset",
         "CONFIRM": "Save",
 
-        "CREATE": "New Movement",
-        "UPDATE": "Update Movement",
-        "DELETE": "Delete Movement",
-        "DISPLAY": "Display Movement"
+        "CREATE": "New States of document",
+        "UPDATE": "Update States of document",
+        "DELETE": "Delete States of document",
+        "DISPLAY": "Display States of document"
+    },
+    "STATEOFACTORS":{
+        "TITLE_MAINTAINENCE":"Maintenance of States of actor",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New States of actor",
+        "UPDATE": "Update States of actor",
+        "DELETE": "Delete States of actor",
+        "DISPLAY": "Display States of actor"
+    },
+    "OFFICES":{
+        "TITLE_MAINTAINENCE":"Maintenance of the offices",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New Office",
+        "UPDATE": "Update Office",
+        "DELETE": "Delete Office",
+        "DISPLAY": "Display Office"
+    },
+    "TYPEOFACTORS":{
+        "TITLE_MAINTAINENCE":"Maintenance of the type of actor",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New type of actor",
+        "UPDATE": "Update type of actor",
+        "DELETE": "Delete type of actor",
+        "DISPLAY": "Display type of actor"
+    },
+    "TYPEOFDOCUMENTS":{
+        "TITLE_MAINTAINENCE":"Maintenance of the type of document",
+        "COLUMN_NAME": "Name",
+        "COLUMN_DESCRIPTION": "Description",
+        "COLUMN_REGNUMPATHERN": "RegNumPathern",
+        "COLUMN_CREATED_ON": "Created On",
+        "COLUMN_UPDATED_ON": "Updated On",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",        
+        "FORM_ERROR_REGNUMPATHERN": "RegNumPathern is required.",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New type of actor",
+        "UPDATE": "Update type of actor",
+        "DELETE": "Delete type of actor",
+        "DISPLAY": "Display type of actor"
     }
 
     

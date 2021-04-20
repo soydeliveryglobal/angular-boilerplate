@@ -11,9 +11,7 @@ import { LoginService } from 'src/app/core/services/login.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CategoriesService } from 'src/app/core/services/abm/categories.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DtoProductModal } from 'src/app/navigation/componentes-hijos/products-modal/products-modal-dto';
-import { ProductsModalComponent } from 'src/app/navigation/componentes-hijos/products-modal/products-modal.component';
+
 
 @Component({
   selector: 'list-categories',
@@ -24,7 +22,6 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   Categories:MatTableDataSource<Category>;
   environment = environment;
-  dtoProduct = new DtoProductModal();
 
   displayedColumns: string[] = ['name','description','createdOn','updatedOn','actions'];
 
@@ -47,7 +44,7 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
     private login: LoginService,
     private translate: TranslateService,
     private i18nService: I18nServiceService,
-    private dialog:MatDialog
+    
   ) {
     super();
     this.i18nService.localeEvent$.subscribe((locale) => {
@@ -83,14 +80,15 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
   }
 
   createCategory() {
-   /*  this.router.navigate([
+     this.router.navigate([
       environment.FORM_CRUD_CATEGORY,
       0,
       environment.MODO_CREATE,
-    ]); */
-    this.openDialog()
+    ]); 
+    
   }
 
+  
 
   public  pageEvent(page: PageEvent ){   
     if (!page){
@@ -101,19 +99,5 @@ export class ListCategoriesComponent extends Paginador implements OnInit {
     }
     const query = this.createPaging()
     this.consultar(query);
-  } 
-  
-
-  openDialog(): void {
-    this.dtoProduct.readonly = false
-    const dialogRef = this.dialog.open(ProductsModalComponent,{data:{dtoProductModal: this.dtoProduct},width: '90vw',maxWidth: '90vw',});
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-
-    dialogRef.componentInstance.productsOut.subscribe(productsSelected => {
-      console.log('tengo los productos',productsSelected);
-    });
   }
 }

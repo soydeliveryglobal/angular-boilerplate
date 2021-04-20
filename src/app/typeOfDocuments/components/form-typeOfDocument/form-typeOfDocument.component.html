@@ -1,0 +1,59 @@
+<div class="card m-3" style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate }}</div>
+    <form [formGroup]="TypeOfDocumentForm" (submit)="onSubmit()">
+      <div class="controles-form">
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'TYPEOFDOCUMENTS.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form"  type="button" (click)="gotoList()">{{'TYPEOFDOCUMENTS.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit">{{'TYPEOFDOCUMENTS.CONFIRM' | translate}}</button>
+      </div>
+
+        
+          
+          <div class="form-group">
+            <label for="id">#GUID TypeOfDocument</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="typeOfDocumentGUID" id="typeOfDocumentGUID" [(ngModel)]="typeOfDocument.typeOfDocumentGUID" />
+          </div>
+         
+          <div class="form-group">
+            <label> {{'TYPEOFDOCUMENTS.COLUMN_NAME' | translate }}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="typeOfDocument.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">{{'TYPEOFDOCUMENTS.FORM_ERROR_NAME' | translate }}</div>                
+            </div>
+          </div>
+          
+
+          <div class="form-group">
+            <label>{{'TYPEOFDOCUMENTS.COLUMN_DESCRIPTION' | translate}}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="typeOfDocument.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">{{'TYPEOFDOCUMENTS.FORM_ERROR_DESCRIPTION' | translate }}</div>
+                
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{'TYPEOFDOCUMENTS.COLUMN_REGNUMPATHERN' | translate}}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="regNumPathern" class="form-control campo-descripcion-corta" [(ngModel)]="typeOfDocument.regNumPathern" [ngClass]="{ 'is-invalid': submitted && f.regNumPathern.errors }" />
+            <div *ngIf="submitted && f.regNumPathern.errors" class="invalid-feedback">
+                <div *ngIf="f.regNumPathern.errors.required">{{'TYPEOFDOCUMENTS.FORM_ERROR_REGNUMPATHERN' | translate }}</div>
+                
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>{{'TYPEOFDOCUMENTS.COLUMN_CREATED_ON' | translate}}</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="createdOn" id="createdOn" [(ngModel)]="typeOfDocument.createdOn" />
+          </div>
+
+          <div class="form-group">
+            <label>{{'TYPEOFDOCUMENTS.COLUMN_UPDATED_ON' | translate}}</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="updatedOn" id="updatedOn" [(ngModel)]="typeOfDocument.updatedOn" />
+          </div>
+
+         
+        
+      </form>
+     
+    </div>
+</div>

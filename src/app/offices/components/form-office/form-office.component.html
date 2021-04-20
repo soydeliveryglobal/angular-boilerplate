@@ -1,0 +1,52 @@
+<div class="card m-3" style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate }}</div>
+    <form [formGroup]="OfficeForm" (submit)="onSubmit()">
+      <div class="controles-form">
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'OFFICES.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form"  type="button" (click)="gotoList()">{{'OFFICES.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit">{{'OFFICES.CONFIRM' | translate}}</button>
+      </div>
+
+        
+          
+          <div class="form-group">
+            <label for="id">#GUID Office</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="officeGUID" id="officeGUID" [(ngModel)]="office.officeGUID" />
+          </div>
+         
+          <div class="form-group">
+            <label> {{'OFFICES.COLUMN_NAME' | translate }}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="office.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">{{'OFFICES.FORM_ERROR_NAME' | translate }}</div>                
+            </div>
+          </div>
+          
+
+          <div class="form-group">
+            <label>{{'OFFICES.COLUMN_DESCRIPTION' | translate}}</label>
+            <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="office.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">{{'OFFICES.FORM_ERROR_DESCRIPTION' | translate }}</div>
+                
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label>{{'OFFICES.COLUMN_CREATED_ON' | translate}}</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="createdOn" id="createdOn" [(ngModel)]="office.createdOn" />
+          </div>
+
+          <div class="form-group">
+            <label>{{'OFFICES.COLUMN_UPDATED_ON' | translate}}</label>
+            <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="updatedOn" id="updatedOn" [(ngModel)]="office.updatedOn" />
+          </div>
+
+         
+        
+      </form>
+     
+    </div>
+</div>

@@ -74,6 +74,26 @@ const routes: Routes = [
         path: 'movements',
         loadChildren: () => import('./movements/movements.module').then(m => m.MovementsModule)
       },
+      {
+        path: 'stateofdocuments',
+        loadChildren: () => import('./stateOfDocuments/stateOfDocuments.module').then(m => m.StateOfDocumentsModule)
+      },
+      {
+        path: 'stateofactors',
+        loadChildren: () => import('./stateOfActors/stateOfActor.module').then(m => m.StateOfActorModule)
+      },
+      {
+        path: 'offices',
+        loadChildren: () => import('./offices/office.module').then(m => m.OfficeModule)
+      },
+      {
+        path: 'typeofactors',
+        loadChildren: () => import('./typeOfActors/typeOfActor.module').then(m => m.TypeOfActorModule)
+      },
+      {
+        path: 'typeofdocuments',
+        loadChildren: () => import('./typeOfDocuments/typeOfDocument.module').then(m => m.TypeOfDocumentModule)
+      },
     ]
   },
   {

@@ -1,10 +1,11 @@
-import { FormFamilyComponent } from './components/form-family/form-family.component';
-import { ListFamiliesComponent } from './components/list-families/list-families.component';
-import { FamiliesRoutingModule } from './families-routing.module';
+import { ListTypeOfDocumentComponent } from './components/list-typeOfDocument/list-typeOfDocument.component';
+import { FormTypeOfDocumentComponent } from './components/form-typeOfDocument/form-typeOfDocument.component';
+
 import { MatSortModule } from '@angular/material/sort';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { TypeOfDocumentRoutingModule } from './typeofdocument-routing.module';
 import { NbCardModule, NbIconModule, NbInputModule } from '@nebular/theme';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,17 +19,17 @@ import {  MatPaginatorModule } from '@angular/material/paginator';
 
 
 
-export function familiesHttpLoaderFactory(http: HttpClient) {
+export function demoHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 
 
 @NgModule({
-  declarations: [ListFamiliesComponent,FormFamilyComponent],
+  declarations: [ListTypeOfDocumentComponent, FormTypeOfDocumentComponent],
   imports: [
     CommonModule,
-    FamiliesRoutingModule,
+    TypeOfDocumentRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NavigationModule,
@@ -41,11 +42,11 @@ export function familiesHttpLoaderFactory(http: HttpClient) {
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
-        useFactory: familiesHttpLoaderFactory,
+        useFactory: demoHttpLoaderFactory,
         deps: [HttpClient],
       },
     }),
     
   ]
 })
-export class FamiliesModule { }
+export class TypeOfDocumentModule { }

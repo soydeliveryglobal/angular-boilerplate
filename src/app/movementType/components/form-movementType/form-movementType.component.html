@@ -1,6 +1,6 @@
 <div class="card m-3" style="overflow: hidden;">
   <div class="card-body">
-    <div class="titulo-form">{{formTitle | translate}}</div>
+    <div class="titulo-form">{{formTitle | translate }}</div>
     <form [formGroup]="MovementTypeForm" (submit)="onSubmit()">
       <div class="controles-form">
         <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'MOVEMENTTYPE.RESET' | translate}}</button>

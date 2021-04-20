@@ -9,13 +9,13 @@ import { CredencialesLogin } from '../models/CredencialesLogin';
 export class LoginService{
 
   url: string;
-  token: string ="";
+  token: string = "";
   barraDelPath = environment.BARRA_DE_PATH;
   auth = environment.AUTH;
 
   constructor(private http: HttpClient) {
 
-    this.url = environment.BASE_API_URL + environment.END_POINT_LOGIN
+    this.url = environment.BASE_API_URL + environment.END_POINT_LOGIN;
 
 
   }
@@ -29,28 +29,27 @@ export class LoginService{
       )
     };
 
-    return this.http.post<Administrador>(this.url,credencial, httpOptions);
+    return this.http.post<Administrador>(this.url, credencial, httpOptions);
   }
 
-    
   public  desLoguear(){
-    //localStorage.removeItem(environment.LOCAL_STORAGE_ADMINISTRADOR);    
+    // localStorage.removeItem(environment.LOCAL_STORAGE_ADMINISTRADOR);    
   }
 
-  public  estaLogueado():boolean{
-    let buffer: string =  `email: "admin@uruguaynatural.com.uy"
+  public  estaLogueado(): boolean{
+    let buffer : string =  `email: "admin@uruguaynatural.com.uy"
     esSuperAdministrador: true
     id: 1
     nombre: "Administrador"
     password: "1234"
-    token: "26f2fe6e-8022-4941-8466-1e537564ee3d"`//localStorage.getItem(environment.LOCAL_STORAGE_ADMINISTRADOR);
+    token: "26f2fe6e-8022-4941-8466-1e537564ee3d"`; // localStorage.getItem(environment.LOCAL_STORAGE_ADMINISTRADOR);
     let hayToken = false;
     try{
       let administrador = JSON.parse(buffer);
       if (administrador.token!=""){
         hayToken = true;
-      }      
-    }catch{        
+      }
+    }catch {
     }
     return hayToken;
   }

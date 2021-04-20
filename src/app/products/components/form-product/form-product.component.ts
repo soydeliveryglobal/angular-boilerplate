@@ -41,12 +41,12 @@ export class FormProductComponent implements OnInit, OnDestroy {
   camposReadOnly = false;
   mySubscription: any;
 
-  categories:Category[]
-  brands:Brand[]
-  families:Family[]
-  varieties:Variety[]
-  providers:Provider[]
-  lines:Line[]
+  categories:Category[];
+  brands:Brand[];
+  families:Family[];
+  varieties:Variety[];
+  providers:Provider[];
+  lines:Line[];
 
 
   compareFn(c1:any, c2: any): boolean {
@@ -198,10 +198,9 @@ export class FormProductComponent implements OnInit, OnDestroy {
     this.loadVarieties()
     this.loadProviders()
 }
-  
   private start(){
     this.initializeMainObjects();
-    this.getVariablesFromRouter(); 
+    this.getVariablesFromRouter();
     this.setFormTitle();
     this.initializeForm();
     this.loadComboBoxes();

@@ -1,0 +1,56 @@
+<nb-card>
+  <nb-card-header>
+    {{'TYPEOFDOCUMENTS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <table mat-table [dataSource]="TypeOfDocuments" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'TYPEOFDOCUMENTS.COLUMN_NAME' | translate}} </th>
+      <td mat-cell *matCellDef="let typeOfDocument"> {{typeOfDocument.name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'TYPEOFDOCUMENTS.COLUMN_DESCRIPTION' | translate}} </th>
+      <td mat-cell *matCellDef="let typeOfDocument"> {{typeOfDocument.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="regNumPathern">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'TYPEOFDOCUMENTS.COLUMN_REGNUMPATHERN' | translate}} </th>
+      <td mat-cell *matCellDef="let typeOfDocument"> {{typeOfDocument.regNumPathern}} </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="createdOn" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'TYPEOFDOCUMENTS.COLUMN_CREATED_ON' | translate}} </th>
+      <td mat-cell *matCellDef="let typeOfDocument"> {{typeOfDocument.createdOn}} </td>
+    </ng-container> 
+  3
+     
+  <ng-container matColumnDef="updatedOn" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'TYPEOFDOCUMENTS.COLUMN_UPDATED_ON' | translate}} </th>
+    <td mat-cell *matCellDef="let typeOfDocument"> {{typeOfDocument.updatedOn}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createTypeOfDocument()"></i></th>
+    <td mat-cell *matCellDef="let typeOfDocument">
+      <i class="nb-search nb-icon" (click)="typeOfDocumentDetail(typeOfDocument.typeOfDocumentGUID)"></i>
+      <i class="nb-edit nb-icon" (click)="updateTypeOfDocument(typeOfDocument.typeOfDocumentGUID)"></i>
+      <i class="nb-trash nb-icon" (click)="deleteTypeOfDocument(typeOfDocument.typeOfDocumentGUID)"></i>
+    </td>
+  </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

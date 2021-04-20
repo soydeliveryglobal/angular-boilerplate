@@ -34,9 +34,9 @@ export class MovementsService{
   post(movement: Movement){
     const headers = { 'content-type': 'application/json'}  
 
-    const movementToPost= {...movement}
-    console.log("ASd, ", movementToPost)
-    return this.http.post<Movement>(this.url, movementToPost,{'headers':headers});
+    const movementToPost = {...movement}
+    console.log( 'ASD' , movementToPost)
+    return this.http.post<Movement>(this.url, movementToPost, { 'headers' : headers});
   }
 
   put(guid: string, movement: Movement){

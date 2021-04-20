@@ -30,7 +30,9 @@
   </ng-container> 
 
   <ng-container matColumnDef="actions" >
-    <th mat-header-cell *matHeaderCellDef><i class="nb-plus nb-icon" (click)="createCategory()"></i></th>
+    <th mat-header-cell *matHeaderCellDef>
+      <i class="nb-plus nb-icon" (click)="createCategory()"></i>
+    </th>
     <td mat-cell *matCellDef="let category">
       <i class="nb-search nb-icon" (click)="categoryDetail(category.categoryGUID)"></i>
       <i class="nb-edit nb-icon" (click)="updateCategory(category.categoryGUID)"></i>

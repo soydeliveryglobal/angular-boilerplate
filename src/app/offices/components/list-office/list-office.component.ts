@@ -1,25 +1,25 @@
-import { FamiliesService } from './../../../core/services/abm/families.service';
-import { Family } from './../../../core/models/Family';
 import { PageEvent } from '@angular/material/paginator';
 import { Paginador } from './../../../navigation/paginador';
 import { ResponseAll } from './../../../core/models/ResponseAll';
 import { I18nServiceService } from './../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Office } from './../../../core/models/office';
 import { Component, OnInit,AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { OfficeService } from 'src/app/core/services/abm/offices.service';
 import { LoginService } from 'src/app/core/services/login.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'list-families',
-  templateUrl: './list-families.template.html',
-  styleUrls: ['./list-families.scss'],
+  selector: 'list-office',
+  templateUrl: './list-office.template.html',
+  styleUrls: ['./list-office.scss'],
 })
-export class ListFamiliesComponent extends Paginador implements OnInit {
+export class ListOfficeComponent extends Paginador implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
-  Families:MatTableDataSource<Family>;
+  Offices:MatTableDataSource<Office>;
   environment = environment;
 
 
@@ -30,14 +30,14 @@ export class ListFamiliesComponent extends Paginador implements OnInit {
   }
 
   private consultar() {
-    this.familiesService.getAll().subscribe((res: ResponseAll) => {
-      this.Families = new MatTableDataSource(res.data);
-      this.Families.sort = this.sort;
+    this.officeService.getAll(environment.EMPTY_QUERY).subscribe((res: ResponseAll) => {
+      this.Offices = new MatTableDataSource(res.data);
+      this.Offices.sort = this.sort;
     });
   }
 
   constructor(
-    private familiesService: FamiliesService,
+    private officeService: OfficeService,
     private router: Router,
     private login: LoginService,
     private translate: TranslateService,
@@ -51,33 +51,33 @@ export class ListFamiliesComponent extends Paginador implements OnInit {
     this.consultar()
   }
 
-  deleteFamily(guid: string) {
+  deleteOffice(guid: string) {
     this.router.navigate([
-      environment.FORM_CRUD_FAMILY,
+      environment.FORM_CRUD_OFFICES,
       guid,
       environment.MODO_DELETE,
     ]);
   }
 
-  updateFamily(guid: string) {
+  updateOffice(guid: string) {
     this.router.navigate([
-      environment.FORM_CRUD_FAMILY,
+      environment.FORM_CRUD_OFFICES,
       guid,
       environment.MODO_UPDATE,
     ]);
   }
 
-  familyDetail(guid: string) {
+  officeDetail(guid: string) {
     this.router.navigate([
-      environment.FORM_CRUD_FAMILY,
+      environment.FORM_CRUD_OFFICES,
       guid,
       environment.MODO_DISPLAY,
     ]);
   }
 
-  createFamily() {
+  createOffice() {
     this.router.navigate([
-      environment.FORM_CRUD_FAMILY,
+      environment.FORM_CRUD_OFFICES,
       0,
       environment.MODO_CREATE,
     ]);
@@ -93,5 +93,8 @@ export class ListFamiliesComponent extends Paginador implements OnInit {
     }
     this.consultar();
   } 
+
+
+  
   
 }

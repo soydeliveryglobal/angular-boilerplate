@@ -1,3 +1,4 @@
+
 import { Movement } from '../../../core/models/Movement';
 import { PageEvent } from '@angular/material/paginator';
 import { Paginador } from '../../../navigation/paginador';
@@ -9,8 +10,9 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoginService } from 'src/app/core/services/login.service';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MovementsService } from 'src/app/core/services/abm/movements.service';
+
 
 @Component({
   selector: 'list-movements',
@@ -18,22 +20,27 @@ import { MovementsService } from 'src/app/core/services/abm/movements.service';
   styleUrls: ['./list-movements.scss'],
 })
 export class ListMovementsComponent extends Paginador implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
-  Movements:MatTableDataSource<Movement>;git
+  
+  @ViewChild(MatSort)
+  sort: MatSort;
+  Movements: MatTableDataSource<Movement>;
+  git;
   environment = environment;
 
 
-  displayedColumns: string[] = ['name','description','time','quantity'];
+  displayedColumns: string[] = ['details', 'product', 'movementType', 'quantity', 'unity', 'time', 'enableIn', 'enableOut', 'actions'];
 
 
   ngOnInit() {
-   // this.consultar();
+    this.consultar();
   }
 
   private consultar() {
     this.movementsService.getAll().subscribe((res: ResponseAll) => {
-      this.Movements = new MatTableDataSource(res.data);
+      this.Movements = new MatTableDataSource<Movement>(res.data);
       this.Movements.sort = this.sort;
+
+
     });
   }
 
@@ -49,7 +56,7 @@ export class ListMovementsComponent extends Paginador implements OnInit {
       this.translate.use(locale);
     });
 
-    this.consultar()
+    this.consultar();
   }
 
   deleteMovement(guid: string) {
@@ -68,7 +75,7 @@ export class ListMovementsComponent extends Paginador implements OnInit {
     ]);
   }
 
-  movementDetail(guid: string) {
+  movementDetail(guid: string ) {
     this.router.navigate([
       environment.FORM_CRUD_MOVEMENT,
       guid,
@@ -94,5 +101,10 @@ export class ListMovementsComponent extends Paginador implements OnInit {
     }
     this.consultar();
   } 
+  
+
+
+
+
   
 }

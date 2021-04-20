@@ -36,7 +36,7 @@ export class CategoriesService{
     const headers = { 'content-type': 'application/json'}  
 
     const categoryToPost= {name:category.name,description:category.description}
-    return this.http.post<Category>(this.url, categoryToPost,{'headers':headers});
+    return this.http.post<Category>(this.url, categoryToPost,{ 'headers' : headers});
   }
 
   put(guid: string, category: Category){
