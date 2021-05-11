@@ -23,6 +23,10 @@ export class ProductsService{
 
   getAll(query:string):Observable<ResponseAll>{
     const urlWithQuery = `${this.url}?${query}`
+
+
+
+    console.log("Vs con: " + urlWithQuery)
     const response = this.http.get<ResponseAll>(urlWithQuery)
     return response
   }
@@ -42,7 +46,6 @@ export class ProductsService{
   put(guid: string, product: Product){
     const url = `${this.url}${this.barraDelPath}${guid}`
     
-    console.log('este',product)
     return this.http.put<Product>(url, product);
   }
 

@@ -92,12 +92,12 @@ export class ListMovementsComponent extends Paginador implements OnInit {
   }
 
 
-  public  pageEvent(page: PageEvent ){   
+  public  pageEvent(page: PageEvent ){
     if (!page){
-        this.pagina = environment.PAGINA_INICIAL;  
+        this.pagina = environment.PAGINA_INICIAL;
     }else{
         this.pagina = Number(page.pageIndex);
-        this.pageSize = page.pageSize 
+        this.pageSize = page.pageSize
     }
     this.consultar();
   } 

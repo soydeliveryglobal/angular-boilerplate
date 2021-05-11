@@ -85,6 +85,15 @@
           <label>{{'PRODUCTS.COLUMN_DESCRIPTION' | translate}}</label>
           <input [readonly]="data.dtoProductModal.readonly==true" type="text"  class="form-control campo-descripcion-corta" [(ngModel)]="data.dtoProductModal.description" (change)="newGetProducts()" />
         </div>
+
+        <div class="form-group" style="margin-left: 15px;">
+          <label>{{'PRODUCTS.COLUMN_EAN_CODE' | translate}}</label>
+          <input [readonly]="data.dtoProductModal.readonly==true" type="text"  class="form-control campo-descripcion-corta" [(ngModel)]="data.dtoProductModal.eanCode" (change)="newGetProducts()" />
+        </div>
+        <div class="form-group" style="margin-left: 15px;">
+          <label>{{'PRODUCTS.COLUMN_STORE_CODE' | translate}}</label>
+          <input [readonly]="data.dtoProductModal.readonly==true" type="text"  class="form-control campo-descripcion-corta" [(ngModel)]="data.dtoProductModal.storeCode" (change)="newGetProducts()" />
+        </div>
     </div>
 
      <!------------------ TABLA ------------------>
@@ -93,7 +102,7 @@
     
           <ng-container matColumnDef="check">
             <th mat-header-cell *matHeaderCellDef>  </th>
-            <td mat-cell *matCellDef="let product"> <input #inputEL type="checkbox" [checked]="isProductSelected(product)" (change)="addOrRemoveProductSelected(inputEL.checked,inputEL.hidden,product)"> </td>
+            <td mat-cell *matCellDef="let product"> <input #inputEL type="checkbox" [checked]="isProductSelected(product)"  (change)="addOrRemoveProductSelected(inputEL.checked,inputEL.hidden,product)"> </td>
           </ng-container>
 
           <ng-container matColumnDef="name">

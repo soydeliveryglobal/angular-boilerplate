@@ -298,6 +298,7 @@
         "COLUMN_CREATED_ON": "Created On",
         "COLUMN_UPDATED_ON": "Updated On",
         "COLUMN_MOVEMENTTYPE":"Movement Type",
+        "COLUMN_STORE_CODE": "Store Code",
 
         "COMBO_BOOL_YES":"Yes",
 
@@ -305,6 +306,7 @@
         "FORM_ERROR_DESCRIPTION": "Description is required.",
         "FORM_ERROR_QUANTITY":"Quantity is required",
         "FORM_ERROR_UNITY":"Units is required",
+        "FORM_ERROR_EAN_CODE":"EAN Code is required",
                 
         
         "FORM_PLACE_HOLDER_STOCK_IN": "move in?",

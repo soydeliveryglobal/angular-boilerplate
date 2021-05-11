@@ -1,15 +1,16 @@
 
-<!-- MOVEMENTS movements Movements movement Movement -->
 <div class="card m-3 " style="overflow: hidden;">
   <div class="card-body">
     <div class="titulo-form">{{formTitle | translate}}</div>
     <form [formGroup]="MovementForm" (submit)="onSubmit()">
-      <div class="controles-form">
+      <div class="controles-form">  
         <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'MOVEMENTS.RESET' | translate}}</button>
         <button  class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'MOVEMENTS.CANCEL' | translate}}</button>
         <button class="btn btn-primary boton-form" type = "submit" >{{'MOVEMENTS.CONFIRM' | translate}}</button>
+        
       </div>
 
+      
         
         <div class="form-container">
           <div class="left-side">
@@ -21,52 +22,7 @@
             </div>
 
             <div class="form-group">
-              <label> {{'MOVEMENTS.COLUMN_DETAILS' | translate }}</label>
-              <input [readonly]="camposReadOnly==true" type="text" formControlName="details" class="form-control campo-descripcion-corta" [(ngModel)]="movement.details" [ngClass]="{ 'is-invalid': submitted && f.details.errors }" />
-              <div *ngIf="submitted && f.details.errors" class="invalid-feedback">
-                  <div *ngIf="f.details.errors.required">{{'MOVEMENTS.FORM_ERROR_DETEAILS' | translate }}</div>
-                                  
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label> {{'MOVEMENTS.COLUMN_QUANTITY' | translate }}</label>
-              <input [readonly]="camposReadOnly==true" type="number" formControlName="quantity" class="form-control campo-descripcion-corta" [(ngModel)]="movement.quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
-              <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
-                  <div *ngIf="f.quantity.errors.required">{{'MOVEMENTS.FORM_ERROR_QUANTITY' | translate }}</div>
-                                  
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label> {{'MOVEMENTS.COLUMN_UNITY' | translate }}</label>
-              <mat-form-field appearance="fill">
-                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_UNIT' | translate" [disabled]="camposReadOnly==true" formControlName="unit" [(ngModel)]="movement.unit" [compareWith]="compareFn"  >
-                  <mat-option *ngFor="let unit of unities " [value]="unit">
-
-                    {{unit.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field> 
-            </div>
-
-            <div class="right-side">
-              <label> {{'MOVEMENTS.COLUMN_PRODUCT' | translate }}</label>
-              <i class="nb-plus nb-icon form-group" (click)="filterProd()" ></i>
-              <mat-form-field appearance="fill">  
-                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_PRODUCT' | translate" [disabled]="camposReadOnly==true" formControlName="product" [(ngModel)]="movement.product" [compareWith]="compareFn"  >
-                  <mat-option *ngFor="let product of products" [value]="product">
-                    {{product.name}} 
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>              
-            </div>
-            
-              
-            
-
-            <div class="right-side">
-              <label> {{'MOVEMENTS.COLUMN_MOVEMENTTYPE' | translate }}</label>
+              <label> {{'MOVEMENTS.COLUMN_MOVEMENTTYPE' | translate }}</label><br>
               <mat-form-field appearance="fill">
                 <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_MOVEMENTTYPE' | translate" [disabled]="camposReadOnly==true" formControlName="movementType" [(ngModel)]="movement.movementType" [compareWith]="compareFn"  >
                   <mat-option *ngFor="let movementType of movementTypes" [value]="movementType">
@@ -75,34 +31,112 @@
                 </mat-select>
               </mat-form-field> 
             </div>
-      
-      
-            <div class="right-side">
-              <label> {{'MOVEMENTS.COLUMN_ENABLEIN' | translate }}</label>
-              <mat-form-field appearance="fill">
-                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_STOCK_IN' | translate" [disabled]="camposReadOnly==true" formControlName="enableIn" [(ngModel)]="movement.depotIn" [compareWith]="compareFn"  >
-                  <mat-option *ngFor="let depot of depots" [value]="depot">
-                    {{depot.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field> 
-            </div> 
 
-            <div class="right-side">
-              <label> {{'MOVEMENTS.COLUMN_ENABLEOUT' | translate }}</label>
+            <div  class="form-group">
+              <label> {{'MOVEMENTS.COLUMN_ENABLEOUT' | translate }}</label><br>
               <mat-form-field appearance="fill">
-                <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_STOCK_OUT' | translate" [disabled]="camposReadOnly==true" formControlName="enableOut" [(ngModel)]="movement.depotOut" [compareWith]="compareFn"  >
+                <mat-select  [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_STOCK_OUT' | translate" [disabled]="camposReadOnly==true" formControlName="enableOut" [(ngModel)]="movement.depotOut" [compareWith]="compareFn"  >
                   <mat-option *ngFor="let depot of depots" [value]="depot">
                     {{depot.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field> 
+            </div>         
+
+            
+            <div class="form-group" >
+              <label> {{'MOVEMENTS.COLUMN_PRODUCT' | translate }}</label> <br>
+               <label>{{'MOVEMENTS.COLUMN_STORE_CODE'|translate}}</label>
+               <filter-code [productIn]="this.movement.product" (productOut)="onSelectedProduct($event)">
+               </filter-code>
+
+               
+                
+            </div>
+            
+
+
+            </div>
+            
+            <div class="right-side">  
+
+              <div class="form-group">
+                <label> {{'MOVEMENTS.COLUMN_UNITY' | translate }}</label> <br>
+                <mat-form-field appearance="fill">
+                  <mat-select [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_UNIT' | translate" [disabled]="camposReadOnly==true" formControlName="unit" [(ngModel)]="movement.unit" [compareWith]="compareFn"  >
+                    <mat-option *ngFor="let unit of unities " [value]="unit">
+  
+                      {{unit.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field> 
+              </div>
+            
+              <div class="form-group">
+                <label> {{'MOVEMENTS.COLUMN_QUANTITY' | translate }}</label>
+                <input [readonly]="camposReadOnly==true" type="number" formControlName="quantity" class="form-control campo-descripcion-corta" [(ngModel)]="movement.quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                    <div *ngIf="f.quantity.errors.required">{{'MOVEMENTS.FORM_ERROR_QUANTITY' | translate }}</div>
+                                    
+                </div>
+              </div>
+
+              
+
+              <div  class="form-group">
+                <label> {{'MOVEMENTS.COLUMN_ENABLEIN' | translate }}</label><br>
+                <mat-form-field appearance="fill">
+                  <mat-select  [placeholder]="'MOVEMENTS.FORM_PLACE_HOLDER_STOCK_IN' | translate" [disabled]="camposReadOnly==true" formControlName="enableIn" [(ngModel)]="movement.depotIn" [compareWith]="compareFn"  >
+                    <mat-option *ngFor="let depot of depots" [value]="depot">
+                      {{depot.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field> 
+              </div> 
+
+            
+
+            <div class="form-group">
+              <label> {{'MOVEMENTS.COLUMN_DETAILS' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="details" class="form-control campo-descripcion-corta" [(ngModel)]="movement.details" [ngClass]="{ 'is-invalid': submitted && f.details.errors }" />
+              <div *ngIf="submitted && f.details.errors" class="invalid-feedback">
+                  <div *ngIf="f.details.errors.required">{{'MOVEMENTS.FORM_ERROR_DETEAILS' | translate }}</div>
+                                  
+              </div>
             </div>
       
             
           </div>
 
-          
+          <div class="down-side" *ngIf="this.movement.product!=null">
+
+            
+            <div class="form-group">
+              <label> {{'MOVEMENTS.COLUMN_PRODUCT' | translate }}</label> <br>
+            </div>
+            <div class="form-group">
+              <label>{{'PRODUCTS.COLUMN_NAME' | translate}}</label>
+              <input readonly type="text" class="form-control campo-descripcion-corta" value="{{this.movement.product.name}}">              
+            </div>
+            <div class="form-group">
+              
+              <label>{{'PRODUCTS.COLUMN_DESCRIPTION' | translate}}</label>
+              <input readonly type="text" class="form-control campo-descripcion-corta" value="{{this.movement.product.description}}">              
+            </div>
+            <div class="form-group">
+              <label>{{'PRODUCTS.COLUMN_EAN_CODE' | translate}}</label>
+              <input readonly type="text" class="form-control campo-descripcion-corta" value="{{this.movement.product.eanCode}}"> 
+            </div>
+            <div class="form-group">              
+              <label>{{'PRODUCTS.COLUMN_STORE_CODE' | translate}}</label>
+              <input readonly type="text" class="form-control campo-descripcion-corta" value="{{this.movement.product.storeCode}}"> 
+            </div>
+            
+          </div>
+
+          <div>
+
+          </div>
          
         </div>
           
@@ -110,4 +144,3 @@
       </form>
      
     </div>
-</div>

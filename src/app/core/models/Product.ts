@@ -24,7 +24,7 @@
     }
 
     export enum ProductOrServiceType{
-        Product = 0,    
+        Product = 0,
         Service = 1
     }
 

@@ -1,3 +1,4 @@
+import { OneFilterCodeComponent } from './../componentes-hijos/filter-code/filter-code.component';
 import { HttpClient } from '@angular/common/http';
 import { ProductsModalComponent } from './../componentes-hijos/products-modal/products-modal.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,11 +20,13 @@ export function productsModalHttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     DatePickerComponent,
-    ProductsModalComponent
+    ProductsModalComponent,
+    OneFilterCodeComponent
   ],
   exports: [
     DatePickerComponent,
-    ProductsModalComponent
+    ProductsModalComponent,
+    OneFilterCodeComponent
   ],
   imports: [
     CommonModule, 

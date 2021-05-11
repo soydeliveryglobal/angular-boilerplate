@@ -2,12 +2,11 @@ import { MovementTypeService } from './../../../core/services/abm/movementTypes.
 import { MovementType } from 'src/app/core/models/movementType';
 import { ProductsService } from './../../../core/services/abm/products.service';
 import { Product } from './../../../core/models/Product';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Movement } from './../../../core/models/Movement';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output, OnInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MovementsService } from 'src/app/core/services/abm/movements.service';
@@ -16,10 +15,6 @@ import { DepotsService } from 'src/app/core/services/abm/depots.services';
 import { ResponseAll } from 'src/app/core/models/ResponseAll';
 import { Unit } from 'src/app/core/models/Unit';
 import { UnitsService } from 'src/app/core/services/abm/units.service';
-
-import { DtoProductModal } from 'src/app/navigation/componentes-hijos/products-modal/products-modal-dto';
-import { ProductsModalComponent } from 'src/app/navigation/componentes-hijos/products-modal/products-modal.component';
-import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -43,8 +38,7 @@ export class FormMovementComponent implements OnInit, OnDestroy {
   movement: Movement;
   insert = false;
   camposReadOnly = false;
-  mySubscription: any;  
-  dtoProduct = new DtoProductModal();
+  mySubscription: any;
 
   compareFn(c1: any, c2: any): boolean {
     return c1 && c2 ? Object.values(c1)[0] === Object.values(c2)[0] : c1 === c2;
@@ -60,8 +54,7 @@ export class FormMovementComponent implements OnInit, OnDestroy {
     private depotsService: DepotsService,
     private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private i18nService: I18nServiceService,
-    private dialog:MatDialog
+    private i18nService: I18nServiceService
   ) {
     this.i18nService.localeEvent$.subscribe((locale) => {
       this.translate.use(locale);
@@ -227,9 +220,7 @@ export class FormMovementComponent implements OnInit, OnDestroy {
   public onSubmit() {
     this.submitted = true;
 
-    console.log(JSON.stringify(this.movement));
     if (!this.isFormValid()) {
-      //alertify.alert(environment.VERIFIFICAR_FORM_INVALIDO);
       alert(environment.VERIFIFICAR_FORM_INVALIDO);
     }
     this.doCrudOperation();
@@ -240,15 +231,13 @@ export class FormMovementComponent implements OnInit, OnDestroy {
       (data) => {
         this.gotoList();
       },
-      (error) => alert(error.error)
-    );
+      (error) => alert(error.error));
   }
 
   createMovement() {
     this.movementsService.post(this.movement).subscribe((data) => {
         this.gotoList();
-      }, error => console.log(JSON.stringify(this.movement))
-    );
+      }, error => alert(error.error));
   }
 
   updateMovement() {
@@ -268,22 +257,11 @@ export class FormMovementComponent implements OnInit, OnDestroy {
     return this.MovementForm.controls;
   }
 
-  filterProd(){
-    this.openDialog();
+
+  onSelectedProduct(aProduct: Product){
+    
+    this.movement.product = aProduct;
   }
 
 
-  openDialog(): void {
-    this.dtoProduct.readonly = false
-    const dialogRef = this.dialog.open(ProductsModalComponent,{data:{dtoProductModal: this.dtoProduct},width: '90vw',maxWidth: '90vw',});
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-
-    dialogRef.componentInstance.productsOut.subscribe(productsSelected => {
-      console.log('tengo los productos',productsSelected);
-    });
-  }
-  
 }

@@ -161,6 +161,7 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
     }
   }
 
+
   addToProductSelected(product:Product){
     this.productsSelected.push(product)
   }
@@ -177,9 +178,13 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
     });
   }
 
-  isProductSelected(product:Product){
-      return this.productsSelected.filter(el=>el.productGUID == product.productGUID).length > 0 
+  isProductSelected(product: Product){
+
+      return this.productsSelected.filter(el => el.productGUID === product.productGUID).length > 0;
+      
   }
+
+ 
 
   removeDuplicatedProduct(products:Product[]){
     if (products.length != 0 ) {
@@ -188,12 +193,12 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
   }
 
 
-  public pageEvent(page: PageEvent ){   
+  public pageEvent(page: PageEvent ){
     if (!page){
-        this.pagina = environment.PAGINA_INICIAL;  
+        this.pagina = environment.PAGINA_INICIAL;
     }else{
         this.pagina = Number(page.pageIndex);
-        this.pageSize = page.pageSize 
+        this.pageSize = page.pageSize;
     }
     
     this.getProducts();
@@ -204,6 +209,10 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
     let filters = ''
     this.data.dtoProductModal.name ? filters = `${filters}&name=${this.data.dtoProductModal.name}` : null
     this.data.dtoProductModal.description ? filters = `${filters}&description=${this.data.dtoProductModal.description}` : null
+        
+    this.data.dtoProductModal.eanCode ? filters = `${filters}&eanCode=${this.data.dtoProductModal.eanCode}` : null
+    this.data.dtoProductModal.storeCode ? filters = `${filters}&storeCode=${this.data.dtoProductModal.storeCode}` : null
+
     this.data.dtoProductModal.category ? filters = `${filters}&categoryName=${this.data.dtoProductModal.category.name}` : null
     this.data.dtoProductModal.brand ? filters = `${filters}&brandName=${this.data.dtoProductModal.brand.name}` : null
     this.data.dtoProductModal.family ? filters = `${filters}&familyName=${this.data.dtoProductModal.family.name}` : null
@@ -221,6 +230,9 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
     localStorage.removeItem(environment.PRODUCTS_MODAL_LINE_FILTER);
     localStorage.removeItem(environment.PRODUCTS_MODAL_VARIETY_FILTER);
 
+    localStorage.removeItem(environment.PRODUCTS_MODAL_EAN_CODE_FILTER);
+    localStorage.removeItem(environment.PRODUCTS_MODAL_STORE_CODE_FILTER);
+
     localStorage.removeItem(environment.PRODUCTS_MODAL_USE_STOCK_FILTER);
     localStorage.removeItem(environment.PRODUCTS_MODAL_PRODUCT_OR_SERVICE_FILTER);
   }
@@ -232,6 +244,10 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
     localStorage.setItem(environment.PRODUCTS_MODAL_LINE_FILTER,JSON.stringify(this.data.dtoProductModal.line));
     localStorage.setItem(environment.PRODUCTS_MODAL_VARIETY_FILTER,JSON.stringify(this.data.dtoProductModal.variety));
 
+
+    localStorage.setItem(environment.PRODUCTS_MODAL_EAN_CODE_FILTER,JSON.stringify(this.data.dtoProductModal.eanCode));
+    localStorage.setItem(environment.PRODUCTS_MODAL_STORE_CODE_FILTER,JSON.stringify(this.data.dtoProductModal.storeCode));
+
     localStorage.setItem(environment.PRODUCTS_MODAL_USE_STOCK_FILTER,JSON.stringify(this.data.dtoProductModal.useStock));
     localStorage.setItem(environment.PRODUCTS_MODAL_PRODUCT_OR_SERVICE_FILTER,JSON.stringify(this.data.dtoProductModal.productOrService));
   }
@@ -242,6 +258,9 @@ export class ProductsModalComponent extends Paginador  implements OnInit {
     this.data.dtoProductModal.family = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_FAMILY_FILTER))
     this.data.dtoProductModal.line = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_LINE_FILTER))
     this.data.dtoProductModal.variety = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_VARIETY_FILTER))
+
+    this.data.dtoProductModal.eanCode = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_EAN_CODE_FILTER))
+    this.data.dtoProductModal.storeCode = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_STORE_CODE_FILTER))
 
     this.data.dtoProductModal.useStock = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_USE_STOCK_FILTER))
     this.data.dtoProductModal.productOrService = JSON.parse(localStorage.getItem(environment.PRODUCTS_MODAL_PRODUCT_OR_SERVICE_FILTER))

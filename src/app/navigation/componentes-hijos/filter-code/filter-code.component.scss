@@ -1,6 +1,6 @@
 :host{
     .form-container{
-        display: flex;
+        display: block;
         flex-wrap: wrap;
         
         .right-side,.left-side,.down-side{
@@ -12,11 +12,16 @@
             flex-wrap: wrap;
             align-content: flex-start;
         }
-        
         .right-side{
             margin-left: 25px;
             width: 600px;
             flex-direction: column;
+        }
+        
+        
+        .txtShort{
+            display: flex;
+            width: 70% !important;
         }
         .left-side{
             margin-left: 25px;
