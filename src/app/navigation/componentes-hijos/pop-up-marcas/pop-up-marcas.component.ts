@@ -1,37 +1,38 @@
-
-import { Category } from './../../../core/models/Category';
+import { PopUpsBrands } from './pop-ups-brands';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Brand } from './../../../core/models/Brand';
+import { BrandService } from 'src/app/core/services/abm/brand.service';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { CategoriesService } from 'src/app/core/services/abm/categories.service';
 
 @Component({
-  selector: 'form-category',
-  templateUrl: './form-category.component.html'
+  selector: 'app-pop-up-marcas',
+  templateUrl: './pop-up-marcas.component.html',
+  styleUrls: ['./pop-up-marcas.component.scss']
 })
+export class PopUpMarcasComponent implements OnInit {
 
-
-export class FormCategoryComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
-  CategoryForm: FormGroup;
+  BrandForm: FormGroup;
   formTitle: string;
   guid:string;
   mode: string;
-  category: Category;  
+  brand: Brand;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
-  
 
   
   constructor(private route: ActivatedRoute, private router: Router,
-              private CategoriesService: CategoriesService, private formBuilder: FormBuilder,
+              private BrandService: BrandService, private formBuilder: FormBuilder,
               private translate: TranslateService,
-              private i18nService: I18nServiceService){
+              private i18nService: I18nServiceService,
+              private dialogref: MatDialogRef<PopUpsBrands>){
       
       this.i18nService.localeEvent$.subscribe((locale) => {
         this.translate.use(locale);
@@ -59,7 +60,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
   
   private initializeMainObjects(){
-    this.category = new Category();
+    this.brand = new Brand();
   }
 
   private getVariablesFromRouter(){
@@ -70,29 +71,30 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.formTitle =  `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_BRANDS}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
+  
   private initializeForm(){
-    this.CategoryForm = this.formBuilder.group({
-      categoryGUID: [''],
+    this.BrandForm = this.formBuilder.group({
+      brandGUID: [''],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       createdOn: ['', ],
@@ -100,10 +102,10 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private loadCategory(){
+  private loadBrand(){
     if (this.guid != ""){ 
-        this.CategoriesService.getOne(this.guid).subscribe(category => {
-        this.category = category;            
+        this.BrandService.getOne(this.guid).subscribe(brand => {
+        this.brand = brand;            
       });
     }else{
       
@@ -116,35 +118,22 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.getVariablesFromRouter(); 
     this.setFormTitle();
     this.initializeForm();  
-    this.loadCategory();
+    this.loadBrand();
   }
 
  
   
-  private updateIfIsMode(): boolean{
-    if (this.mode == environment.MODO_UPDATE){     
-      this.updateCategory();
-      return true;
-    }
-    return false;
-  }
+ 
   
   private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
-      this.createCategory();
+      this.createBrand();
       return true;
     }
     return false;
   }
 
-  private deleteIfIsMode(): boolean{
-    if (this.mode == environment.MODO_DELETE){      
-      this.deleteCategory();
-      
-      return true;
-    } 
-    return false;
-  }
+  
 
   private displayIfIsMode(): boolean{
     if (this.mode == environment.MODO_DISPLAY)
@@ -156,17 +145,12 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
 
   private isFormValid(): boolean{
-    return this.CategoryForm.valid;
+    return this.BrandForm.valid;
   }
 
   public doCrudOperation(){
-    if (this.updateIfIsMode()){
-      return;
-    }
+    
     if (this.createIfIsMode()){
-      return;
-    }
-    if (this.deleteIfIsMode()){
       return;
     }
     if (this.displayIfIsMode()){
@@ -185,33 +169,29 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.doCrudOperation();
   }
 
-  deleteCategory() {
-    this.CategoriesService.delete(this.guid).subscribe(data => {
-      this.gotoList();
+  
+
+  createBrand() {
+    this.BrandService.post(this.brand).subscribe(data => {
+      this.closeDialogo();
+      this.ngOnInit();
     }, error => alert(error.error));
   }
 
-  createCategory() {
-    this.CategoriesService.post(this.category).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
-
-  updateCategory() {
-    this.CategoriesService.put(this.guid, this.category).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
+  
   
   gotoList() {
-    this.router.navigate([environment.FORM_LIST_CATEGORIES]);
+    this.router.navigate([environment.FORM_LIST_BRANDS]);
   }
 
   get f() { 
-    return this.CategoryForm.controls; 
+    return this.BrandForm.controls; 
   }
 
 
+
+  
+closeDialogo():void{
+  this.dialogref.close();
 }
-
-
+}

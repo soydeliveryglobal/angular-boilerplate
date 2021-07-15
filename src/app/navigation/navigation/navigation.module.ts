@@ -1,10 +1,8 @@
 import { OneFilterCodeComponent } from './../componentes-hijos/filter-code/filter-code.component';
 import { HttpClient } from '@angular/common/http';
 import { ProductsModalComponent } from './../componentes-hijos/products-modal/products-modal.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from './../../shared/shared.module';
 import { MaterialModule } from './../../material/material.module';
 import { DatePickerComponent } from './../componentes-hijos/date-picker/date-picker.component';
 import { NgModule } from '@angular/core';

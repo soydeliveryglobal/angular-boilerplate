@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+
 import { LineService } from 'src/app/core/services/abm/lines.service';
 import { Line } from './../../../core/models/Line';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
@@ -7,7 +7,6 @@ import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { DtoDatePickerIn } from 'src/app/navigation/componentes-hijos/date-picker/DtoDatePickerIn';
 
 @Component({
   selector: 'form-line',

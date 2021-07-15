@@ -1,37 +1,42 @@
-
-import { Category } from './../../../core/models/Category';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PopUpsProviders } from './pop-ups-provider';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { CategoriesService } from 'src/app/core/services/abm/categories.service';
+import { ProviderService } from 'src/app/core/services/abm/provider.service';
+import { Provider } from 'src/app/core/models/provider';
+import { DtoDatePickerIn } from 'src/app/navigation/componentes-hijos/date-picker/DtoDatePickerIn';
+
+
 
 @Component({
-  selector: 'form-category',
-  templateUrl: './form-category.component.html'
+  selector: 'app-pop-up-provider',
+  templateUrl: './pop-up-provider.component.html',
+  styleUrls: ['./pop-up-provider.component.scss']
 })
-
-
-export class FormCategoryComponent implements OnInit, OnDestroy {
+export class PopUpProviderComponent implements OnInit {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
-  CategoryForm: FormGroup;
+  ProviderForm: FormGroup;
   formTitle: string;
   guid:string;
   mode: string;
-  category: Category;  
+  provider: Provider;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
+  dtoDatePickerInCheckIn: DtoDatePickerIn;
   
 
   
   constructor(private route: ActivatedRoute, private router: Router,
-              private CategoriesService: CategoriesService, private formBuilder: FormBuilder,
+              private ProviderService: ProviderService, private formBuilder: FormBuilder,
               private translate: TranslateService,
-              private i18nService: I18nServiceService){
+              private i18nService: I18nServiceService,
+              private dialogref: MatDialogRef<PopUpsProviders>){
       
       this.i18nService.localeEvent$.subscribe((locale) => {
         this.translate.use(locale);
@@ -59,7 +64,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
   
   private initializeMainObjects(){
-    this.category = new Category();
+    this.provider = new Provider();
   }
 
   private getVariablesFromRouter(){
@@ -70,29 +75,30 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.formTitle =  `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_PROVIDER}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
+  
   private initializeForm(){
-    this.CategoryForm = this.formBuilder.group({
-      categoryGUID: [''],
+    this.ProviderForm = this.formBuilder.group({
+      providerGUID: [''],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       createdOn: ['', ],
@@ -100,10 +106,10 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private loadCategory(){
+  private loadProvider(){
     if (this.guid != ""){ 
-        this.CategoriesService.getOne(this.guid).subscribe(category => {
-        this.category = category;            
+        this.ProviderService.getOne(this.guid).subscribe(provider => {
+        this.provider = provider;            
       });
     }else{
       
@@ -116,60 +122,23 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.getVariablesFromRouter(); 
     this.setFormTitle();
     this.initializeForm();  
-    this.loadCategory();
-  }
-
- 
-  
-  private updateIfIsMode(): boolean{
-    if (this.mode == environment.MODO_UPDATE){     
-      this.updateCategory();
-      return true;
-    }
-    return false;
+    this.loadProvider();
   }
   
   private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
-      this.createCategory();
+      this.createProvider();
       return true;
     }
-    return false;
-  }
-
-  private deleteIfIsMode(): boolean{
-    if (this.mode == environment.MODO_DELETE){      
-      this.deleteCategory();
-      
-      return true;
-    } 
-    return false;
-  }
-
-  private displayIfIsMode(): boolean{
-    if (this.mode == environment.MODO_DISPLAY)
-    {      
-      this.gotoList();
-      return true;
-    }       
     return false;
   }
 
   private isFormValid(): boolean{
-    return this.CategoryForm.valid;
+    return this.ProviderForm.valid;
   }
 
-  public doCrudOperation(){
-    if (this.updateIfIsMode()){
-      return;
-    }
+  public doCrudOperation(){    
     if (this.createIfIsMode()){
-      return;
-    }
-    if (this.deleteIfIsMode()){
-      return;
-    }
-    if (this.displayIfIsMode()){
       return;
     }
   }
@@ -185,33 +154,22 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.doCrudOperation();
   }
 
-  deleteCategory() {
-    this.CategoriesService.delete(this.guid).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
-
-  createCategory() {
-    this.CategoriesService.post(this.category).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
-
-  updateCategory() {
-    this.CategoriesService.put(this.guid, this.category).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
   
-  gotoList() {
-    this.router.navigate([environment.FORM_LIST_CATEGORIES]);
+
+  createProvider() {
+    this.ProviderService.post(this.provider).subscribe(data => {
+      this.closeDialogo();
+      this.ngOnInit();
+    }, error => alert(error.error));
   }
 
+ 
   get f() { 
-    return this.CategoryForm.controls; 
+    return this.ProviderForm.controls; 
   }
 
+  closeDialogo():void{
+    this.dialogref.close();
+  }
 
 }
-
-

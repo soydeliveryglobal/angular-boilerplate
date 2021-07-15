@@ -237,7 +237,7 @@ export class FormMovementComponent implements OnInit, OnDestroy {
   createMovement() {
     this.movementsService.post(this.movement).subscribe((data) => {
         this.gotoList();
-      }, error => alert(error.error));
+      }, error => alert());
   }
 
   updateMovement() {

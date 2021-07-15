@@ -2,13 +2,17 @@
     .form-container{
         display: flex;
         
-        .right-side,.left-side{
+        .right-side{
+            display: block;
+            flex-direction: column;
+        }
+        .left-side{
             display: flex;
             flex-direction: column;
         }
         .right-side{
             margin-left: 25px;
-            width: 600px;
+            width: 400px;
         }
         .mat-form-field{
             width: 50%; 

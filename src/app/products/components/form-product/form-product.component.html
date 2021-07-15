@@ -59,50 +59,8 @@
               </div>
             </div>
 
+
             
-          </div>
-
-          <div class="right-side">
-            <mat-form-field appearance="fill">
-              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_CATEGORY' | translate" [disabled]="camposReadOnly==true" formControlName="category" [(ngModel)]="product.category" [compareWith]="compareFn"  >
-                <mat-option *ngFor="let category of categories" [value]="category">
-                  {{category.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> 
-         
-            <mat-form-field  appearance="fill">
-              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_BRAND' | translate" [disabled]="camposReadOnly==true"formControlName="brand" [(ngModel)]="product.brand" [compareWith]="compareFn" >
-                <mat-option *ngFor="let brand of brands" [value]="brand">
-                  {{brand.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> 
-
-            <mat-form-field appearance="fill">
-              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_FAMILY' | translate" [disabled]="camposReadOnly==true" formControlName="family" [(ngModel)]="product.family" [compareWith]="compareFn" >
-                <mat-option *ngFor="let family of families" [value]="family">
-                  {{family.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> 
-        
-            <mat-form-field appearance="fill">
-              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_LINE' | translate" [disabled]="camposReadOnly==true" formControlName="line" [(ngModel)]="product.line" [compareWith]="compareFn" >
-                <mat-option *ngFor="let line of lines" [value]="line">
-                  {{line.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> 
-
-            <mat-form-field appearance="fill">
-              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_VARIETY' | translate" [disabled]="camposReadOnly==true" formControlName="variety" [(ngModel)]="product.variety" [compareWith]="compareFn" >
-                <mat-option *ngFor="let variety of varieties" [value]="variety">
-                  {{variety.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> 
-
             <mat-form-field appearance="fill">
               <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_TYPE' | translate" [disabled]="camposReadOnly==true" formControlName="productOrService" [(ngModel)]="product.productOrService" [compareWith]="compareFnBool" >
                 <mat-option [value]="0">Product</mat-option>
@@ -117,13 +75,73 @@
               </mat-select>
             </mat-form-field> 
 
+          </div>
+
+          <div class="right-side">            
+           
+            <mat-form-field appearance="fill">
+              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_CATEGORY' | translate" [disabled]="camposReadOnly==true" formControlName="category" [(ngModel)]="product.category" [compareWith]="compareFn"  >
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+            <input type="button" class="btn btn-primary boton-form" value="+" (click)="categoryPopUp()">
+            
+            
+           
+            <mat-form-field  appearance="fill">
+              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_BRAND' | translate" [disabled]="camposReadOnly==true"formControlName="brand" [(ngModel)]="product.brand" [compareWith]="compareFn" >
+                <mat-option *ngFor="let brand of brands" [value]="brand">
+                  {{brand.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+            <input type="button" class="btn btn-primary boton-form" value="+" (click)="brandsPopUp()">
+
+            <mat-form-field appearance="fill">
+              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_FAMILY' | translate" [disabled]="camposReadOnly==true" formControlName="family" [(ngModel)]="product.family" [compareWith]="compareFn" >
+                <mat-option *ngFor="let family of families" [value]="family">
+                  {{family.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+            <input type="button" class="btn btn-primary boton-form" value="+" (click)="familiesPopUp()">
+
+        
+            <mat-form-field appearance="fill">
+              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_LINE' | translate" [disabled]="camposReadOnly==true" formControlName="line" [(ngModel)]="product.line" [compareWith]="compareFn" >
+                <mat-option *ngFor="let line of lines" [value]="line">
+                  {{line.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+            <input type="button" class="btn btn-primary boton-form" value="+" (click)="linesPopUp()">
+
+
+
+            <mat-form-field appearance="fill">
+              <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_VARIETY' | translate" [disabled]="camposReadOnly==true" formControlName="variety" [(ngModel)]="product.variety" [compareWith]="compareFn" >
+                <mat-option *ngFor="let variety of varieties" [value]="variety">
+                  {{variety.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+            <input type="button" class="btn btn-primary boton-form" value="+" (click)="varietyPopUp()">
+
+
+            
             <mat-form-field appearance="fill">
               <mat-select [placeholder]="'PRODUCTS.FORM_PLACE_HOLDER_PROVIDERS' | translate" [disabled]="camposReadOnly==true" formControlName="provider" [(ngModel)]="product.provider" multiple  [compareWith]="compareFn" >
                 <mat-option *ngFor="let provider of providers" [value]="provider">
                   {{provider.name}}
                 </mat-option>
               </mat-select>
-            </mat-form-field> 
+            </mat-form-field>
+            <input type="button" class="btn btn-primary boton-form" value="+" (click)="providerPopUp()">
+
+
+            
                      
           </div>  
          

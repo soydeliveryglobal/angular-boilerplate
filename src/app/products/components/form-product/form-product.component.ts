@@ -1,9 +1,18 @@
+import { PopUpsProviders } from './../../../navigation/componentes-hijos/pop-up-provider/pop-ups-provider';
+import { PopUpProviderComponent } from './../../../navigation/componentes-hijos/pop-up-provider/pop-up-provider.component';
+import { PopUpVarietiesComponent } from './../../../navigation/componentes-hijos/pop-up-varieties/pop-up-varieties.component';
+import { PopUpsVarieties } from './../../../navigation/componentes-hijos/pop-up-varieties/pop-ups-varieties';
+import { PopUpLinesComponent } from './../../../navigation/componentes-hijos/pop-up-lines/pop-up-lines.component';
+import { PopUpFamilyComponent } from './../../../navigation/componentes-hijos/pop-up-family/pop-up-family.component';
+import { PopUpsFamilies } from './../../../navigation/componentes-hijos/pop-up-family/pop-ups-family';
+import { PopUpMarcasComponent } from './../../../navigation/componentes-hijos/pop-up-marcas/pop-up-marcas.component';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUps } from '../../../navigation/componentes-hijos/pop-ups-category/pop-ups';
 import { Family } from './../../../core/models/Family';
 import { Variety } from './../../../core/models/Variety';
 import { Line } from './../../../core/models/Line';
 import { Provider } from './../../../core/models/Provider';
 import { Brand } from './../../../core/models/Brand';
-import { IGUID } from './../../../core/models/IGUID';
 import { ResponseAll } from './../../../core/models/ResponseAll';
 import { Category } from './../../../core/models/Category';
 import { LineService } from 'src/app/core/services/abm/lines.service';
@@ -12,7 +21,6 @@ import { ProviderService } from './../../../core/services/abm/provider.service';
 import { BrandService } from 'src/app/core/services/abm/brand.service';
 import { CategoriesService } from 'src/app/core/services/abm/categories.service';
 import { FamiliesService } from './../../../core/services/abm/families.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Product, ProductOrServiceType } from './../../../core/models/Product';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,6 +29,9 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ProductsService } from 'src/app/core/services/abm/products.service';
+import { PopUpsComponent } from 'src/app/navigation/componentes-hijos/pop-ups-category/pop-ups.component';
+import { PopUpsBrands } from 'src/app/navigation/componentes-hijos/pop-up-marcas/pop-ups-brands';
+import { PopUpsLines } from 'src/app/navigation/componentes-hijos/pop-up-lines/pop-ups-lines';
 
 @Component({
   selector: 'form-product',
@@ -48,6 +59,15 @@ export class FormProductComponent implements OnInit, OnDestroy {
   providers:Provider[];
   lines:Line[];
 
+  
+  popUpsCategory= new PopUps();
+  popUpsBrands = new PopUpsBrands();
+  popUpsFamily = new PopUpsFamilies();
+  popUpsLines = new PopUpsLines();
+  popUpsVarieties = new PopUpsVarieties();
+  popUpsProviders = new PopUpsProviders();
+
+
 
   compareFn(c1:any, c2: any): boolean {
     return c1 && c2 ? Object.values(c1)[0] === Object.values(c2)[0] : c1 === c2;
@@ -69,7 +89,8 @@ export class FormProductComponent implements OnInit, OnDestroy {
               private varietiesService:VarietiesService,
               private formBuilder: FormBuilder,
               private translate: TranslateService,
-              private i18nService: I18nServiceService){
+              private i18nService: I18nServiceService,
+              private dialog: MatDialog){
       
       this.i18nService.localeEvent$.subscribe((locale) => {
         this.translate.use(locale);
@@ -299,6 +320,81 @@ export class FormProductComponent implements OnInit, OnDestroy {
   get f() { 
     return this.ProductForm.controls; 
   }
+
+
+  
+  categoryPopUp(){
+    let popupcategory = this.popUpsCategory;
+    
+    const popDialogRef = this.dialog.open(PopUpsComponent,{data:{popUpModal: popupcategory},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+      this.loadCategories();
+      
+    });
+  }
+
+  brandsPopUp(){
+    let popupbrand = this.popUpsBrands;
+    const popDialogRef = this.dialog.open(PopUpMarcasComponent,{data:{popUpModal: popupbrand},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+      this.loadBrands();
+      
+    });
+  }
+
+  familiesPopUp(){
+    let popupfamily = this.popUpsFamily;
+    const popDialogRef = this.dialog.open(PopUpFamilyComponent,{data:{popUpModal: popupfamily},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+      this.loadFamilies();
+      
+    });
+  }
+
+  linesPopUp(){
+
+    let popupline = this.popUpsLines;
+    const popDialogRef = this.dialog.open(PopUpLinesComponent,{data:{popUpModal: popupline},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+      this.loadLines();
+      
+    });
+
+  }
+
+  varietyPopUp(){
+
+    let popupvariety = this.popUpsVarieties;
+    const popDialogRef = this.dialog.open(PopUpVarietiesComponent,{data:{popUpModal: popupvariety},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+      this.loadVarieties();
+      
+    });
+  }
+
+  providerPopUp(){
+
+    let popupprovider = this.popUpsProviders;
+    const popDialogRef = this.dialog.open(PopUpProviderComponent,{data:{popUpModal: popupprovider},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+      this.loadProviders();
+      
+    });
+
+  }
+ 
 
 
 }

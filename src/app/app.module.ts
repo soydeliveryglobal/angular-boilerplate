@@ -35,12 +35,24 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { PopUpsComponent } from './navigation/componentes-hijos/pop-ups-category/pop-ups.component';
+import { PopUpMarcasComponent } from './navigation/componentes-hijos/pop-up-marcas/pop-up-marcas.component';
+import { PopUpFamilyComponent } from './navigation/componentes-hijos/pop-up-family/pop-up-family.component';
+import { PopUpLinesComponent } from './navigation/componentes-hijos/pop-up-lines/pop-up-lines.component';
+import { PopUpVarietiesComponent } from './navigation/componentes-hijos/pop-up-varieties/pop-up-varieties.component';
+import { PopUpProviderComponent } from './navigation/componentes-hijos/pop-up-provider/pop-up-provider.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+    PopUpsComponent,
+    PopUpMarcasComponent,
+    PopUpFamilyComponent,
+    PopUpLinesComponent,
+    PopUpVarietiesComponent,
+    PopUpProviderComponent,
   ],
   imports: [
     BrowserModule,

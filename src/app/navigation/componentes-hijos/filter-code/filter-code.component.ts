@@ -1,3 +1,4 @@
+import { PopUpsComponent } from '../pop-ups-category/pop-ups.component';
 import { Component, Output, OnInit, EventEmitter, ViewChild, Input } from '@angular/core';
 import { ProductsService } from './../../../core/services/abm/products.service';
 import { Product } from './../../../core/models/Product';
@@ -9,7 +10,8 @@ import { ResponseAll } from 'src/app/core/models/ResponseAll';
 import { Movement } from 'src/app/core/models/Movement';
 import { DtoProductModal } from '../products-modal/products-modal-dto';
 import { ProductsModalComponent } from '../products-modal/products-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { PopUps } from '../pop-ups-category/pop-ups';
 
 
 @Component({
@@ -29,6 +31,8 @@ export class OneFilterCodeComponent implements OnInit{
   MovementForm: FormGroup;
   codeinsert: string;
   dtoProduct = new DtoProductModal();
+  
+  popUps= new PopUps();
 
   constructor(
     private productService: ProductsService,
@@ -50,6 +54,7 @@ export class OneFilterCodeComponent implements OnInit{
   }
 
   getOneProduct(){
+    
     const queryCode = this.createCodeQuery();
     this.productService.getAll(queryCode).subscribe((res: ResponseAll) =>{
      this.products = res.data;
@@ -81,6 +86,25 @@ export class OneFilterCodeComponent implements OnInit{
       this.product = productsSelected[0];
       this.productOut.emit(this.product);
     });
+  }
+
+
+
+ 
+
+  
+  categoryPopUp(){
+    this.openDialogo();
+  }
+  openDialogo():void{
+    this.popUps;
+    const popDialogRef = this.dialog.open(PopUpsComponent,{data:{popUpModal: this.popUps},width: '90vw', maxWidth: '90vw'});
+
+    popDialogRef.afterClosed().subscribe(result =>{
+      console.log("cerrado el dialogo", result);
+    });
+
+    popDialogRef.componentInstance.createCategory()
   }
 
 }

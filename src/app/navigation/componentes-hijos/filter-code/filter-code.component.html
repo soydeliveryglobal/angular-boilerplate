@@ -1,13 +1,9 @@
 <div class="form-container">
     <div class="form-group">
-        <input type="text" class="form-control txtShort" [(ngModel)]="codeinsert" (blur)="getOneProduct()">
+        <input type="text" class="form-control txtShort" [(ngModel)]="codeinsert" (keyup.shift)="getOneProduct()">
         <input type="button" class="btn btn-primary boton-form" value="+" (click)="filterProd()">
-    </div>
-
-    
+    </div>    
 </div>
-
-
 
 
 

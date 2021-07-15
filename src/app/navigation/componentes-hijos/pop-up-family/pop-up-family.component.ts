@@ -1,37 +1,40 @@
-
-import { Category } from './../../../core/models/Category';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Family } from './../../../core/models/Family';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { CategoriesService } from 'src/app/core/services/abm/categories.service';
+import { FamiliesService } from 'src/app/core/services/abm/families.service';
+import { PopUpsFamilies } from './pop-ups-family';
 
 @Component({
-  selector: 'form-category',
-  templateUrl: './form-category.component.html'
+  selector: 'app-pop-up-family',
+  templateUrl: './pop-up-family.component.html',
+  styleUrls: ['./pop-up-family.component.scss']
 })
+export class PopUpFamilyComponent implements OnInit {
 
-
-export class FormCategoryComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
-  CategoryForm: FormGroup;
+  FamilyForm: FormGroup;
   formTitle: string;
   guid:string;
   mode: string;
-  category: Category;  
+  family: Family;  
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
   
-
+  
+  popupfamily = new PopUpsFamilies();
   
   constructor(private route: ActivatedRoute, private router: Router,
-              private CategoriesService: CategoriesService, private formBuilder: FormBuilder,
+              private FamiliesService: FamiliesService, private formBuilder: FormBuilder,
               private translate: TranslateService,
-              private i18nService: I18nServiceService){
+              private i18nService: I18nServiceService,              
+              private dialogref: MatDialogRef<PopUpsFamilies>){
       
       this.i18nService.localeEvent$.subscribe((locale) => {
         this.translate.use(locale);
@@ -59,7 +62,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
   
   private initializeMainObjects(){
-    this.category = new Category();
+    this.family = new Family();
   }
 
   private getVariablesFromRouter(){
@@ -70,29 +73,30 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   private  setFormTitle(){
     if (this.mode == environment.MODO_UPDATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_UPDATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_UPDATE}`;
     }
     else if (this.mode == environment.MODO_CREATE)
     {
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_CREATE}`;
+      this.formTitle = `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_CREATE}`;
       this.insert = true;
       this.guid=""
     }
     else if (this.mode == environment.MODO_DISPLAY)
     {
       this.camposReadOnly = true;
-      this.formTitle = `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_DISPLAY}`;
+      this.formTitle = `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_DISPLAY}`;
     }
     else if (this.mode == environment.MODO_DELETE)
     {
       this.camposReadOnly = true;
-      this.formTitle =  `${environment.DOMAIN_NAME_CATEGORIES}.${environment.TITLE_FORM_DELETE}`;
+      this.formTitle =  `${environment.DOMAIN_NAME_FAMILIES}.${environment.TITLE_FORM_DELETE}`;
     }
   }
   
+  
   private initializeForm(){
-    this.CategoryForm = this.formBuilder.group({
-      categoryGUID: [''],
+    this.FamilyForm = this.formBuilder.group({
+      familyGUID: [''],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       createdOn: ['', ],
@@ -100,10 +104,10 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     });
   }  
 
-  private loadCategory(){
+  private loadFamily(){
     if (this.guid != ""){ 
-        this.CategoriesService.getOne(this.guid).subscribe(category => {
-        this.category = category;            
+        this.FamiliesService.getOne(this.guid).subscribe(family => {
+        this.family = family;            
       });
     }else{
       
@@ -116,14 +120,14 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.getVariablesFromRouter(); 
     this.setFormTitle();
     this.initializeForm();  
-    this.loadCategory();
+    this.loadFamily();
   }
 
  
   
   private updateIfIsMode(): boolean{
     if (this.mode == environment.MODO_UPDATE){     
-      this.updateCategory();
+      this.updateFamily();
       return true;
     }
     return false;
@@ -131,7 +135,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   
   private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
-      this.createCategory();
+      this.createFamily();
       return true;
     }
     return false;
@@ -139,7 +143,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
 
   private deleteIfIsMode(): boolean{
     if (this.mode == environment.MODO_DELETE){      
-      this.deleteCategory();
+      this.deleteFamily();
       
       return true;
     } 
@@ -156,7 +160,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
 
   private isFormValid(): boolean{
-    return this.CategoryForm.valid;
+    return this.FamilyForm.valid;
   }
 
   public doCrudOperation(){
@@ -185,33 +189,35 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.doCrudOperation();
   }
 
-  deleteCategory() {
-    this.CategoriesService.delete(this.guid).subscribe(data => {
+  deleteFamily() {
+    this.FamiliesService.delete(this.guid).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
 
-  createCategory() {
-    this.CategoriesService.post(this.category).subscribe(data => {
-      this.gotoList();
+  createFamily() {
+    this.FamiliesService.post(this.family).subscribe(data => {      
+      this.closeDialogo();
+      this.ngOnInit();
     }, error => alert(error.error));
   }
 
-  updateCategory() {
-    this.CategoriesService.put(this.guid, this.category).subscribe(data => {
+  updateFamily() {
+    this.FamiliesService.put(this.guid, this.family).subscribe(data => {
       this.gotoList();
     }, error => alert(error.error));
   }
   
   gotoList() {
-    this.router.navigate([environment.FORM_LIST_CATEGORIES]);
+    this.router.navigate([environment.FORM_LIST_FAMILIES]);
   }
 
   get f() { 
-    return this.CategoryForm.controls; 
+    return this.FamilyForm.controls; 
   }
 
+  closeDialogo():void{
+    this.dialogref.close();
+  }
 
 }
-
-

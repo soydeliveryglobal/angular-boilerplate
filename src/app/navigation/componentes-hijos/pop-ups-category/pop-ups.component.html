@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>{{'PRODUCTS.COLUMN_CATEGORY_NAME'|translate}}</h1>
+<div mat-dialog-content class="dialog-content">
+
+    <form [formGroup]="CategoryForm" (submit)="onSubmit()">
+        <div class="controles-form">
+          <button  class="btn btn-primary boton-form" type="button" (click)="closeDialogo()">{{'CATEGORIES.CANCEL' | translate}}</button>
+          <button class="btn btn-primary boton-form" type = "submit" (click)="createCategory()" >{{'CATEGORIES.CONFIRM' | translate}}</button>
+        </div>
+  
+          
+            
+            <div class="form-group">
+              <label for="id">#GUID Category</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="categoryGUID" id="categoryGUID" [(ngModel)]="category.categoryGUID" />
+            </div>
+           
+            <div class="form-group">
+              <label> {{'CATEGORIES.COLUMN_NAME' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="category.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">{{'CATEGORIES.FORM_ERROR_NAME' | translate }}</div>
+                                  
+              </div>
+            </div>
+            
+  
+            <div class="form-group">
+              <label>{{'CATEGORIES.COLUMN_DESCRIPTION' | translate}}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="description" class="form-control campo-descripcion-corta" [(ngModel)]="category.description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                  <div *ngIf="f.description.errors.required">{{'CATEGORIES.FORM_ERROR_DESCRIPTION' | translate }}</div>
+                  
+              </div>
+            </div>
+  
+  
+            <div class="form-group">
+              <label>{{'CATEGORIES.COLUMN_CREATED_ON' | translate}}</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="createdOn" id="createdOn" [(ngModel)]="category.createdOn" />
+            </div>
+  
+            <div class="form-group">
+              <label>{{'CATEGORIES.COLUMN_UPDATED_ON' | translate}}</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="updatedOn" id="updatedOn" [(ngModel)]="category.updatedOn" />
+            </div>
+  
+           
+          
+        </form>
+
+</div>

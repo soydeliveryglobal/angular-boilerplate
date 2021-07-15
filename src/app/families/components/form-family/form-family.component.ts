@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+
 import { Family } from './../../../core/models/Family';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -26,7 +26,6 @@ export class FormFamilyComponent implements OnInit, OnDestroy {
   camposReadOnly = false;
   mySubscription: any;
   
-
   
   constructor(private route: ActivatedRoute, private router: Router,
               private FamiliesService: FamiliesService, private formBuilder: FormBuilder,

@@ -1,20 +1,21 @@
-
-import { Category } from './../../../core/models/Category';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Category } from '../../../core/models/Category';
 import { I18nServiceService } from '../../../core/services/i18n/i18n-service.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CategoriesService } from 'src/app/core/services/abm/categories.service';
+import { PopUps } from './pop-ups';
 
 @Component({
-  selector: 'form-category',
-  templateUrl: './form-category.component.html'
+  selector: 'app-pop-ups',
+  templateUrl: './pop-ups.component.html',
+  styleUrls: ['./pop-ups.component.scss']
 })
+export class PopUpsComponent implements OnInit {
 
-
-export class FormCategoryComponent implements OnInit, OnDestroy {
   @Output() modelEmitter = new EventEmitter();
   submitted = false;
   CategoryForm: FormGroup;
@@ -25,30 +26,33 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   insert = false;
   camposReadOnly = false;
   mySubscription: any;
-  
+  popUps= new PopUps();
 
-  
-  constructor(private route: ActivatedRoute, private router: Router,
-              private CategoriesService: CategoriesService, private formBuilder: FormBuilder,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private CategoriesService: CategoriesService,
+              private formBuilder: FormBuilder,
               private translate: TranslateService,
-              private i18nService: I18nServiceService){
-      
-      this.i18nService.localeEvent$.subscribe((locale) => {
-        this.translate.use(locale);
-      });
+              private i18nService: I18nServiceService,
+              private dialog: MatDialog,
+              private dialogref: MatDialogRef<PopUps>) { 
 
-      this.router.routeReuseStrategy.shouldReuseRoute = function () {
-        return false;
-      };
-      this.mySubscription = this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          this.router.navigated = false;
-        }
-      });
-  }
+                this.i18nService.localeEvent$.subscribe((locale) => {
+                  this.translate.use(locale);
+                });
+          
+                this.router.routeReuseStrategy.shouldReuseRoute = function () {
+                  return false;
+                };
+                this.mySubscription = this.router.events.subscribe((event) => {
+                  if (event instanceof NavigationEnd) {
+                    this.router.navigated = false;
+                  }
+                });
+              }
 
 
-  ngOnDestroy(): void {
+ngOnDestroy(): void {
     if (this.mySubscription) {
       this.mySubscription.unsubscribe();
     }
@@ -121,13 +125,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
 
  
   
-  private updateIfIsMode(): boolean{
-    if (this.mode == environment.MODO_UPDATE){     
-      this.updateCategory();
-      return true;
-    }
-    return false;
-  }
+  
   
   private createIfIsMode(): boolean{
     if (this.mode == environment.MODO_CREATE){ 
@@ -137,14 +135,7 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private deleteIfIsMode(): boolean{
-    if (this.mode == environment.MODO_DELETE){      
-      this.deleteCategory();
-      
-      return true;
-    } 
-    return false;
-  }
+  
 
   private displayIfIsMode(): boolean{
     if (this.mode == environment.MODO_DISPLAY)
@@ -160,15 +151,11 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
 
   public doCrudOperation(){
-    if (this.updateIfIsMode()){
-      return;
-    }
+    
     if (this.createIfIsMode()){
       return;
     }
-    if (this.deleteIfIsMode()){
-      return;
-    }
+   
     if (this.displayIfIsMode()){
       return;
     }
@@ -185,23 +172,16 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
     this.doCrudOperation();
   }
 
-  deleteCategory() {
-    this.CategoriesService.delete(this.guid).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
+ 
 
   createCategory() {
     this.CategoriesService.post(this.category).subscribe(data => {
-      this.gotoList();
+      this.closeDialogo();
+      this.ngOnInit();
     }, error => alert(error.error));
   }
 
-  updateCategory() {
-    this.CategoriesService.put(this.guid, this.category).subscribe(data => {
-      this.gotoList();
-    }, error => alert(error.error));
-  }
+  
   
   gotoList() {
     this.router.navigate([environment.FORM_LIST_CATEGORIES]);
@@ -212,6 +192,8 @@ export class FormCategoryComponent implements OnInit, OnDestroy {
   }
 
 
+closeDialogo():void{
+  this.dialogref.close();
 }
 
-
+}

@@ -35,7 +35,7 @@
         "COLUMN_LINE_NAME": "Linea",
         "COLUMN_BRAND_NAME": "Marca",
         "COLUMN_STORE_CODE": "Código de almacenamiento",
-        "COLUMN_PROVIDER_NAME": "Código de proveedor",
+        "COLUMN_PROVIDER_NAME": "Proveedor",
         "COLUMN_EAN_CODE": "Codigo EAN",
         "COLUMN_EXTERNAL_CODE": "Código Externo",
         "COLUMN_VARIETY_NAME": "Variedad",

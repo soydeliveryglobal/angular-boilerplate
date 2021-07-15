@@ -6,7 +6,6 @@ import { Component, Output,OnInit, EventEmitter, OnDestroy } from '@angular/core
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { DtoDatePickerIn } from 'src/app/navigation/componentes-hijos/date-picker/DtoDatePickerIn';
 
 @Component({
   selector: 'form-brand',

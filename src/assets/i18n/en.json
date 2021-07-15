@@ -35,7 +35,7 @@
         "COLUMN_LINE_NAME": "Line",
         "COLUMN_BRAND_NAME": "Brand",
         "COLUMN_STORE_CODE": "Store Code",
-        "COLUMN_PROVIDER_NAME": "Provider Code",
+        "COLUMN_PROVIDER_NAME": "Provider",
         "COLUMN_EAN_CODE": "EAN Code",
         "COLUMN_EXTERNAL_CODE": "External Code",
         "COLUMN_VARIETY_NAME": "Variety",
