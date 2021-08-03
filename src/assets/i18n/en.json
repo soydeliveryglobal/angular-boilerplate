@@ -21,7 +21,8 @@
         "STATEOFACTORS":"States of actors",
         "OFFICES":"Offices",
         "TYPEOFACTORS":"Type of actors",        
-        "TYPEOFDOCUMENTS":"Type of documents"
+        "TYPEOFDOCUMENTS":"Type of documents",
+        "ACTORS":"Actor"
         
     },
     "PRODUCTS":{
@@ -420,6 +421,29 @@
         "UPDATE": "Update type of actor",
         "DELETE": "Delete type of actor",
         "DISPLAY": "Display type of actor"
+    },
+    "ACTORS":{
+        "TITLE_MAINTAINENCE":"Maintenance of Actor",
+        "COLUMN_NAME": "Name",
+        "COLUMN_ADDRESS": "Address",
+        "COLUMN_TAXSERVICENUMBER":"Tax Service Number",
+        "COLUMN_TYPEOFACTOR":"Type of Actor",
+        "COLUMN_STATEOFACTOR":"State of Actor",
+        "FORM_PLACE_HOLDER_STATEOFACTOR":"State of actor",
+        "FORM_PLACE_HOLDER_TYPEOFACTOR":"Type of actor",
+
+        "FORM_ERROR_NAME": "Name is required.",
+        "FORM_ERROR_DESCRIPTION": "Description is required.",
+        "FORM_ERROR_TAXSERVICENUMBER":"Tax number service is required",
+
+        "CANCEL": "Cancel",
+        "RESET": "Reset",
+        "CONFIRM": "Save",
+
+        "CREATE": "New actor",
+        "UPDATE": "Update actor",
+        "DELETE": "Delete actor",
+        "DISPLAY": "Display actor"
     }
 
     

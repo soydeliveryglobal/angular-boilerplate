@@ -21,7 +21,9 @@
         "STATEOFACTORS":"Estado del actor",
         "OFFICES":"Oficina",
         "TYPEOFACTORS":"Tipo de actor",
-        "TYPEOFDOCUMENTS":"Tipo de documento"
+        "TYPEOFDOCUMENTS":"Tipo de documento",
+        "ACTORS":"Actor"
+
         
     },
     "PRODUCTS":{
@@ -423,5 +425,28 @@
         "UPDATE": "Actualizar tipo de documento",
         "DELETE": "Eliminar tipo de documento",
         "DISPLAY": "Visualizar tipo de documento"
+    },
+    "ACTORS":{
+        "TITLE_MAINTAINENCE":"Mantenimiento del actor",
+        "COLUMN_NAME": "Nombre",
+        "COLUMN_ADDRESS": "Direccion",
+        "COLUMN_TAXSERVICENUMBER":"Tax Service Number",
+        "COLUMN_TYPEOFACTOR":"Tipo del Actor",
+        "COLUMN_STATEOFACTOR":"Estado del Actor",
+        "FORM_PLACE_HOLDER_STATEOFACTOR":"Estado del Actor",
+        "FORM_PLACE_HOLDER_TYPEOFACTOR":"Tipo del actor",
+
+        "FORM_ERROR_NAME": "Ingrese un nombre porfavor.",
+        "FORM_ERROR_ADDRESS": "Ingrese una direccion porfavor.",
+        "FORM_ERROR_TAXSERVICENUMBER":"Ingrese un tax number service",
+
+        "CANCEL": "Cancelar",
+        "RESET": "Limpiar",
+        "CONFIRM": "Confirmar",
+
+        "CREATE": "Crear Actor",
+        "UPDATE": "Actualizar Actor",
+        "DELETE": "Eliminar Actor",
+        "DISPLAY": "Visualizar Actor"
     }
 }

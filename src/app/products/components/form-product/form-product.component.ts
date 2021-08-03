@@ -320,8 +320,6 @@ export class FormProductComponent implements OnInit, OnDestroy {
   get f() { 
     return this.ProductForm.controls; 
   }
-
-
   
   categoryPopUp(){
     let popupcategory = this.popUpsCategory;

@@ -1,0 +1,81 @@
+
+<div class="card m-3 " style="overflow: hidden;">
+  <div class="card-body">
+    <div class="titulo-form">{{formTitle | translate}}</div>
+    <form [formGroup]="ActorForm" (submit)="onSubmit()">
+      <div class="controles-form">  
+        <button *ngIf="this.insert"  class="btn btn-primary boton-form" type="reset" >{{'ACTORS.RESET' | translate}}</button>
+        <button  class="btn btn-primary boton-form" type="button" (click)="gotoList()">{{'ACTORS.CANCEL' | translate}}</button>
+        <button class="btn btn-primary boton-form" type = "submit" >{{'ACTORS.CONFIRM' | translate}}</button>
+        
+      </div>
+        
+        <div class="form-container">
+          <div class="left-side">
+            
+          
+            <div class="form-group">
+              <label for="id">#GUID Actor</label>
+              <input  readonly class="form-control ng-untouched ng-pristine ng-valid campo-descripcion-corta" formControlName="actorGuid" id="actorGuid" [(ngModel)]="actor.actorGUID" />
+            </div>
+
+            <div class="form-group">
+              <label> {{'ACTORS.COLUMN_NAME' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="name" class="form-control campo-descripcion-corta" [(ngModel)]="actor.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">{{'ACTORS.FORM_ERROR_NAME' | translate }}</div>                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'ACTORS.COLUMN_ADDRESS' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="address" class="form-control campo-descripcion-corta" [(ngModel)]="actor.address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+              <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                  <div *ngIf="f.address.errors.required">{{'ACTORS.FORM_ERROR_ADDRESS' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'ACTORS.COLUMN_TAXSERVICENUMBER' | translate }}</label>
+              <input [readonly]="camposReadOnly==true" type="text" formControlName="taxServiceNumber" class="form-control campo-descripcion-corta" [(ngModel)]="actor.taxServiceNumber" [ngClass]="{ 'is-invalid': submitted && f.taxServiceNumber.errors }" />
+              <div *ngIf="submitted && f.taxServiceNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.taxServiceNumber.errors.required">{{'ACTORS.FORM_ERROR_TAXSERVICENUMBER' | translate }}</div>
+                                  
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label> {{'ACTORS.COLUMN_TYPEOFACTOR' | translate }}</label><br>
+              <mat-form-field appearance="fill">
+                <mat-select [placeholder]="'ACTORS.FORM_PLACE_HOLDER_TYPEOFACTOR' | translate" [disabled]="camposReadOnly==true" formControlName="typeOfActor" [(ngModel)]="actor.typeOfActor" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let typeOfActor of typeOfActors" [value]="typeOfActor">
+                    {{typeOfActor.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
+            </div>
+
+            <div  class="form-group">
+              <label> {{'ACTORS.COLUMN_STATEOFACTOR' | translate }}</label><br>
+              <mat-form-field appearance="fill">
+                <mat-select  [placeholder]="'ACTORS.FORM_PLACE_HOLDER_STATEOFACTOR' | translate" [disabled]="camposReadOnly==true" formControlName="stateOfActor" [(ngModel)]="actor.stateOfActor" [compareWith]="compareFn"  >
+                  <mat-option *ngFor="let stateOfActor of stateOfActors" [value]="stateOfActor">
+                    {{stateOfActor.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> 
+            </div>                    
+            
+          </div>
+
+          <div>
+
+          </div>
+         
+        </div>
+          
+        
+      </form>
+     
+    </div>

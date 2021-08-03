@@ -1,0 +1,14 @@
+
+:host{
+    table,.table-container{
+        width: 100%;
+        overflow-x: auto;
+    }
+    .nb-icon{
+        font-size: 2.5em;
+        margin-right: 5px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

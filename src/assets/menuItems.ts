@@ -109,6 +109,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'MENU.TYPEOFDOCUMENTS',
     icon: 'car-outline',
     link: environment.FORM_LIST_TYPEOFDOCUMENTS,
+  },
+  {
+    title: 'MENU.ACTORS',
+    icon: 'car-outline',
+    link: environment.FORM_LIST_ACTORS,
   }
 ]
 

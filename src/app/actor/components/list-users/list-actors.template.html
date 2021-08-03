@@ -1,0 +1,57 @@
+<nb-card>
+  <nb-card-header>
+    {{'ACTORS.TITLE_MAINTAINENCE' | translate}}
+  </nb-card-header>
+
+  <div class="table-container" >
+    <table mat-table [dataSource]="Actors" class="mat-elevation-z8" matSort>
+
+
+      
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'ACTORS.COLUMN_NAME' | translate}} </th>
+        <td mat-cell *matCellDef= "let actor"> {{actor.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'ACTORS.COLUMN_ADDRESS' | translate}} </th>
+        <td mat-cell *matCellDef= "let actor"> {{actor.address}} </td>
+      </ng-container>
+      <ng-container matColumnDef="taxServiceNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'ACTORS.COLUMN_TAXSERVICENUMBER' | translate}} </th>
+        <td mat-cell *matCellDef= "let actor"> {{actor.taxServiceNumber}} </td>
+      </ng-container>
+      <ng-container matColumnDef="typeOfActor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'ACTORS.COLUMN_TYPEOFACTOR' | translate}} </th>
+        <td mat-cell *matCellDef= "let actor"> {{actor.typeOfActor.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="stateOfActor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'ACTORS.COLUMN_STATEOFACTOR' | translate}} </th>
+        <td mat-cell *matCellDef= "let actor"> {{actor.stateOfActor.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions" >
+        <th mat-header-cell *matHeaderCellDef>
+          <i class="nb-plus nb-icon" (click)="createActor()"></i>
+        </th>
+       
+        <td mat-cell *matCellDef= "let actor">
+          <i class="nb-search nb-icon" (click)="actorDetail(actor.actorGUID)"></i>
+          <i class="nb-edit nb-icon" (click)="updateActor(actor.actorGUID)"></i>
+          <i class="nb-trash nb-icon" (click)="deleteActor(actor.actorGUID)"></i>
+        </td>
+      </ng-container> 
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+
+  
+</nb-card>
+
+<mat-paginator [length]="this.cantidadDeRegistros"
+  [pageSize]="this.pageSize"
+  [pageSizeOptions]="this.pageSizeOptions"
+  (page)="pageEvent($event)">
+</mat-paginator> 

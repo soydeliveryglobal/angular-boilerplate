@@ -1,4 +1,3 @@
-import { DatePickerComponent } from './navigation/componentes-hijos/date-picker/date-picker.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 

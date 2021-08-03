@@ -94,6 +94,10 @@ const routes: Routes = [
         path: 'typeofdocuments',
         loadChildren: () => import('./typeOfDocuments/typeOfDocument.module').then(m => m.TypeOfDocumentModule)
       },
+      {
+        path: 'actors',
+        loadChildren: () => import('./actor/actors.module').then(m => m.ActorsModule)
+      }
     ]
   },
   {
